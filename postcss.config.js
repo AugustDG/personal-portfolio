@@ -6,7 +6,7 @@ module.exports = ({ env }) => ({
         require('tailwindcss'),
         require('autoprefixer'),
         env === "production" ? purgecss({
-            content: ['public/*.html']
+            content: ['dev/*.html']
         }) : false,
         require('postcss-discard-comments'),
     ]
