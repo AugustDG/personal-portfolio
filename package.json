@@ -4,13 +4,14 @@
   "description": "My personal portfolio project!",
   "main": "index.js",
   "scripts": {
-    "build-dev": "postcss src/styles.css -o public/final.css --env development -w true",
-    "build-prod": "postcss src/styles.css -o public/final.css --env production"
+    "build-dev": "postcss src/styles.css -o dev/final.css --env development -w true",
+    "build-prod": "postcss src/styles.css -o public/final.css --env production && copyfiles -f dev/*.html public/ && copyfiles -f dev/img/*.* public/img"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^10.2.1",
+    "copyfiles": "^2.4.1",
     "live-server": "^1.2.1",
     "postcss-cli": "^8.3.1",
     "postcss-discard-comments": "^4.0.2",
