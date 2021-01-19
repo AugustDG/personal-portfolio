@@ -5,40 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Augusto Pinheiro</title>
     <link rel="stylesheet" href="css/final.css">
-    <link rel="stylesheet" href="css/all.css">
 </head>
 
-<body class="font-mono max-w-full">
+<body class="max-w-full font-mono">
     <!-- content wrapper  -->
-    <div class="relative">
+    <div>
         <!-- navigation wrapper -->
-        <header class="flex justify-around items-center py-3 absolute w-full text-white">
+        <header id="header"
+            class="fixed z-20 flex items-center justify-around w-full py-3 text-white transition-colors duration-300 ease-out bg-transparent">
             <!-- title -->
             <div class="flex-auto ml-8">
-                <h1 class="text-4xs font-bold">augusto pinheiro</h1>
+                <h1 class="font-bold text-4xs">augusto pinheiro</h1>
             </div>
             <nav>
                 <!-- navigation links -->
                 <ul class="mr-8">
                     <li class="nav-links">
-                        <a href="/">
+                        <a href="/" class="inline-grid group grid-rows-auto">
                             <span>home</span>
+                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="/">
+                        <a href="/projects.html" class="inline-grid group grid-rows-auto">
                             <span>projects</span>
+                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
                         </a>
                     </li>
                     <li class="nav-links">
-                        <a href="/">
+                        <a href="#contact" class="hover:text-black-200">
                             <span>contact</span>
                         </a>
                     </li>
-                    <!-- linkedin -->
+                    <!-- github -->
                     <li class="nav-links">
-                        <a href="/" class="fab fa-linkedin-in">
-
+                        <a href="https://github.com/AugustDG" target="_">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 inline fill-current"
+                                viewBox="0 0 16 16" width="16" height="16">
+                                <path fill-rule="evenodd"
+                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                </path>
+                            </svg>
                         </a>
                     </li>
                 </ul>
@@ -47,11 +54,12 @@
 
         <main>
             <!-- landing section -->
-            <div class="bg-earth bg-cover flex flex-wrap justify-start h-full">
-                <div class="ml-8 self-center text-white">
+            <div class="relative flex items-center h-full bg-fixed bg-cover bg-earth">
+                <div class="absolute w-full h-full bg-opacity-40 bg-black-500"></div>
+                <div class="z-10 ml-8 text-white">
                     <h2 class="text-2xl font-extrabold">hello :) <br> and welcome!</h2>
-                    <h3 class="text-sm mt-1">my name's Augusto Pinheiro,</h3>
-                    <p class="text-3xs mt-4">
+                    <h3 class="big-text">my name's Augusto Pinheiro,</h3>
+                    <p class="text">
                         i'm interested in a bunch of stuff: from digital animations to game design!
                         <br> i've dabbled around and tried a few things, so enjoy the results!
                     </p>
@@ -59,96 +67,123 @@
             </div>
 
             <!-- about me section -->
-            <div>
-                <div>
-                    <h2>about me</h2>
-                    <h3>FULL TIME STUDENT & CREATIVE</h3>
-                    <p>
+            <div class="p-8 bg-green-600">
+                <div class="text-white">
+                    <h2 class="bigger-text">about me</h2>
+                    <h3 class="big-text">FULL TIME STUDENT & CREATIVE</h3>
+                    <p class="smaller-text">
                         Hey! My name is Augusto, I'm a game designer and general coding enthusiast in training with a
-                        bunch of ideas just waiting to be put out :) 💡 <br>
+                        bunch of ideas just waiting to be put out :) 💡 <br><br>
 
                         Some of them are on my projects page (or on this one, like the planet backgrounds 😉), others on
-                        my mind and some to come! ☄ <br>
+                        my mind and some to come! ☄ <br><br>
 
                         Speaking of projects, I have worked on dozens of them during my time in high school at Collège
                         Beaubois (yearbook, student council, agenda covers, vectorization of school logos, humanitarian
                         trip to Senegal, etc Not only that, but I also was one of the pioneers of the school's
-                        greenhouse 🍏 <br>
+                        greenhouse 🍏 <br><br>
 
                         Continuing my post-secondary studies at Dawson College, I continued coming up with cool new
-                        ideas that pushed the limits of my capabilities to always learn more 🏫 <br>
+                        ideas that pushed the limits of my capabilities to always learn more 🏫 <br><br>
 
                         Having lived in 3 different countries and changed schools 8 times, I can confidently say that my
-                        capacity to adapt is in tip-top shape 😁 <br>
+                        capacity to adapt is in tip-top shape 😁 <br><br>
 
                         If you've got any questions don't hesitate to contact me, otherwise have a fun browsing
                         experience 🎉
                     </p>
                     <!-- buttons -->
-                    <div>
-                        <a href="/">contact me</a>
-                        <a href="/">projects</a>
-                        <a href="/">letter of intent</a>
+                    <div class="mt-3">
+                        <a href="#contact"
+                            class="transition duration-150 ease-in-out bg-yellow-500 btn hover:bg-yellow-300 hover:text-yellow-500">contact
+                            me</a>
+                        <a href="/projects.html"
+                            class="transition duration-150 ease-in-out bg-red-500 btn hover:bg-red-300 hover:text-red-500">projects</a>
+                        <a href="/letter-of-intent.html"
+                            class="transition duration-150 ease-in-out bg-blue-500 btn hover:bg-blue-300 hover:text-blue-500">letter
+                            of intent</a>
                     </div>
                 </div>
             </div>
 
             <!-- blogs section -->
-            <div>
-                <div>
-                    <h2>blogs</h2>
-                    <h3>MY COLLEGE PROJECTS</h3>
-                    <p>if you're interested in my progression on projects for any of my classes @ Dawson, check them out
+            <div class="p-8 bg-blue-500">
+                <div class="text-white">
+                    <h2 class="bigger-text">blogs</h2>
+                    <h3 class="big-text">MY COLLEGE PROJECTS</h3>
+                    <p class="text">if you're interested in my progression on projects for any of my classes @ Dawson,
+                        check them out
                         below!</p>
                     <!-- buttons -->
-                    <div>
-                        <a href="/">Interactive Media</a>
-                        <a href="/">Art of Game Design</a>
-                        <a href="/">Game Making</a>
-                        <a href="/">Interactive Experience</a>
+                    <div class="mt-3">
+                        <a href="/"
+                            class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
+                            Media</a>
+                        <a href="/" class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Art
+                            of Game Design</a>
+                        <a href="/" class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Game
+                            Making</a>
+                        <a href="/"
+                            class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
+                            Experience</a>
                     </div>
                 </div>
             </div>
 
             <!-- contact me form -->
-            <div>
+            <div id="contact" class="flex">
                 <!-- mars image -->
-                <div>
-                    <img src="" alt="">
+                <div class="w-full bg-cover bg-mars">
+
                 </div>
-                <div>
-                    <div>
-                        <h2>contact me</h2>
-                        <p>Fill this form and I'll get back to you as soon as possible.</p>
-                        <form action="">
-                            <input type="text" placeholder="name"><br>
-                            <input type="text" placeholder="email"><br>
-                            <input type="submit">
-                        </form>
+                <div class="w-3/4 p-8 text-white bg-yellow-500">
+                    <div class="">
+                        <h2 class="text-center bigger-text">contact me</h2>
+                        <p class="text-center text">Click on the icon below to write me an email and I'll get back to
+                            you as soon as possible.
+                        </p>
+                        <a href="mailto:augustomp55@gmail.com" class="grid content-start justify-center mt-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill-rule="evenodd" fill="currentColor"
+                                    d="M1.75 3A1.75 1.75 0 000 4.75v14c0 .966.784 1.75 1.75 1.75h20.5A1.75 1.75 0 0024 18.75v-14A1.75 1.75 0 0022.25 3H1.75zM1.5 4.75a.25.25 0 01.25-.25h20.5a.25.25 0 01.25.25v.852l-10.36 7a.25.25 0 01-.28 0l-10.36-7V4.75zm0 2.662V18.75c0 .138.112.25.25.25h20.5a.25.25 0 00.25-.25V7.412l-9.52 6.433c-.592.4-1.368.4-1.96 0L1.5 7.412z">
+                                </path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </main>
 
-        <footer>
+        <footer class="flex items-center justify-between w-full px-8 py-2 text-white bg-black-500">
             <!-- footer navigation -->
             <nav>
-                <a href="/">
-                    <span>projects</span>
-                </a>
-                <a href="/">
-                    <span>blogs</span>
-                </a>
-                <a href="/">
-                    <span>contact</span>
-                </a>
+                <ul class="mr-8">
+                    <li class="nav-links">
+                        <a href="/" class="inline-grid group grid-rows-auto">
+                            <span>home</span>
+                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="/projects.html" class="inline-grid group grid-rows-auto">
+                            <span>projects</span>
+                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                        </a>
+                    </li>
+                    <li class="nav-links">
+                        <a href="https://github.com/AugustDG" target="_" class="inline-grid group grid-rows-auto">
+                            <span>github</span>
+                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                        </a>
+                    </li>
             </nav>
             <!-- copyright info -->
             <div>
-                <span>© Copyright Augusto Pinheiro.</span>
+                <span class="smaller-text">© Copyright Augusto Pinheiro.</span>
             </div>
         </footer>
     </div>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

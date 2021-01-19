@@ -1,35 +1,46 @@
 module.exports = {
-  purge: ['dev/*.html'],
+  purge: {
+    content: ['public/*.html'],
+    options: {
+      safelist: ['w-0'],
+    }
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    fontFamily: {
-      'mono': ['Jetbrains Mono', 'Source Code Pro'],
-    },
-    fontSize: {
-      '5xs': ['0.25rem', '0.5rem'],
-      '4xs': ['0.375rem', '0.5rem'],
-      '3xs': ['0.5rem', '0.75rem'],
-      '2xs': ['0.675rem', '0.75rem'],
-      'xs': ['0.75rem', '1.rem'],
-      'sm': ['0.875rem', '1.25rem'],
-      'base': ['1rem', '1.5rem'],
-      'lg': ['0.125rem', '1.75rem'],
-      'xl': ['1.25rem', '1.75rem'],
-      '2xl': ['1.5rem', '2.0rem'],
-      '3xl': ['1.875rem', '2.25rem'],
-      '4xl': ['2.25rem', '2.5rem'],
-      '5xl': ['3.0rem', '1.0rem'],
-      '6xl': ['3.75rem', '1.0rem'],
-      '7xl': ['4.5rem', '1.0rem'],
-    },
     extend: {
+      colors: {
+        black: {
+          100: "#d0d0d0",
+          200: "#a0a0a0",
+          300: "#717171",
+          400: "#414141",
+          500: "#121212",
+          600: "#0e0e0e",
+          700: "#0b0b0b",
+          800: "#070707",
+          900: "#040404",
+          1000: "#000000"
+        },
+      },
+      fontFamily: {
+        'mono': ['Jetbrains Mono', 'Source Code Pro'],
+      },
+      fontSize: {
+        '4xs': ['0.375rem', '0.5rem'],
+        '3xs': ['0.5rem', '0.675rem'],
+        '2xs': ['0.675rem', '0.75rem'],
+      },
       backgroundImage: () => ({
         'earth': 'url("/img/earth-bg_img.webp")',
+        'mars': 'url("/img/mars-bg_img.webp")',
       }),
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      width: ['group-hover'],
+      animation: ['hover']
+    },
   },
   plugins: [],
 }

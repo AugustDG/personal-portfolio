@@ -2,6 +2,30 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+html{
+    scroll-behavior: smooth;
+}
+
 .nav-links {
-    @apply mx-1 inline text-4xs;
+    @apply inline mx-1 text-4xs;
+}
+
+.bigger-text{
+    @apply mt-1 text-lg font-bold;
+}
+
+.big-text{
+    @apply mt-1 text-sm;
+}
+
+.text {
+    @apply mt-4 text-3xs;
+}
+
+.smaller-text {
+    @apply mt-4 text-4xs;
+}
+
+.btn {
+    @apply px-2 py-1 font-bold rounded-full shadow-sm text-3xs hover:shadow-inner;
 }

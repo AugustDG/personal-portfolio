@@ -1,13 +1,9 @@
-const purgecss = require('@fullhuman/postcss-purgecss');
-
-module.exports = ({ env }) => ({
+module.exports = () => ({
     plugins: [
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
-        env === "production" ? purgecss({
-            content: ['dev/*.html']
-        }) : false,
         require('postcss-discard-comments'),
+        require('postcss-csso')
     ]
 })
