@@ -7,6 +7,14 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      '2xl': { 'max': '1535px' },
+      'xl': { 'max': '1279px' },
+      'lg': { 'max': '1023px' },
+      'md': { 'max': '767px' },
+      'sm': { 'max': '639px' },
+      'xs': { 'max': '490px' },
+    },
     extend: {
       colors: {
         black: {
@@ -24,11 +32,6 @@ module.exports = {
       },
       fontFamily: {
         'mono': ['Jetbrains Mono', 'Source Code Pro'],
-      },
-      fontSize: {
-        '4xs': ['0.375rem', '0.5rem'],
-        '3xs': ['0.5rem', '0.675rem'],
-        '2xs': ['0.675rem', '0.75rem'],
       },
       backgroundImage: () => ({
         'earth': 'url("/img/earth-bg_img.webp")',

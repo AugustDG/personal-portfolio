@@ -3,7 +3,13 @@ module.exports = () => ({
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
-        require('postcss-discard-comments'),
-        require('postcss-csso')
+        //require('postcss-discard-comments'),
+        require('cssnano')({
+            preset: ['advanced', {
+                discardComments: {
+                    removeAll: true,
+                },
+            }],
+        }),
     ]
 })

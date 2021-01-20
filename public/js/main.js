@@ -1,6 +1,22 @@
 const headerClassList = document.querySelector('#header').classList;
+const menuClassList = document.querySelector('#menu').classList;
+const mobileMenuClassList = document.querySelector('#mobile-menu').classList;
+const burger = document.querySelector('#burger');
+const close = document.querySelectorAll('#close');
 
-var ticking = false;
+burger.addEventListener('click', () => requestAnimationFrame(openMobileMenu), false);
+
+close.forEach((obj) => { obj.addEventListener('click', () => requestAnimationFrame(closeMobileMenu), false); });
+
+window.addEventListener('scroll', () => requestAnimationFrame(updateHeader), false);
+
+function openMobileMenu() {
+    mobileMenuClassList.add('h-screen');
+}
+
+function closeMobileMenu() {
+    mobileMenuClassList.remove('h-screen');
+}
 
 function updateHeader() {
     // reset the tick so we can
@@ -28,5 +44,3 @@ document.querySelectorAll('#header-line').forEach((link) => {
         link.classList.add('w-0');
     }
 })
-
-window.addEventListener('scroll', () => requestAnimationFrame(updateHeader), false);

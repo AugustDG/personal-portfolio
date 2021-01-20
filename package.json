@@ -4,7 +4,7 @@
   "description": "My personal portfolio project!",
   "main": "index.js",
   "scripts": {
-    "build-dev": "postcss src/styles.css -o dev/css/final.css --env development -w true && npx lodash include=debounce,throttle -d",
+    "build-dev": "postcss src/styles.css -o dev/css/final.css --env development -w true",
     "build-prod": "copyfiles -f dev/*.html public/ && copyfiles -f dev/js/*.js public/js/ && copyfiles -f dev/img/*.webp public/img/ && postcss src/styles.css -o public/css/final.css --env production"
   },
   "author": "",
@@ -15,8 +15,6 @@
     "copyfiles": "^2.4.1",
     "live-server": "^1.2.1",
     "postcss-cli": "^8.3.1",
-    "postcss-csso": "^5.0.0",
-    "postcss-discard-comments": "^4.0.2",
     "postcss-import": "^14.0.0",
     "tailwindcss": "^2.0.2",
     "tailwindcss-cli": "^0.1.2",
@@ -24,6 +22,8 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.0",
+    "cssnano": "^4.1.10",
+    "cssnano-preset-advanced": "^4.0.7",
     "postcss": "^8.2.4"
   }
 }

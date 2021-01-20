@@ -1,47 +1,105 @@
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Augusto Pinheiro</title>
     <link rel="stylesheet" href="css/final.css">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap">
 </head>
 
-<body class="max-w-full font-mono">
+<body class="font-mono ">
     <!-- content wrapper  -->
     <div>
         <!-- navigation wrapper -->
         <header id="header"
-            class="fixed z-20 flex items-center justify-around w-full py-3 text-white transition-colors duration-300 ease-out bg-transparent">
+            class="fixed z-20 flex items-center justify-around w-full text-white transition-colors duration-300 ease-out bg-transparent py-9">
             <!-- title -->
-            <div class="flex-auto ml-8">
-                <h1 class="font-bold text-4xs">augusto pinheiro</h1>
+            <div class="flex-auto ml-24 lg:ml-12">
+                <h1 class="text-lg font-bold md:text-base">augusto pinheiro</h1>
             </div>
             <nav>
+                <!-- burger menu -->
+                <div class="justify-end hidden mr-12 md:flex burger" id="burger">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </div>
+
+                <!-- mobile navigation links -->
+                <div class="absolute top-0 left-0 z-30 flex flex-col content-center w-screen h-0 overflow-hidden transition-all duration-200 bg-black-500"
+                    id="mobile-menu">
+                    <div class="justify-end hidden mr-12 mt-9 md:flex" id="close">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </div>
+
+                    <ul class="flex flex-col flex-grow place-items-center">
+                        <li id="close" class="nav-links-mobile">
+                            <a href="/" class="inline-grid grid-rows-auto">
+                                <span>home</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links-mobile">
+                            <a id="close" href="/projects.html" class="inline-grid grid-rows-auto">
+                                <span>projects</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links-mobile">
+                            <a id="close" href="#contact"
+                                class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                                <span>contact</span>
+                            </a>
+                        </li>
+                        <!-- github -->
+                        <li class="nav-links-mobile">
+                            <a href="https://github.com/AugustDG" target="_">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200"
+                                    viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
                 <!-- navigation links -->
-                <ul class="mr-8">
+                <ul class="mr-24 md:mr-12 md:hidden" id="menu">
                     <li class="nav-links">
                         <a href="/" class="inline-grid group grid-rows-auto">
                             <span>home</span>
-                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                            <hr id="header-line">
                         </a>
                     </li>
                     <li class="nav-links">
                         <a href="/projects.html" class="inline-grid group grid-rows-auto">
                             <span>projects</span>
-                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                            <hr id="header-line">
                         </a>
                     </li>
-                    <li class="nav-links">
-                        <a href="#contact" class="hover:text-black-200">
+                    <li class=" nav-links">
+                        <a href="#contact"
+                            class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
                             <span>contact</span>
                         </a>
                     </li>
                     <!-- github -->
                     <li class="nav-links">
                         <a href="https://github.com/AugustDG" target="_">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 inline fill-current"
-                                viewBox="0 0 16 16" width="16" height="16">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200"
+                                viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
                                 </path>
@@ -56,8 +114,8 @@
             <!-- landing section -->
             <div class="relative flex items-center h-full bg-fixed bg-cover bg-earth">
                 <div class="absolute w-full h-full bg-opacity-40 bg-black-500"></div>
-                <div class="z-10 ml-8 text-white">
-                    <h2 class="text-2xl font-extrabold">hello :) <br> and welcome!</h2>
+                <div class="z-10 mx-24 text-white lg:mx-12 lg:text-center">
+                    <h2 class="font-extrabold text-8xl lg:text-6xl">hello :) <br> and welcome!</h2>
                     <h3 class="big-text">my name's Augusto Pinheiro,</h3>
                     <p class="text">
                         i'm interested in a bunch of stuff: from digital animations to game design!
@@ -67,11 +125,11 @@
             </div>
 
             <!-- about me section -->
-            <div class="p-8 bg-green-600">
+            <div class="p-24 bg-green-600 lg:p-12">
                 <div class="text-white">
                     <h2 class="bigger-text">about me</h2>
                     <h3 class="big-text">FULL TIME STUDENT & CREATIVE</h3>
-                    <p class="smaller-text">
+                    <p class="text">
                         Hey! My name is Augusto, I'm a game designer and general coding enthusiast in training with a
                         bunch of ideas just waiting to be put out :) 💡 <br><br>
 
@@ -93,7 +151,7 @@
                         experience 🎉
                     </p>
                     <!-- buttons -->
-                    <div class="mt-3">
+                    <div class="btn-container">
                         <a href="#contact"
                             class="transition duration-150 ease-in-out bg-yellow-500 btn hover:bg-yellow-300 hover:text-yellow-500">contact
                             me</a>
@@ -107,7 +165,7 @@
             </div>
 
             <!-- blogs section -->
-            <div class="p-8 bg-blue-500">
+            <div class="p-24 bg-blue-500 lg:p-12">
                 <div class="text-white">
                     <h2 class="bigger-text">blogs</h2>
                     <h3 class="big-text">MY COLLEGE PROJECTS</h3>
@@ -115,7 +173,7 @@
                         check them out
                         below!</p>
                     <!-- buttons -->
-                    <div class="mt-3">
+                    <div class="btn-container">
                         <a href="/"
                             class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
                             Media</a>
@@ -131,19 +189,19 @@
             </div>
 
             <!-- contact me form -->
-            <div id="contact" class="flex">
+            <div id="contact" class="flex flex-row flex-nowrap lg:flex-col">
                 <!-- mars image -->
-                <div class="w-full bg-cover bg-mars">
+                <div class="w-full bg-cover lg:h-60 bg-mars">
 
                 </div>
-                <div class="w-3/4 p-8 text-white bg-yellow-500">
+                <div class="w-3/4 p-24 text-white bg-yellow-500 lg:w-full lg:p-12">
                     <div class="">
                         <h2 class="text-center bigger-text">contact me</h2>
                         <p class="text-center text">Click on the icon below to write me an email and I'll get back to
                             you as soon as possible.
                         </p>
-                        <a href="mailto:augustomp55@gmail.com" class="grid content-start justify-center mt-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <a href="mailto:augustomp55@gmail.com" class="grid content-start justify-center mt-9">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-20 lg:w-10">
                                 <path fill-rule="evenodd" fill="currentColor"
                                     d="M1.75 3A1.75 1.75 0 000 4.75v14c0 .966.784 1.75 1.75 1.75h20.5A1.75 1.75 0 0024 18.75v-14A1.75 1.75 0 0022.25 3H1.75zM1.5 4.75a.25.25 0 01.25-.25h20.5a.25.25 0 01.25.25v.852l-10.36 7a.25.25 0 01-.28 0l-10.36-7V4.75zm0 2.662V18.75c0 .138.112.25.25.25h20.5a.25.25 0 00.25-.25V7.412l-9.52 6.433c-.592.4-1.368.4-1.96 0L1.5 7.412z">
                                 </path>
@@ -154,26 +212,26 @@
             </div>
         </main>
 
-        <footer class="flex items-center justify-between w-full px-8 py-2 text-white bg-black-500">
+        <footer class="flex items-center justify-between w-full px-20 py-6 text-white bg-black-500">
             <!-- footer navigation -->
             <nav>
-                <ul class="mr-8">
+                <ul class="mr-24">
                     <li class="nav-links">
                         <a href="/" class="inline-grid group grid-rows-auto">
                             <span>home</span>
-                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                            <hr id="header-line">
                         </a>
                     </li>
                     <li class="nav-links">
                         <a href="/projects.html" class="inline-grid group grid-rows-auto">
                             <span>projects</span>
-                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                            <hr id="header-line">
                         </a>
                     </li>
                     <li class="nav-links">
                         <a href="https://github.com/AugustDG" target="_" class="inline-grid group grid-rows-auto">
                             <span>github</span>
-                            <hr id="header-line" class="transition-all duration-100 ease-in-out group-hover:w-full">
+                            <hr id="header-line">
                         </a>
                     </li>
             </nav>
