@@ -33,6 +33,15 @@ module.exports = {
       fontFamily: {
         'mono': ['Jetbrains Mono', 'Source Code Pro'],
       },
+      borderWidth: {
+        '12': '12px',
+      },
+      zIndex: {
+        '5': 5,
+      },
+      boxShadow: {
+        'hard-green': '0 0 0 2px theme("colors.green.700")'
+      },
       backgroundImage: () => ({
         'earth': 'url("/img/earth-bg_img.webp")',
         'mars': 'url("/img/mars-bg_img.webp")',
@@ -42,7 +51,8 @@ module.exports = {
   variants: {
     extend: {
       width: ['group-hover'],
-      animation: ['hover']
+      animation: ['hover'],
+      borderWidth: ['hover']
     },
   },
   plugins: [],

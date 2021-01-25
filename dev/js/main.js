@@ -1,46 +1,47 @@
-const headerClassList = document.querySelector('#header').classList;
-const menuClassList = document.querySelector('#menu').classList;
-const mobileMenuClassList = document.querySelector('#mobile-menu').classList;
-const burger = document.querySelector('#burger');
-const close = document.querySelectorAll('#close');
+$(function loadCompleted() {
+    $('#burger').on("click", () => requestAnimationFrame(openMobileMenu));
 
-burger.addEventListener('click', () => requestAnimationFrame(openMobileMenu), false);
+    $('[id=hotdog]').each((index, obj) => { $(obj).on("click", () => requestAnimationFrame(closeMobileMenu)) });
 
-close.forEach((obj) => { obj.addEventListener('click', () => requestAnimationFrame(closeMobileMenu), false); });
+    $(window).on("scroll", () => requestAnimationFrame(updateHeaderBg));
 
-window.addEventListener('scroll', () => requestAnimationFrame(updateHeader), false);
+    updateHeaderBg();
+    activeUnderline();
+})
+
+
 
 function openMobileMenu() {
-    mobileMenuClassList.add('h-screen');
+    $('#mobile-menu').addClass('h-screen');
 }
 
 function closeMobileMenu() {
-    mobileMenuClassList.remove('h-screen');
+    $('#mobile-menu').removeClass('h-screen');
 }
 
-function updateHeader() {
-    // reset the tick so we can
-    // capture the next onScroll
-
-    if (window.pageYOffset > 0) {
-        headerClassList.remove('bg-transparent');
-        headerClassList.add('shadow-md', 'bg-black-500');
-    }
-    else {
-        headerClassList.remove('shadow-md', 'bg-black-500');
-        headerClassList.add('bg-transparent');
+function updateHeaderBg() {
+    if (document.location.pathname == "/") {
+        if (window.pageYOffset > 0) {
+            $('#header').removeClass('bg-transparent');
+            $('#header').addClass('shadow-md bg-black-500');
+        }
+        else {
+            $('#header').removeClass('shadow-md bg-black-500');
+            $('#header').addClass('bg-transparent');
+        }
     }
 }
 
 //underlines the active page
-document.querySelectorAll('#header-line').forEach((link) => {
-    console.log(link)
-    if (link.parentElement.getAttribute("href") === window.location.pathname) {
-        link.classList.add('w-full');
-        link.classList.remove('w-0');
-    }
-    else {
-        link.classList.remove('w-full');
-        link.classList.add('w-0');
-    }
-})
+function activeUnderline() {
+    $('[id=header-line]').each((index, obj) => {
+        if ($(obj).parent().attr("href") === window.location.pathname) {
+            $(obj).addClass('w-full');
+            $(obj).removeClass('w-0');
+        }
+        else {
+            $(obj).removeClass('w-full');
+            $(obj).addClass('w-0');
+        }
+    })
+}
