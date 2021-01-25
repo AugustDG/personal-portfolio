@@ -43,8 +43,8 @@ module.exports = {
         'hard-green': '0 0 0 2px theme("colors.green.700")'
       },
       backgroundImage: () => ({
-        'earth': 'url("/img/earth-bg_img.webp")',
-        'mars': 'url("/img/mars-bg_img.webp")',
+        'earth': 'url("/img/earth-bg.webp")',
+        'mars': 'url("/img/mars-bg.webp")',
       }),
     },
   },

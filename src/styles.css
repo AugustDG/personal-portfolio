@@ -53,11 +53,19 @@ html{
 }
 
 .card {
-    @apply inline-block max-w-md overflow-hidden text-green-700 transition-colors duration-300 bg-green-500 rounded-md shadow-hard-green hover:text-white hover:bg-black-500 hover:shadow-none group;
+    @apply inline-block h-full max-w-md overflow-hidden transition-colors duration-300 bg-green-500 rounded-md shadow-hard-green hover:bg-black-500 hover:shadow-inner group;
 }
 
 .card-image {
     @apply object-cover w-full h-80 filter-unsaturate;
+}
+
+.card-text {
+    @apply inline-block m-3 text-lg italic text-green-700 whitespace-normal lg:text-xl xs:text-lg;
+}
+
+.card-bigger-text {
+    @apply block mt-6 text-4xl font-bold text-green-700 uppercase bg-gradient-to-tr bg-clip-text xs:text-2xl;
 }
 
 #header-line{

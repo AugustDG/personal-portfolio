@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
+    <link rel="icon" type="image/webp" href="img/site-icon.webp">
     <link rel="stylesheet" href="css/final.css">
     <link rel="prefetch" as="font"
         href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap">
@@ -17,7 +18,7 @@
             class="fixed z-20 flex items-center justify-around w-full text-white transition-colors duration-300 ease-out shadow-md bg-black-500 py-9">
             <!-- title -->
             <div class="relative flex-auto ml-24 lg:ml-12 group">
-                <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-all group-hover:text-transparent pointer-events-none"
+                <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-all group-hover:text-transparent pointer-events-none cursor-pointer"
                     id="title-overlay">
                     projects
                 </h1>
@@ -128,51 +129,193 @@
                 <div
                     class="grid w-full grid-cols-3 gap-10 my-16 xs:my-8 justify-items-center lg:grid-cols-2 md:grid-cols-1">
                     <!-- card -->
-                    <div class="card">
-                        <a href="/projects/tory.html">
-                            <img src="img/tory-icon_img.webp" class="card-image group-hover:filter-saturate"
-                                alt="tory project icon">
-                            <!-- text section -->
-                            <div class="text-center">
-                                <span class="block mt-6 text-4xl font-bold uppercase xs:text-2xl">tory</span>
-                                <!-- inline-block as to eliminate margin collapse -->
-                                <span class="inline-block m-3 text-lg italic whitespace-normal lg:text-xl xs:text-lg">A
-                                    2D apocalypse shoot'em up based on Generations, a story by Alfred Hayden -
-                                    Unity</span>
-                            </div>
-                        </a>
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/tory.html">
+                                <img src="img/tory-icon.webp" class="card-image group-hover:filter-saturate"
+                                    alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-black-500 to-red-700">tory</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span
+                                        class="inline-block m-3 text-lg italic text-green-700 whitespace-normal group-hover:text-white lg:text-xl xs:text-lg">A
+                                        2D apocalypse shoot'em up based on Generations, a story by Alfred Hayden -
+                                        Unity</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- card -->
-                    <div class="card">
-                        <a href="/projects/cta7h.html">
-                            <img src="img/cta7h-icon_img.webp" class="card-image group-hover:filter-saturate"
-                                alt="tory project icon">
-                            <!-- text section -->
-                            <div class="text-center">
-                                <span class="block mt-6 text-4xl font-bold uppercase xs:text-2xl">C'TA 7
-                                    HEURE</span>
-                                <!-- inline-block as to eliminate margin collapse -->
-                                <span class="inline-block m-3 text-lg italic whitespace-normal lg:text-xl xs:text-lg">A
-                                    pixel art, horror platformer game, made for the Valleyfield 2020 game jam. -
-                                    Unity</span>
-                            </div>
-                        </a>
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/cta7h.html">
+                                <img src="img/cta7h-icon.webp" class="card-image group-hover:filter-saturate"
+                                    alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-black-400 to-blue-800">C'TA
+                                        7
+                                        HEURES</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">A
+                                        pixel art, horror platformer game, made for the Valleyfield 2020 game jam. -
+                                        Unity</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- card -->
-                    <div class="card">
-                        <a href="/projects/cta7h.html">
-                            <img src="img/cta7h-icon_img.webp" class="card-image group-hover:filter-saturate"
-                                alt="tory project icon">
-                            <!-- text section -->
-                            <div class="text-center">
-                                <span class="block mt-6 text-4xl font-bold uppercase xs:text-2xl">Flow Fields</span>
-                                <!-- inline-block as to eliminate margin collapse -->
-                                <span class="inline-block m-3 text-lg italic whitespace-normal lg:text-xl xs:text-lg">A
-                                    representation of a dynamic vector field - Processing</span>
-                            </div>
-                        </a>
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/cta7h.html">
+                                <img src="img/ff-icon.webp" class="card-image group-hover:filter-saturate"
+                                    alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-purple-800 to-red-800">Flow
+                                        Fields</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">A
+                                        representation of a dynamic vector field - Processing</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/madmax.html">
+                                <img src="img/madmax-icon.webp" class="card-image group-hover:filter-saturate"
+                                    alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-red-300 to-yellow-600">Mad
+                                        Max</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">Post-apocalyptic charismatic
+                                        companions! - Micro:bit</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/branchout.html">
+                                <img src="img/branchout-icon.webp"
+                                    class="bg-green-500 card-image group-hover:filter-saturate" alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-yellow-900 to-white">Branch_Out</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">An entire entrepreneurship projects
+                                        in high school with ads, poster and logos! - Misc. Software</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/littlecube.html">
+                                <img src="img/littlecube-icon.webp"
+                                    class="bg-green-500 card-image group-hover:filter-saturate" alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-yellow-300 to-yellow-500">Little
+                                        Cube</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">The Damage of Bias on our Connected
+                                        Hearts - Blender</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/space.html">
+                                <img src="img/space-icon.webp"
+                                    class="bg-green-500 card-image group-hover:filter-saturate" alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-black-300 to-white">Space</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">A few closeups of far, far away... -
+                                        Blender</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/dreamanthem.html">
+                                <img src="img/dreamanthem-icon.webp"
+                                    class="bg-green-500 card-image group-hover:filter-saturate" alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-black-600 to-purple-600">Dream
+                                        Anthem</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">Composed on Logic Pro X, video made
+                                        in After Effects!</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/bathroom.html">
+                                <img src="img/bathroom-icon.webp"
+                                    class="bg-green-500 card-image group-hover:filter-saturate" alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-white to-blue-800">Bathroom</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">A progression of renders of an
+                                        imaginary bathroom... - Blender</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- card -->
+                    <div class="shadow-lg">
+                        <div class="card">
+                            <a href="/projects/imprisonedheart.html">
+                                <img src="img/imprisonedheart-icon.webp"
+                                    class="bg-green-500 card-image group-hover:filter-saturate" alt="tory project icon">
+                                <!-- text section -->
+                                <div class="text-center">
+                                    <span
+                                        class="card-bigger-text group-hover:text-transparent from-red-400 to-purple-500">Imprisoned
+                                        Heart</span>
+                                    <!-- inline-block as to eliminate margin collapse -->
+                                    <span class="card-text group-hover:text-white">An Imprisoned Heart dies off -
+                                        Blender</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
