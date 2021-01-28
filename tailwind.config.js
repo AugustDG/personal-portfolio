@@ -1,8 +1,11 @@
 module.exports = {
   purge: {
-    content: ['public/*.html'],
+    mode: 'all',
+    preserveHtmlElements: false,
+    content: ['public/*.html', 'public/projects/*.html'],
     options: {
       safelist: ['w-0'],
+      keyframes: true,
     }
   },
   darkMode: false, // or 'media' or 'class'
@@ -38,22 +41,20 @@ module.exports = {
       },
       zIndex: {
         '5': 5,
+        '35': 35,
       },
       boxShadow: {
         'hard-green': '0 0 0 2px theme("colors.green.700")'
       },
       backgroundImage: () => ({
-        'earth': 'url("/img/earth-bg.webp")',
-        'mars': 'url("/img/mars-bg.webp")',
+        'earth': 'url("/img/icons/earth-bg.webp")',
+        'mars': 'url("/img/icons/mars-bg.webp")',
       }),
     },
   },
   variants: {
     extend: {
       width: ['group-hover'],
-      animation: ['hover'],
-      borderWidth: ['hover']
     },
   },
-  plugins: [],
 }

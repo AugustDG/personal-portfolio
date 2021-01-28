@@ -1,15 +1,10 @@
-module.exports = () => ({
+module.exports = ({ env }) => ({
     plugins: [
         require('postcss-import'),
         require('tailwindcss'),
         require('autoprefixer'),
-        //require('postcss-discard-comments'),
-        require('cssnano')({
-            preset: ['advanced', {
-                discardComments: {
-                    removeAll: true,
-                },
-            }],
-        }),
+        require('postcss-mq-optimize'),
+        require('postcss-discard-comments'),
+        env === 'production' ? require('postcss-csso') : false,
     ]
 })
