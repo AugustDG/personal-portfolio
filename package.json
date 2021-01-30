@@ -6,7 +6,7 @@
   "scripts": {
     "build-scripts": "watchify dev/js/main.js --debug -o dev/js/bundle.js -v",
     "build-css": "postcss src/styles.css -o dev/css/final.css --env development --verbose -w true",
-    "build-prod": "copyfiles -u 1 dev/**/*.html public/ && copyfiles -u 1 dev/img/**/*.webp public/ && postcss src/styles.css -o public/css/final.css --env production && browserify dev/js/main.js | uglifyjs -cm > public/js/bundle.js"
+    "build-prod": "copyfiles -u 1 dev/**/*.html public/ && copyfiles -u 1 dev/img/**/*.webp public/ && postcss src/styles.css -o public/css/final.css --env production && browserify dev/js/main.js | uglifyjs -cm > public/js/bundle.js && cd public/ && bestzip ../public.zip *"
   },
   "author": "",
   "license": "ISC",
