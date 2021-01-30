@@ -4,26 +4,35 @@
   "description": "My personal portfolio project!",
   "main": "index.js",
   "scripts": {
-    "build-dev": "postcss src/styles.css -o dev/css/final.css --env development -w true",
-    "build-prod": "copyfiles -f dev/*.html public/ && copyfiles -f dev/views/*.html public/views/ && copyfiles -f dev/js/*.js public/js/ && copyfiles -f dev/img/*.webp public/img/ && postcss src/styles.css -o public/css/final.css --env production"
+    "build-scripts": "watchify dev/js/main.js --debug -o dev/js/bundle.js -v",
+    "build-css": "postcss src/styles.css -o dev/css/final.css --env development --verbose -w true",
+    "build-prod": "copyfiles -u 1 dev/**/*.html public/ && copyfiles -u 1 dev/img/**/*.webp public/ && postcss src/styles.css -o public/css/final.css --env production && browserify dev/js/main.js | uglifyjs -cm > public/js/bundle.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "autoprefixer": "^10.2.3",
+    "body-scroll-lock": "^3.1.5",
     "copyfiles": "^2.4.1",
+    "fs": "0.0.1-security",
     "jquery": "^3.5.1",
+    "jquery-browserify": "^1.8.1",
+    "jquery-mousewheel": "^3.1.13",
+    "jquery.scrollto": "^2.1.2",
     "live-server": "^1.2.1",
     "postcss-cli": "^8.3.1",
+    "postcss-csso": "^5.0.0",
     "postcss-import": "^14.0.0",
+    "postcss-mq-optimize": "^1.1.0",
     "tailwindcss": "^2.0.2",
     "tailwindcss-cli": "^0.1.2",
-    "watch": "^1.0.2"
+    "uglify-js": "^3.12.5",
+    "watch": "^1.0.2",
+    "watchify": "^3.11.1"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.0",
-    "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
     "postcss": "^8.2.4"
   }

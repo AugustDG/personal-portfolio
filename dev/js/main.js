@@ -1,7 +1,15 @@
+const { disableBodyScroll, clearAllBodyScrollLocks, enableBodyScroll } = require('body-scroll-lock');
+const $ = require('jquery-browserify');
+require('jquery-mousewheel')($);
+
 $(function loadCompleted() {
     $('#burger').on("click", () => requestAnimationFrame(openMobileMenu));
 
-    $('[id=hotdog]').each((index, obj) => { $(obj).on("click", () => requestAnimationFrame(closeMobileMenu)) });
+    $('#img-modal').on("click", (e) => closeModalImage(e));
+    $('[id=img-grid]').each((i, obj) => $(obj).on("mousewheel", (e, d) => scrollImgGrid(e)));
+    $('[id=img-child]').each((i, obj) => $(obj).on("click", (e) => openModalImage(e)));
+
+    $('[id=hotdog]').each((i, obj) => $(obj).on("click", () => requestAnimationFrame(closeMobileMenu)));
 
     $(window).on("scroll", () => requestAnimationFrame(updateHeaderBg));
 
@@ -9,14 +17,35 @@ $(function loadCompleted() {
     activeUnderline();
 })
 
-
-
 function openMobileMenu() {
     $('#mobile-menu').addClass('h-screen');
 }
 
 function closeMobileMenu() {
     $('#mobile-menu').removeClass('h-screen');
+}
+
+function scrollImgGrid(e) {
+    $(e.currentTarget).scrollLeft($(e.currentTarget).scrollLeft() - e.deltaY * 100);
+
+    e.preventDefault();
+}
+
+function openModalImage(e) {
+    var modal = $('#img-modal');
+    modal.children().first().attr('src', $(e.target).attr('src'));
+    modal.children().first().attr('alt', $(e.target).attr('alt'));
+    disableBodyScroll(modal);
+    modal.removeClass('pointer-events-none opacity-0');
+    modal.addClass('pointer-events-auto opacity-100');
+}
+
+function closeModalImage(e) {
+    if (e.target.id == "img-modal") {
+        clearAllBodyScrollLocks();
+        $(e.target).addClass('pointer-events-none opacity-0');
+        $(e.target).removeClass('pointer-events-auto opacity-100');
+    }
 }
 
 function updateHeaderBg() {

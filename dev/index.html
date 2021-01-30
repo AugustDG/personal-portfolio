@@ -1,13 +1,28 @@
-<html lang="en" class="overflow-x-hidden">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155327016-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-155327016-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage of my portfolio website!">
+    <meta name="keywords" content="Augusto Mota Pinheiro, portfolio, game designer, programmer, digital renders">
+    <meta name="author" content="Augusto Mota Pinheiro">
     <title>Augusto Pinheiro</title>
-    <link rel="icon" type="image/webp" href="img/site-icon.webp">
+    <link rel="icon" type="image/webp" href="img/icons/site-icon.webp">
     <link rel="stylesheet" href="css/final.css">
     <link rel="prefetch" as="font"
         href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap">
+    <meta>
 </head>
 
 <body class="font-mono ">
@@ -17,14 +32,14 @@
         <header id="header"
             class="fixed z-20 flex items-center justify-around w-full text-white transition-colors duration-300 ease-out bg-transparent py-9">
             <!-- title -->
-            <div class="flex-auto ml-24 lg:ml-12">
+            <div class="flex-auto ml-24 lg:ml-12 sm:ml-6">
                 <h1>
                     <a href="/" class="text-lg font-bold md:text-base">augusto pinheiro</a>
                 </h1>
             </div>
             <nav>
                 <!-- burger menu -->
-                <div class="justify-end hidden mr-12 md:flex burger" id="burger">
+                <div class="justify-end hidden mr-12 sm:mr-6 md:flex burger" id="burger">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -78,7 +93,7 @@
                 </div>
 
                 <!-- navigation links -->
-                <ul class="mr-24 md:mr-12 md:hidden" id="menu">
+                <ul class="mr-24 lg:mr-12 md:hidden" id="menu">
                     <li class="nav-links">
                         <a href="/" class="inline-grid group grid-rows-auto">
                             <span>home</span>
@@ -115,12 +130,12 @@
 
         <main>
             <!-- landing section -->
-            <div class="relative flex items-center h-full bg-fixed bg-cover lg:justify-center bg-earth">
+            <div class="relative flex items-center h-screen bg-fixed bg-cover lg:justify-center bg-earth">
                 <div class="absolute w-full h-full bg-opacity-40 bg-black-500"></div>
                 <div class="z-10 mx-24 text-white lg:mx-12 lg:text-center">
                     <h2 class="font-extrabold text-8xl lg:text-6xl">hello :) <br> and welcome!</h2>
                     <h3 class="big-text">my name's Augusto Pinheiro,</h3>
-                    <p class="text">
+                    <p class="text-wm">
                         i'm interested in a bunch of stuff: from digital animations to game design!
                         <br> i've dabbled around and tried a few things, so enjoy the results!
                     </p>
@@ -128,11 +143,11 @@
             </div>
 
             <!-- about me section -->
-            <div class="p-24 bg-green-600 lg:p-12">
-                <div class="text-white">
-                    <h2 class="bigger-text">about me</h2>
-                    <h3 class="big-text">FULL TIME STUDENT & CREATIVE</h3>
-                    <p class="text">
+            <div class="px-24 py-24 bg-green-600 lg:px-12 lg:py-12 sm:px-6">
+                <div class="text-justify text-white">
+                    <h2 class="bigger-text sm:text-center">about me</h2>
+                    <h3 class="big-text sm:text-center">FULL TIME STUDENT & CREATIVE</h3>
+                    <p class="text-wm">
                         Hey! My name is Augusto, I'm a game designer and general coding enthusiast in training with a
                         bunch of ideas just waiting to be put out :) 💡 <br><br>
 
@@ -156,36 +171,39 @@
                     <!-- buttons -->
                     <div class="btn-container">
                         <a href="#contact"
-                            class="transition duration-150 ease-in-out bg-yellow-500 btn hover:bg-yellow-300 hover:text-yellow-500">contact
+                            class="transition ease-in-out bg-yellow-500 btn hover:bg-yellow-300 hover:text-yellow-500">contact
                             me</a>
                         <a href="/projects.html"
-                            class="transition duration-150 ease-in-out bg-red-500 btn hover:bg-red-300 hover:text-red-500">projects</a>
+                            class="transition ease-in-out bg-red-500 btn hover:bg-red-300 hover:text-red-500">projects</a>
                         <a href="/letter-of-intent.html"
-                            class="transition duration-150 ease-in-out bg-blue-500 btn hover:bg-blue-300 hover:text-blue-500">letter
+                            class="transition ease-in-out bg-blue-500 btn hover:bg-blue-300 hover:text-blue-500">letter
                             of intent</a>
                     </div>
                 </div>
             </div>
 
             <!-- blogs section -->
-            <div class="p-24 bg-blue-500 lg:p-12">
-                <div class="text-white">
-                    <h2 class="bigger-text">blogs</h2>
-                    <h3 class="big-text">MY COLLEGE PROJECTS</h3>
-                    <p class="text">if you're interested in my progression on projects for any of my classes @ Dawson,
+            <div class="px-24 py-24 bg-blue-500 lg:px-12 lg:py-12 sm:px-6">
+                <div class="text-justify text-white">
+                    <h2 class="bigger-text sm:text-center">blogs</h2>
+                    <h3 class="big-text sm:text-center">MY COLLEGE PROJECTS</h3>
+                    <p class="text-wm">if you're interested in my progression on projects for any of my classes @
+                        Dawson,
                         check them out
                         below!</p>
                     <!-- buttons -->
                     <div class="btn-container">
-                        <a href="/"
-                            class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
+                        <a href="https://augustoima.edublogs.org/" target="_"
+                            class="transition ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
                             Media</a>
-                        <a href="/" class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Art
+                        <a href="https://augustogd.edublogs.org/" target="_"
+                            class="transition ease-in-out bg-blue-400 btn hover:bg-blue-600">Art
                             of Game Design</a>
-                        <a href="/" class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Game
+                        <a href="https://augustogm.edublogs.org/" target="_"
+                            class="transition ease-in-out bg-blue-400 btn hover:bg-blue-600">Game
                             Making</a>
-                        <a href="/"
-                            class="transition duration-150 ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
+                        <a href="https://augustoie.edublogs.org/" target="_"
+                            class="transition ease-in-out bg-blue-400 btn hover:bg-blue-600">Interactive
                             Experience</a>
                     </div>
                 </div>
@@ -197,10 +215,11 @@
                 <div class="w-full bg-cover lg:h-60 bg-mars">
 
                 </div>
-                <div class="w-3/4 p-24 text-white bg-yellow-500 lg:w-full lg:p-12">
+                <div class="w-3/4 px-24 py-24 text-white bg-yellow-500 lg:w-full lg:px-12 lg:py-12 sm:px-6">
                     <div class="">
                         <h2 class="text-center bigger-text">contact me</h2>
-                        <p class="text-center text">Click on the icon below to write me an email and I'll get back to
+                        <p class="text-center text-wm">If you think I'm of any help for you, click on the icon below to
+                            write me an email and I'll get back to
                             you as soon as possible.
                         </p>
                         <a href="mailto:augustomp55@gmail.com" class="grid content-start justify-center mt-9">
@@ -215,7 +234,7 @@
             </div>
         </main>
 
-        <footer class="flex items-center justify-between w-full px-20 py-6 text-white md:px-8 md:flex-col bg-black-500">
+        <footer>
             <!-- footer navigation -->
             <nav>
                 <ul class="flex mr-24 md:mr-0 md:mb-1 md:justify-items-center">
@@ -245,8 +264,7 @@
             </div>
         </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/bundle.js"></script>
 </body>
 
 </html>
