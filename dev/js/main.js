@@ -6,7 +6,7 @@ $(function loadCompleted() {
     $('#burger').on("click", () => requestAnimationFrame(openMobileMenu));
 
     $('#img-modal').on("click", (e) => closeModalImage(e));
-    $('#img-grid').on("mousewheel", (e, d) => scrollImgGrid(e));
+    $('[id=img-grid]').each((i, obj) => $(obj).on("mousewheel", (e, d) => scrollImgGrid(e)));
     $('[id=img-child]').each((i, obj) => $(obj).on("click", (e) => openModalImage(e)));
 
     $('[id=hotdog]').each((i, obj) => $(obj).on("click", () => requestAnimationFrame(closeMobileMenu)));

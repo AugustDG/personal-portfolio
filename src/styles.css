@@ -12,6 +12,21 @@ body{
     @apply overflow-x-hidden no-scrollbar;
 }
 
+ol li{
+    counter-increment: count;
+}
+
+ol li::before {
+    content: counter(count) "] ";
+    list-style-position: inside;
+    margin-left: -2.5rem;
+}
+
+ol {
+    list-style: none;
+    counter-reset: count;
+}
+
 #header-line{
     @apply transition-all duration-100 ease-in-out border-t-4 group-hover:w-full;
 }
@@ -29,13 +44,38 @@ body{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply rounded-lg bg-black-500;
+  @apply rounded-lg bg-black-700;
 }
+
 /* purgecss end ignore */
+
+#space ::-webkit-scrollbar-thumb{
+  @apply rounded-lg bg-black-900;
+}
 
 /* Handle on hover */
 #bathroom ::-webkit-scrollbar-thumb:hover {
   @apply bg-blue-900;
+}
+
+#game-jams ::-webkit-scrollbar-thumb:hover, #tory ::-webkit-scrollbar-thumb:hover {
+    @apply bg-red-900;
+}
+
+#space ::-webkit-scrollbar-thumb:hover {
+  @apply bg-black-400;
+}
+
+#branchout ::-webkit-scrollbar-thumb:hover, #portfolio ::-webkit-scrollbar-thumb:hover {
+  @apply bg-green-900;
+}
+
+#madmax ::-webkit-scrollbar-thumb:hover {
+  @apply bg-yellow-900;
+}
+
+#flow-fields ::-webkit-scrollbar-thumb:hover {
+  @apply bg-purple-900;
 }
 
 @variants group-hover{
@@ -56,6 +96,48 @@ body{
 
 .nav-links-mobile {
     @apply inline mx-3 mt-4 text-2xl place-self-center;
+}
+
+footer {
+ @apply flex items-center justify-between w-full px-20 py-6 text-white shadow-md md:px-8 md:flex-col bg-black-500;
+}
+
+.project-modal {
+    @apply fixed z-30 flex justify-center w-screen h-screen px-8 py-12 transition-opacity bg-opacity-70 bg-black-1000 flex-nowrap;
+}
+
+.project-header{
+    @apply fixed z-20 flex items-center justify-around w-full text-white duration-300 ease-out shadow-md bg-black-500 py-9;
+}
+
+.project-container {
+    @apply min-h-screen px-24 pt-32 pb-16 lg:px-12 sm:px-6;
+}
+
+.project-title{
+    @apply pt-8 text-center uppercase xs:pt-6 bigger-text;
+}
+
+.video-container {
+@apply flex items-center content-center justify-center h-full px-16 py-8 mx-auto rounded-lg md:h-2/5;
+}
+
+/* rounded corner on top only */
+.video-container-rt {
+@apply flex items-center content-center justify-center h-full px-16 py-8 mx-auto rounded-t-lg md:h-2/5;
+}
+
+.video-container > iframe, .video-container-rt > iframe {
+    @apply w-full h-96 md:h-48;
+}
+
+.img-container {
+    @apply flex gap-2 px-4 py-4 mx-0 overflow-x-scroll rounded-lg lg:py-2 max-h-96;
+}
+
+/* rounded corner on bottom only */
+.img-container-rb {
+    @apply flex gap-2 px-4 py-4 mx-0 overflow-x-scroll rounded-b-lg lg:py-2 max-h-96;
 }
 
 .bigger-text{

@@ -1,8 +1,22 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155327016-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-155327016-1');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An EDM music piece composed on Logic Pro X, video made in After Effects!!">
+    <meta name="keywords" content="Augusto Mota Pinheiro, portfolio, projects, edm, logic pro x, loops, music video">
+    <meta name="author" content="Augusto Mota Pinheiro">
     <title>Augusto Pinheiro - Dream Anthem</title>
     <link rel="icon" type="image/webp" href="../img/icons/site-icon.webp">
     <link rel="stylesheet" href="../css/final.css">
@@ -14,8 +28,7 @@
     <!-- content wrapper  -->
     <div>
         <!-- navigation wrapper -->
-        <header id="header"
-            class="z-20 flex items-center justify-around w-full text-white duration-300 ease-out bg-black-500 py-9">
+        <header id="header" class="project-header">
             <!-- title -->
             <div class="relative flex-auto ml-24 lg:ml-12 group">
                 <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-colors group-hover:text-transparent pointer-events-none cursor-pointer"
@@ -122,11 +135,14 @@
 
         <main>
             <!-- about me section -->
-            <div class="h-auto px-24 pt-8 pb-16 bg-indigo-500 xs:pt-4 lg:px-12 sm:px-6">
+            <div class="bg-indigo-500 project-container">
                 <div class="text-justify text-white">
-                    <iframe src="https://www.youtube.com/embed/gT6-xZ_2iRY" class="w-full mt-8 h-3/5 md:h-2/5 xs:h-1/5"
-                        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                    <h2 class="mt-12 text-center uppercase xs:mt-6 big-text">Dream Anthem</h2>
+                    <div class="bg-indigo-600 video-container">
+                        <iframe src="https://www.youtube.com/embed/gT6-xZ_2iRY" frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <h2 class="project-title">Dream Anthem</h2>
                     <p class="text-wm">
                         <span class="font-bold">Creator:</span> Augusto Mota Pinheiro <br>
                         <span class="font-bold">Start Date:</span> 18/02/2020 <br>
@@ -155,7 +171,7 @@
             </div>
         </main>
 
-        <footer class="flex items-center justify-between w-full px-20 py-6 text-white md:px-8 md:flex-col bg-black-500">
+        <footer>
             <!-- footer navigation -->
             <nav>
                 <ul class="flex mr-24 md:mr-0 md:mb-1 md:justify-items-center">
