@@ -49,7 +49,7 @@ function closeModalImage(e) {
 }
 
 function updateHeaderBg() {
-    if (document.location.pathname == "/index.html") {
+    if (document.location.pathname == "/index.html" || document.location.pathname == "/") {
         if (window.pageYOffset > 0) {
             $('#header').removeClass('bg-transparent');
             $('#header').addClass('shadow-md bg-black-500');
