@@ -28,13 +28,17 @@ module.exports = {
           500: "#121212",
           600: "#0e0e0e",
           700: "#0b0b0b",
+          750: '#07070780',
           800: "#070707",
           900: "#040404",
-          1000: "#000000"
+          1000: "#000000",
         },
       },
+      translate: {
+        '1.25': '0.3125rem',
+      },
       fontFamily: {
-        'mono': ['Jetbrains Mono', 'Source Code Pro'],
+        'mono': ['Jetbrains Mono'],
       },
       borderWidth: {
         '12': '12px',
@@ -44,7 +48,10 @@ module.exports = {
         '35': 35,
       },
       boxShadow: {
-        'hard-green': '0 0 0 2px theme("colors.green.700")'
+        'hard-green': '0 0 0 2px theme("colors.green.700")',
+        'hard-sm': '5px 5px theme("colors.black.750")',
+        'inner-hard-sm': 'inset 3px 3px 1px theme("colors.black.750")',
+        'inner-b-hard-sm': 'inset 3px -1px 1px theme("colors.black.750")',
       },
       backgroundImage: () => ({
         'earth': 'url("/img/icons/earth-bg.webp")',
@@ -57,4 +64,4 @@ module.exports = {
       width: ['group-hover'],
     },
   },
-}
+};

@@ -1,395 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155327016-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155327016-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
 
-        gtag('config', 'UA-155327016-1');
-    </script>
+            gtag('config', 'UA-155327016-1');
+        </script>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="All of my best projects that I've worked on!">
-    <meta name="keywords" content="Augusto Mota Pinheiro, portfolio, projects, programming, game design">
-    <meta name="author" content="Augusto Mota Pinheiro">
-    <title>Projects</title>
-    <link rel="icon" type="image/webp" href="img/icons/site-icon.webp">
-    <link rel="stylesheet" href="css/final.css">
-    <link rel="prefetch" as="font"
-        href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap">
-</head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="All of my best projects that I've worked on!">
+        <meta name="keywords" content="Augusto Mota Pinheiro, portfolio, projects, programming, game design">
+        <meta name="author" content="Augusto Mota Pinheiro">
+        <title>Projects</title>
+        <link rel="icon" type="image/webp" href="img/icons/site-icon.webp">
+        <link rel="stylesheet" href="css/final.css">
+        <link rel="prefetch" as="font" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap">
+    </head>
 
-<body class="font-mono no-scrollbar">
-    <!-- content wrapper  -->
-    <div>
-        <!-- navigation wrapper -->
-        <header id="header" class="project-header">
-            <!-- title -->
-            <div class="relative flex-auto ml-24 lg:ml-12 group">
-                <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-colors group-hover:text-transparent pointer-events-none cursor-pointer"
-                    id="title-overlay">
-                    projects
-                </h1>
-                <div class="absolute block w-full h-6 transition-all duration-200 bg-black-500 -bottom-3 z-5 group-hover:w-0"
-                    id="title-overlay">
-                </div>
-                <h1 class="absolute z-0 -bottom-3.5">
-                    <a href="/" class="text-lg font-bold md:text-base">augusto pinheiro</a>
-                </h1>
-            </div>
-            <nav>
-                <!-- navigation links -->
-                <ul class="mr-24 lg:mr-12 md:hidden" id="menu">
-                    <li class="nav-links">
-                        <a href="/" class="inline-grid group grid-rows-auto">
-                            <span>home</span>
-                            <hr id="header-line">
-                        </a>
-                    </li>
-                    <li class="nav-links">
-                        <a href="/projects.html" class="inline-grid group grid-rows-auto">
-                            <span>projects</span>
-                            <hr id="header-line">
-                        </a>
-                    </li>
-                    <li class=" nav-links">
-                        <a href="/#contact"
-                            class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
-                            <span>contact</span>
-                        </a>
-                    </li>
-                    <!-- github -->
-                    <li class="nav-links">
-                        <a href="https://github.com/AugustDG" target="_">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200"
-                                viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-                                </path>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-                <!-- burger menu -->
-                <div class="justify-end hidden mr-12 md:flex burger" id="burger">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </div>
-
-                <!-- mobile navigation links -->
-                <div class="absolute top-0 left-0 z-30 flex flex-col content-center w-screen h-0 overflow-hidden transition-all duration-200 bg-black-500"
-                    id="mobile-menu">
-                    <div class="justify-end hidden mr-12 mt-9 md:flex" id="hotdog">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+    <body class="font-mono no-scrollbar">
+        <!-- content wrapper  -->
+        <div>
+            <!-- navigation wrapper -->
+            <header id="header" class="project-header">
+                <!-- title -->
+                <div class="relative flex-auto ml-24 lg:ml-12 group">
+                    <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-colors group-hover:text-transparent pointer-events-none cursor-pointer" id="title-overlay">
+                        projects
+                    </h1>
+                    <div class="absolute block w-full h-6 transition-all duration-200 bg-black-500 -bottom-3 z-5 group-hover:w-0" id="title-overlay">
                     </div>
-
-                    <ul class="flex flex-col flex-grow place-items-center">
-                        <li id="hotdog" class="nav-links-mobile">
-                            <a href="/" class="inline-grid grid-rows-auto">
+                    <h1 class="absolute z-0 -bottom-3.5">
+                        <a href="/" class="text-lg font-bold md:text-base">augusto pinheiro</a>
+                    </h1>
+                </div>
+                <nav>
+                    <!-- navigation links -->
+                    <ul class="mr-24 lg:mr-12 md:hidden" id="menu">
+                        <li class="nav-links">
+                            <a href="/" class="inline-grid group grid-rows-auto">
                                 <span>home</span>
                                 <hr id="header-line">
                             </a>
                         </li>
-                        <li class="nav-links-mobile">
-                            <a id="hotdog" href="/projects.html" class="inline-grid grid-rows-auto">
+                        <li class="nav-links">
+                            <a href="/projects.html" class="inline-grid group grid-rows-auto">
                                 <span>projects</span>
                                 <hr id="header-line">
                             </a>
                         </li>
-                        <li class="nav-links-mobile">
-                            <a id="hotdog" href="#contact"
-                                class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                        <li class=" nav-links">
+                            <a href="/#contact" class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
                                 <span>contact</span>
                             </a>
                         </li>
                         <!-- github -->
-                        <li class="nav-links-mobile">
+                        <li class="nav-links">
                             <a href="https://github.com/AugustDG" target="_">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200"
-                                    viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
                                     </path>
                                 </svg>
                             </a>
                         </li>
                     </ul>
+                    <!-- burger menu -->
+                    <div class="justify-end hidden mr-12 md:flex burger" id="burger">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </div>
+
+                    <!-- mobile navigation links -->
+                    <div class="absolute top-0 left-0 z-30 flex flex-col content-center w-screen h-0 overflow-hidden transition-all duration-200 bg-black-500" id="mobile-menu">
+                        <div class="justify-end hidden mr-12 mt-9 md:flex" id="hotdog">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+
+                        <ul class="flex flex-col flex-grow place-items-center">
+                            <li id="hotdog" class="nav-links-mobile">
+                                <a href="/" class="inline-grid grid-rows-auto">
+                                    <span>home</span>
+                                    <hr id="header-line">
+                                </a>
+                            </li>
+                            <li class="nav-links-mobile">
+                                <a id="hotdog" href="/projects.html" class="inline-grid grid-rows-auto">
+                                    <span>projects</span>
+                                    <hr id="header-line">
+                                </a>
+                            </li>
+                            <li class="nav-links-mobile">
+                                <a id="hotdog" href="#contact" class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                                    <span>contact</span>
+                                </a>
+                            </li>
+                            <!-- github -->
+                            <li class="nav-links-mobile">
+                                <a href="https://github.com/AugustDG" target="_">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <main>
+                <!-- background -->
+                <div class="px-12 pt-32 pb-4 text-white xs:pb-2 md:px-12 xs:px-8 circuit-pattern">
+
+                    <h3 class="text-center bigger-text">all of my best projects</h3>
+
+                    <!-- cards section -->
+                    <div class="grid justify-around w-full grid-cols-3 gap-10 mx-auto my-16 justify-items-center xs:my-8 lg:grid-cols-2 md:grid-cols-1 max-w-7xl">
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/portfolio.html">
+                                    <img src="img/icons/portfolio-icon.webp" class="object-center card-image group-hover:filter-saturate" alt="icon of my portfolio project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-blue-500 to-green-400">this.portfolio</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A
+                                            quick look at how I coded this entire website in just about 2 weeks - Web
+                                            Tech</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/tory.html">
+                                    <img src="img/icons/tory-icon.webp" class="card-image group-hover:filter-saturate" alt="icon of my tory game project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-black-500 to-red-700">tory</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A
+                                            2D apocalypse shoot'em up based on Generations, a story by Alfred Hayden -
+                                            Unity</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/game-jams.html">
+                                    <img src="img/icons/cta7h-icon.webp" class="card-image group-hover:filter-saturate" alt="icon of one of my game jam projects">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-black-400 to-blue-800">GameJams</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A collection of past game jam
+                                            submissions - Unity</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/flow-fields.html">
+                                    <img src="img/icons/ff-icon.webp" class="card-image group-hover:filter-saturate" alt="icon of my flow fields project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-purple-800 to-red-700">Flow
+                                            Fields</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">An animated & interactive
+                                            representation of a dynamic vector field - Processing</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/madmax.html">
+                                    <img src="img/icons/madmax-icon.webp" class="card-image group-hover:filter-saturate" alt="icon of my mad max project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-red-300 to-yellow-600">Mad
+                                            Max</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">Our vision of post-apocalyptic
+                                            charismatic
+                                            companions! - Micro:bit</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/branchout.html">
+                                    <img src="img/icons/branchout-icon.webp" class="bg-green-500 card-image group-hover:filter-saturate" alt="icon of my high school entrepreneurship project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-yellow-800 to-white">Branch_Out</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">An entire entrepreneurship projects
+                                            in high school with ads, poster and logos! - Misc. Software</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/little-cube.html">
+                                    <img src="img/icons/little-cube-icon.webp" class="bg-green-500 card-image group-hover:filter-saturate" alt="icon of my little cube project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-yellow-300 to-yellow-500">Little
+                                            Cube</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A short movie on the damage of bias
+                                            on our connected minds - Blender</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/space.html">
+                                    <img src="img/icons/space-icon.webp" class="bg-green-500 card-image group-hover:filter-saturate" alt="icon of my space project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-black-300 to-white">Space</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A few digital closeups of far, far
+                                            away... -
+                                            Blender</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/dream-anthem.html">
+                                    <img src="img/icons/dream-anthem-icon.webp" class="bg-green-500 card-image group-hover:filter-saturate" alt="icon of my dream anthem project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-black-600 to-purple-600">Dream
+                                            Anthem</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">An EDM music piece composed on Logic
+                                            Pro X, video made in After Effects!</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/bathroom.html">
+                                    <img src="img/icons/bathroom-icon.webp" class="bg-green-500 card-image group-hover:filter-saturate" alt="icon of my bathroom project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-white to-blue-800">Bathroom</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A progression of renders of an
+                                            imaginary bathroom... - Blender</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div>
+                            <div class="card">
+                                <a href="/projects/imprisoned-heart.html">
+                                    <img src="img/icons/imprisoned-heart-icon.webp" class="bg-green-500 card-image group-hover:filter-saturate" alt="icon of my imprisoned heart project">
+                                    <!-- text section -->
+                                    <div class="text-center">
+                                        <span class="card-bigger-text group-hover:text-transparent from-red-400 to-purple-500">Imprisoned
+                                            Heart</span>
+                                        <!-- inline-block as to eliminate margin collapse -->
+                                        <span class="card-text group-hover:text-white">A visual representation of how
+                                            imprisoned hearts die off - Blender</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-        </header>
+            </main>
 
-        <main>
-            <!-- background -->
-            <div class="px-12 pt-32 pb-4 text-white xs:pb-2 md:px-12 xs:px-8 circuit-pattern">
-
-                <h3 class="text-center bigger-text">all of my best projects</h3>
-
-                <!-- cards section -->
-                <div
-                    class="grid justify-around w-full grid-cols-3 gap-10 mx-auto my-16 justify-items-center xs:my-8 lg:grid-cols-2 md:grid-cols-1 max-w-7xl">
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/portfolio.html">
-                                <img src="img/icons/portfolio-icon.webp"
-                                    class="object-center card-image group-hover:filter-saturate"
-                                    alt="icon of my portfolio project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-blue-500 to-green-400">this.portfolio</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A
-                                        quick look at how I coded this entire website in just about 2 weeks - Web
-                                        Tech</span>
-                                </div>
+            <footer>
+                <!-- footer navigation -->
+                <nav>
+                    <ul class="flex mr-24 md:mr-0 md:mb-1 md:justify-items-center">
+                        <li class="nav-links">
+                            <a href="/" class="inline-block group">
+                                <span>home</span>
+                                <hr id="header-line">
                             </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/tory.html">
-                                <img src="img/icons/tory-icon.webp" class="card-image group-hover:filter-saturate"
-                                    alt="icon of my tory game project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-black-500 to-red-700">tory</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A
-                                        2D apocalypse shoot'em up based on Generations, a story by Alfred Hayden -
-                                        Unity</span>
-                                </div>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/projects.html" class="inline-block group">
+                                <span>projects</span>
+                                <hr id="header-line">
                             </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/game-jams.html">
-                                <img src="img/icons/cta7h-icon.webp" class="card-image group-hover:filter-saturate"
-                                    alt="icon of one of my game jam projects">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-black-400 to-blue-800">GameJams</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A collection of past game jam
-                                        submissions - Unity</span>
-                                </div>
+                        </li>
+                        <li class="nav-links">
+                            <a href="https://github.com/AugustDG" target="_" class="inline-block transition-colors duration-100 ease-in-out hover:text-black-200">
+                                <span>github</span>
                             </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/flow-fields.html">
-                                <img src="img/icons/ff-icon.webp" class="card-image group-hover:filter-saturate"
-                                    alt="icon of my flow fields project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-purple-800 to-red-700">Flow
-                                        Fields</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">An animated & interactive
-                                        representation of a dynamic vector field - Processing</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/madmax.html">
-                                <img src="img/icons/madmax-icon.webp" class="card-image group-hover:filter-saturate"
-                                    alt="icon of my mad max project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-red-300 to-yellow-600">Mad
-                                        Max</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">Our vision of post-apocalyptic
-                                        charismatic
-                                        companions! - Micro:bit</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/branchout.html">
-                                <img src="img/icons/branchout-icon.webp"
-                                    class="bg-green-500 card-image group-hover:filter-saturate"
-                                    alt="icon of my high school entrepreneurship project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-yellow-800 to-white">Branch_Out</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">An entire entrepreneurship projects
-                                        in high school with ads, poster and logos! - Misc. Software</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/little-cube.html">
-                                <img src="img/icons/little-cube-icon.webp"
-                                    class="bg-green-500 card-image group-hover:filter-saturate"
-                                    alt="icon of my little cube project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-yellow-300 to-yellow-500">Little
-                                        Cube</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A short movie on the damage of bias
-                                        on our connected minds - Blender</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/space.html">
-                                <img src="img/icons/space-icon.webp"
-                                    class="bg-green-500 card-image group-hover:filter-saturate"
-                                    alt="icon of my space project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-black-300 to-white">Space</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A few digital closeups of far, far
-                                        away... -
-                                        Blender</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/dream-anthem.html">
-                                <img src="img/icons/dream-anthem-icon.webp"
-                                    class="bg-green-500 card-image group-hover:filter-saturate"
-                                    alt="icon of my dream anthem project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-black-600 to-purple-600">Dream
-                                        Anthem</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">An EDM music piece composed on Logic
-                                        Pro X, video made in After Effects!</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg">
-                        <div class="card">
-                            <a href="/projects/bathroom.html">
-                                <img src="img/icons/bathroom-icon.webp"
-                                    class="bg-green-500 card-image group-hover:filter-saturate"
-                                    alt="icon of my bathroom project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-white to-blue-800">Bathroom</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A progression of renders of an
-                                        imaginary bathroom... - Blender</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- card -->
-                    <div class="shadow-lg ">
-                        <div class="card">
-                            <a href="/projects/imprisoned-heart.html">
-                                <img src="img/icons/imprisoned-heart-icon.webp"
-                                    class="bg-green-500 card-image group-hover:filter-saturate"
-                                    alt="icon of my imprisoned heart project">
-                                <!-- text section -->
-                                <div class="text-center">
-                                    <span
-                                        class="card-bigger-text group-hover:text-transparent from-red-400 to-purple-500">Imprisoned
-                                        Heart</span>
-                                    <!-- inline-block as to eliminate margin collapse -->
-                                    <span class="card-text group-hover:text-white">A visual representation of how
-                                        imprisoned hearts die off - Blender</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                        </li>
+                </nav>
+                <!-- copyright info -->
+                <div class="flex justify-center">
+                    <span class="text-lg text-right md:text-center lg:text-sm xs:text-xs">© Copyright Augusto
+                        Pinheiro.</span>
                 </div>
-            </div>
-        </main>
-
-        <footer>
-            <!-- footer navigation -->
-            <nav>
-                <ul class="flex mr-24 md:mr-0 md:mb-1 md:justify-items-center">
-                    <li class="nav-links">
-                        <a href="/" class="inline-block group">
-                            <span>home</span>
-                            <hr id="header-line">
-                        </a>
-                    </li>
-                    <li class="nav-links">
-                        <a href="/projects.html" class="inline-block group">
-                            <span>projects</span>
-                            <hr id="header-line">
-                        </a>
-                    </li>
-                    <li class="nav-links">
-                        <a href="https://github.com/AugustDG" target="_"
-                            class="inline-block transition-colors duration-100 ease-in-out hover:text-black-200">
-                            <span>github</span>
-                        </a>
-                    </li>
-            </nav>
-            <!-- copyright info -->
-            <div class="flex justify-center">
-                <span class="text-lg text-right md:text-center lg:text-sm xs:text-xs">© Copyright Augusto
-                    Pinheiro.</span>
-            </div>
-        </footer>
-    </div>
-    <script src="js/bundle.js"></script>
-</body>
+            </footer>
+        </div>
+        <script src="js/bundle.js"></script>
+    </body>
 
 </html>
