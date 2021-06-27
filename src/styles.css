@@ -124,6 +124,14 @@ ol {
   @apply bg-black-900;
 }
 
+#zombie-paradise ::-webkit-scrollbar-thumb{
+  @apply bg-yellow-900;
+}
+
+#zombie-paradise ::-webkit-scrollbar-thumb:hover{
+  @apply bg-yellow-700;
+}
+
 /* Handle on hover */
 #bathroom ::-webkit-scrollbar-thumb:hover {
   @apply bg-blue-900;
