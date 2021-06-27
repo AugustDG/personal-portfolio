@@ -47,6 +47,9 @@ module.exports = {
         '5': 5,
         '35': 35,
       },
+      maxWidth: {
+        '95': '95%',
+      },
       boxShadow: {
         'hard-green': '0 0 0 2px theme("colors.green.700")',
         'hard-sm': '5px 5px theme("colors.black.750")',
