@@ -40,7 +40,7 @@ jobs:
           source-directory: 'public'
           destination-github-username: 'AugustDG'
           destination-repository-name: 'personal-portfolio-deploy'
-          commit-message: See ORIGIN_COMMIT from https://github.com/AugustDG/personal-portfolio-deploy
+          commit-message: See ORIGIN_COMMIT
           user-email: augustomp55@gmail.com
           target-branch: main
           
