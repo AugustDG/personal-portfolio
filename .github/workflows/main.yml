@@ -35,6 +35,7 @@ jobs:
           destination-repository-name: 'personal-portfolio-deploy'
           commit-message: See ORIGIN_COMMIT from $GITHUB_REF
           user-email: augustomp55@gmail.com
+          target-branch: main
           
       - name: Test get variable exported by push-to-another-repository
         run: echo $DESTINATION_CLONED_DIRECTORY
