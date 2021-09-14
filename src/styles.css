@@ -120,6 +120,10 @@ ol {
 
 /* purgecss end ignore */
 
+#ar-cite ::-webkit-scrollbar-thumb{
+  @apply bg-pink-900;
+}
+
 #space ::-webkit-scrollbar-thumb{
   @apply bg-black-900;
 }
@@ -139,6 +143,10 @@ ol {
 
 #game-jams ::-webkit-scrollbar-thumb:hover, #tory ::-webkit-scrollbar-thumb:hover {
     @apply bg-red-900;
+}
+
+#ar-cite ::-webkit-scrollbar-thumb:hover{
+  @apply bg-pink-400;
 }
 
 #space ::-webkit-scrollbar-thumb:hover {
@@ -180,7 +188,7 @@ footer {
 }
 
 .project-modal {
-    @apply fixed z-30 flex justify-center w-screen h-screen px-8 py-12 transition-opacity bg-opacity-70 bg-black-1000 flex-nowrap;
+    @apply fixed z-30 flex flex-col justify-center w-screen h-screen px-8 py-12 transition-opacity bg-opacity-95 bg-black-1000 flex-nowrap;
 }
 
 .project-header{
@@ -228,6 +236,15 @@ footer {
 /* big text with margins */
 .big-text-wm{
     @apply mt-3 big-text lg:mt-1;
+}
+
+.medium-text {
+    @apply text-3xl lg:text-lg xs:text-base;
+}
+
+/* medium text with margins */
+.medium-text-wm {
+    @apply mt-12 mb-2 lg:mt-6 lg:mb-1 text;
 }
 
 .text {
