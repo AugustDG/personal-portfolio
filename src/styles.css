@@ -98,6 +98,10 @@ ol {
     counter-reset: count;
 }
 
+footer {
+ @apply flex items-center justify-between w-full px-20 py-6 text-white shadow-md md:px-8 md:flex-col bg-black-500;
+}
+
 #header-line{
     @apply transition-all duration-100 ease-in-out border-t-4 group-hover:w-full;
 }
@@ -120,8 +124,26 @@ ol {
 
 /* purgecss end ignore */
 
+/* Mia Page */
+#mia ::-webkit-scrollbar-thumb{
+  @apply bg-red-900;
+}
+
+#mia ::-webkit-scrollbar-thumb:hover {
+  @apply bg-red-400;
+}
+
+#mia main a {
+  @apply text-yellow-300 hover:opacity-50;
+}
+
+/* AR Cité Page */
 #ar-cite ::-webkit-scrollbar-thumb{
   @apply bg-pink-900;
+}
+
+#ar-cite ::-webkit-scrollbar-thumb:hover{
+  @apply bg-pink-400;
 }
 
 #space ::-webkit-scrollbar-thumb{
@@ -136,17 +158,12 @@ ol {
   @apply bg-yellow-700;
 }
 
-/* Handle on hover */
 #bathroom ::-webkit-scrollbar-thumb:hover {
   @apply bg-blue-900;
 }
 
 #game-jams ::-webkit-scrollbar-thumb:hover, #tory ::-webkit-scrollbar-thumb:hover {
     @apply bg-red-900;
-}
-
-#ar-cite ::-webkit-scrollbar-thumb:hover{
-  @apply bg-pink-400;
 }
 
 #space ::-webkit-scrollbar-thumb:hover {
@@ -183,10 +200,6 @@ ol {
     @apply inline mx-3 mt-4 text-2xl place-self-center;
 }
 
-footer {
- @apply flex items-center justify-between w-full px-20 py-6 text-white shadow-md md:px-8 md:flex-col bg-black-500;
-}
-
 .project-modal {
     @apply fixed z-30 flex flex-col justify-center w-screen h-screen px-8 py-12 transition-opacity bg-opacity-95 bg-black-1000 flex-nowrap;
 }
@@ -217,12 +230,16 @@ footer {
 }
 
 .img-container {
-    @apply flex gap-4 px-4 py-4 mx-0 overflow-x-scroll shadow-inner-hard-sm lg:py-2 max-h-96;
+    @apply flex gap-4 px-4 py-4 mx-0 overflow-x-auto shadow-inner-hard-sm lg:py-2 max-h-96;
 }
 
 /* shadow on bottom only */
 .img-container-sb {
-    @apply flex gap-4 px-4 py-4 mx-0 overflow-x-scroll shadow-inner-b-hard-sm lg:py-2 max-h-96;
+    @apply flex gap-4 px-4 py-4 mx-0 overflow-x-auto shadow-inner-b-hard-sm lg:py-2 max-h-96;
+}
+
+.special-container {
+    @apply px-4 py-4 mx-0 mb-4 overflow-x-visible shadow-inner-hard-sm lg:py-2 max-h-96;
 }
 
 .bigger-text{
@@ -239,7 +256,7 @@ footer {
 }
 
 .medium-text {
-    @apply text-3xl lg:text-lg xs:text-base;
+    @apply text-4xl lg:text-xl xs:text-base;
 }
 
 /* medium text with margins */
