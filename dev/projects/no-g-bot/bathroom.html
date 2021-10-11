@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155327016-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155327016-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A progression of renders of an imaginary bathroom... - Blender!">
+        <meta name="keywords" content="Augusto Mota Pinheiro, portfolio, blender, 3d renders, photorealism">
+        <meta name="author" content="Augusto Mota Pinheiro">
+        <title>Augusto Pinheiro - Bathroom</title>
+        <link rel="icon" type="image/webp" href="../img/icons/site-icon.webp">
+        <link rel="stylesheet" href="../css/final.css">
+
+    </head>
+
+    <body id="bathroom" class="font-mono">
+        <!-- content wrapper  -->
+        <div>
+            <!-- modal section -->
+            <div id="img-modal" class="opacity-0 pointer-events-none project-modal">
+                <img src="../img/projects/bathroom/bathroom-1.webp" alt="a scene of a bathtub" class="flex-initial object-scale-down max-w-full max-h-full my-auto z-35">
+                <p id="img-caption" class="flex-initial mb-6 text-center text-white text-wm"></p>
+            </div>
+            <!-- navigation wrapper -->
+            <header id="header" class="project-header">
+                <!-- title -->
+                <div class="relative flex-auto ml-24 lg:ml-12 group">
+                    <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-colors group-hover:text-transparent pointer-events-none cursor-pointer" id="title-overlay">
+                        bathroom
+                    </h1>
+                    <div class="absolute block w-full h-6 transition-all duration-200 bg-black-500 -bottom-3 z-5 group-hover:w-0" id="title-overlay">
+                    </div>
+                    <h1 class="absolute z-0 -bottom-3.5">
+                        <a href="/" class="text-lg font-bold md:text-base">augusto pinheiro</a>
+                    </h1>
+                </div>
+                <nav>
+                    <!-- burger menu -->
+                    <div class="justify-end hidden mr-12 sm:mr-6 md:flex burger" id="burger">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </div>
+
+                    <!-- mobile navigation links -->
+                    <div class="absolute top-0 left-0 z-30 flex flex-col content-center w-screen h-0 overflow-hidden transition-all duration-200 bg-black-500" id="mobile-menu">
+                        <div class="justify-end hidden mr-12 mt-9 md:flex" id="hotdog">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+
+                        <ul class="flex flex-col flex-grow place-items-center">
+                            <li id="hotdog" class="nav-links-mobile">
+                                <a href="/" class="inline-grid grid-rows-auto">
+                                    <span>home</span>
+                                    <hr id="header-line">
+                                </a>
+                            </li>
+                            <li class="nav-links-mobile">
+                                <a id="hotdog" href="/projects.html" class="inline-grid grid-rows-auto">
+                                    <span>projects</span>
+                                    <hr id="header-line">
+                                </a>
+                            </li>
+                            <li class="nav-links-mobile">
+                                <a id="hotdog" href="#contact" class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                                    <span>contact</span>
+                                </a>
+                            </li>
+                            <!-- github -->
+                            <li class="nav-links-mobile">
+                                <a href="https://github.com/AugustDG" target="_">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- navigation links -->
+                    <ul class="mr-24 lg:mr-12 md:hidden" id="menu">
+                        <li class="nav-links">
+                            <a href="/" class="inline-grid group grid-rows-auto">
+                                <span>home</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/projects.html" class="inline-grid group grid-rows-auto">
+                                <span>projects</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class=" nav-links">
+                            <a href="/#contact" class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                                <span>contact</span>
+                            </a>
+                        </li>
+                        <!-- github -->
+                        <li class="nav-links">
+                            <a href="https://github.com/AugustDG" target="_">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <!-- main section -->
+                <div class="bg-blue-500 project-container">
+                    <div class="text-justify text-white">
+                        <div class="bg-blue-600 img-container" id="img-grid">
+                            <img src="../img/projects/bathroom/bathroom-1.webp" alt="a scene of a bathtub" id="img-child" class="img-select">
+                            <img src="../img/projects/bathroom/bathroom-2.webp" alt="a scene of a sink with a plant" id="img-child" class="img-select">
+                            <img src="../img/projects/bathroom/bathroom-3.webp" alt="a scene of a scene and a plant, with a towel on the side" id="img-child" class="img-select">
+                            <img src="../img/projects/bathroom/bathroom-4.webp" alt="a scene of a scene and a plant, with a towel on the side on a different point of view" id="img-child" class="img-select">
+                            <img src="../img/projects/bathroom/bathroom-5.webp" alt="a scene of a scene and a plant, with a towel on the side with a shower in the mirror" id="img-child" class="img-select">
+                        </div>
+                        <h2 class="project-title">BATHROOM</h2>
+                        <p class="text-wm">
+                            <span class="font-bold">Creator:</span> Augusto Mota Pinheiro <br>
+                            <span class="font-bold">Start Date:</span> 03/09/2017 <br>
+                            <span class="font-bold">End Date:</span> N/A <br>
+                            <span class="font-bold">Medium:</span> Blender <br>
+                        </p>
+                        <p class="text-wm">An inspiration that came to me after looking at various Blender tutorials on
+                            YouTube™. Aiming for photorealism, <span class="italic">Bathroom</span> is a "in progress"
+                            project that I will continue to work on for the foreseeable future. </p>
+
+                        <p class="smaller-text-wm">Some 3D models are not mine, they come from CC (Creative Commons)
+                            sources. The bar of soap, sink, tap, water, mirror and towel are made by me.
+                        </p>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <!-- footer navigation -->
+                <nav>
+                    <ul class="flex mr-24 md:mr-0 md:mb-1 md:justify-items-center">
+                        <li class="nav-links">
+                            <a href="/" class="inline-block group">
+                                <span>home</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/projects.html" class="inline-block group">
+                                <span>projects</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/cv/cv_landscape_en.pdf" download="augusto_pinheiro_cv.pdf" class="inline-block transition-colors duration-100 ease-in-out hover:text-black-200">
+                                <span>cv</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="https://github.com/AugustDG" target="_" class="inline-block transition-colors duration-100 ease-in-out hover:text-black-200">
+                                <span>github</span>
+                            </a>
+                        </li>
+                </nav>
+                <!-- copyright info -->
+                <div class="flex justify-center">
+                    <span class="text-lg text-right md:text-center lg:text-sm xs:text-xs">© Copyright Augusto
+                        Pinheiro.</span>
+                </div>
+            </footer>
+        </div>
+        <script src="../js/bundle.js"></script>
+    </body>
+
+</html>

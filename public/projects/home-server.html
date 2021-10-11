@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155327016-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-155327016-1');
+        </script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Home server for all my storage, backup and Minecraft needs! - Docker">
+        <meta name="keywords" content="Augusto Mota Pinheiro, portfolio, projects, linux, ubuntu, docker, ansible-nas, portainer, filerun">
+        <meta name="author" content="Augusto Mota Pinheiro">
+        <title>Augusto Pinheiro - Home Server</title>
+        <link rel="icon" type="image/webp" href="../img/icons/site-icon.webp">
+        <link rel="stylesheet" href="../css/final.css">
+
+    </head>
+
+    <body id="home-server" class="font-mono">
+        <!-- content wrapper  -->
+        <div>
+            <!-- modal section -->
+            <div id="img-modal" class="opacity-0 pointer-events-none project-modal">
+                <img src="../img/projects/bathroom/bathroom-1.webp" alt="a scene of a bathtub" class="flex-initial object-scale-down max-w-full max-h-full my-auto z-35">
+                <p id="img-caption" class="flex-initial mb-6 text-center text-white text-wm">Allo</p>
+            </div>
+            <!-- navigation wrapper -->
+            <header id="header" class="project-header">
+                <!-- title -->
+                <div class="relative flex-auto ml-24 lg:ml-12 group">
+                    <h1 class="absolute text-lg font-bold -bottom-3.5 md:text-base z-10 transition-colors group-hover:text-transparent pointer-events-none cursor-pointer" id="title-overlay">
+                        home server
+                    </h1>
+                    <div class="absolute block w-full h-6 transition-all duration-200 bg-black-500 -bottom-3 z-5 group-hover:w-0" id="title-overlay">
+                    </div>
+                    <h1 class="absolute z-0 -bottom-3.5">
+                        <a href="/" class="text-lg font-bold md:text-base">augusto pinheiro</a>
+                    </h1>
+                </div>
+                <nav>
+                    <!-- burger menu -->
+                    <div class="justify-end hidden mr-12 sm:mr-6 md:flex burger" id="burger">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </div>
+
+                    <!-- mobile navigation links -->
+                    <div class="absolute top-0 left-0 z-30 flex flex-col content-center w-screen h-0 overflow-hidden transition-all duration-200 bg-black-500" id="mobile-menu">
+                        <div class="justify-end hidden mr-12 mt-9 md:flex" id="hotdog">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+
+                        <ul class="flex flex-col flex-grow place-items-center">
+                            <li id="hotdog" class="nav-links-mobile">
+                                <a href="/" class="inline-grid grid-rows-auto">
+                                    <span>home</span>
+                                    <hr id="header-line">
+                                </a>
+                            </li>
+                            <li class="nav-links-mobile">
+                                <a id="hotdog" href="/projects.html" class="inline-grid grid-rows-auto">
+                                    <span>projects</span>
+                                    <hr id="header-line">
+                                </a>
+                            </li>
+                            <li class="nav-links-mobile">
+                                <a id="hotdog" href="#contact" class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                                    <span>contact</span>
+                                </a>
+                            </li>
+                            <!-- github -->
+                            <li class="nav-links-mobile">
+                                <a href="https://github.com/AugustDG" target="_">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- navigation links -->
+                    <ul class="mr-24 lg:mr-12 md:hidden" id="menu">
+                        <li class="nav-links">
+                            <a href="/" class="inline-grid group grid-rows-auto">
+                                <span>home</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/projects.html" class="inline-grid group grid-rows-auto">
+                                <span>projects</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class=" nav-links">
+                            <a href="/#contact" class="transition-colors duration-100 ease-in-out fill-current hover:text-black-200 ">
+                                <span>contact</span>
+                            </a>
+                        </li>
+                        <!-- github -->
+                        <li class="nav-links">
+                            <a href="https://github.com/AugustDG" target="_">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 transition-colors duration-100 ease-in-out fill-current hover:text-black-200" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <main>
+                <!-- main section -->
+                <div class="bg-blue-500 project-container">
+                    <div class="text-justify text-white">
+                        <div class="bg-blue-600 img-container" id="img-grid">
+                            <img src="../img/projects/home-server/portainer.webp" alt="portainer dashboard" id="img-child" class="img-select">
+                            <img src="../img/projects/home-server/filerun.webp" alt="filerun home page" id="img-child" class="img-select">
+                            <img src="../img/projects/home-server/npm.webp" alt="nginx proxy manager dashboard" id="img-child" class="img-select">
+                            <img src="../img/projects/home-server/ssh.webp" alt="windows terminal with ssh and 2FA executed" id="img-child" class="img-select">
+                        </div>
+                        <h2 class="project-title">Home Server</h2>
+                        <p class="text-wm">
+                            <span class="font-bold">Creators:</span> Augusto Mota Pinheiro <br>
+                            <span class="font-bold">Start Date:</span> ~ 06/2021 <br>
+                            <span class="font-bold">End Date:</span> N/A <br>
+                            <span class="font-bold">Medium & Tools:</span> <a href="https://ubuntu.com/download/server">Ubuntu Server</a> | <a href="https://github.com/davestephens/ansible-nas">Ansible-Nas</a> | <a href="https://www.docker.com/">Docker</a> | <a href="https://dynv6.com/">DynV6</a> | <a href="https://nginxproxymanager.com/">Nginx Proxy Manager</a><br>
+                        </p>
+                        <h3 class="font-bold medium-text-wm">Project Summary</h3>
+                        <p class="text">
+                            When Google announced that it would be limiting Google Photos usage for non-paying users, I decided to create a home server to host all of my friend's and I favorite game clips. I could also host our Minecraft server on it which was a great bonus! It would be a really cool learning opportunity as well as a great way to have a similar service for lower costs in the long run. <br><br>
+
+                            After some research I found out that the easiest way for me to get started would be to use Ansible, an automation framework running on Ubuntu, more specifically Ansible-Nas, an implementation of Ansible specific to "NASes"! I got a cheap workstation from 2010 at a local computer store, installed Ubuntu and Ansible-Nas and got Filerun and Minecraft up and running in a Docker container for each. I also got a few SAMBA shares for the internal network so that I could backup my PC on it weekly as well as a shared internal folder.<br><br>
+
+                            I had a few key points I wanted to hit with this project, namely having access to it from <span class="font-bold"> outside my home network</span> (for my friends to use) and <span class="font-bold">be easy to maintain</span>. Good news on the latter, Docker was the best solution for me! However, making it secure was a whole new challenge that took me a while to figure out. <br><br>
+
+                            I won't go into too much detail for security purposes, but my setup goes a little like this: I got a DDNS from DynV6 to point to my router, forwarded random ports for SSH, Minecraft and NPM, setup 2FA for SSH and used NPM to manage HTTPS traffic to the right places which is just Filerun for now. With everything running in their own Docker container! And to manage all of the containers in a more streamlined way I'm using Portainer!<br><br>
+                        </p>
+
+                        <h3 class="font-bold medium-text-wm">Possible Improvements</h3>
+                        <p class="text">
+                            It was the first time I had ever used Docker and Linux for extended periods of time since I had played with both those tools in the past, but nothing serious. From this, if I had the opportunity of restarting (and I probably will in the future), I would do a couple of things differently:
+                        </p>
+                        <ul>
+                            <li>
+                                an automation framework like Ansible-Nas is a bit overkill for my purposes.
+                            </li>
+                            <li>
+                                it would've been easier to run everything in Docker containers on a clean installation of Ubuntu Server.
+                            </li>
+                            <li>
+                                making regular backups of my configuration files as well as my data is a great way to avoid panicked afternoons, thinking I lost everything while in reality my drive wasn't automatically mounted.
+                            </li>
+                        </ul>
+                        <p class="text">
+                            That being said, I'm very proud of what I achieved and will definitely be working on improving it in the future :)
+                        </p>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <!-- footer navigation -->
+                <nav>
+                    <ul class="flex mr-24 md:mr-0 md:mb-1 md:justify-items-center">
+                        <li class="nav-links">
+                            <a href="/" class="inline-block group">
+                                <span>home</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/projects.html" class="inline-block group">
+                                <span>projects</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="/cv/cv_landscape_en.pdf" download="augusto_pinheiro_cv.pdf" class="inline-block transition-colors duration-100 ease-in-out hover:text-black-200">
+                                <span>cv</span>
+                                <hr id="header-line">
+                            </a>
+                        </li>
+                        <li class="nav-links">
+                            <a href="https://github.com/AugustDG" target="_" class="inline-block transition-colors duration-100 ease-in-out hover:text-black-200">
+                                <span>github</span>
+                            </a>
+                        </li>
+                </nav>
+                <!-- copyright info -->
+                <div class="flex justify-center">
+                    <span class="text-lg text-right md:text-center lg:text-sm xs:text-xs">© Copyright Augusto
+                        Pinheiro.</span>
+                </div>
+            </footer>
+        </div>
+        <script src="../js/bundle.js"></script>
+    </body>
+
+</html>

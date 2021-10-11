@@ -1,4 +1,3 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');*/
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -75,6 +74,10 @@
   font-display: swap;
 }
 
+a {
+  @apply hover:opacity-50;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -83,20 +86,33 @@ body{
     @apply overflow-x-hidden no-scrollbar;
 }
 
-ol li{
+main ol li{
     counter-increment: count;
 }
 
-ol li::before {
-    content: counter(count) "] ";
-    list-style-position: inside;
-    margin-left: -2.5rem;
-}
-
-ol {
+main ol {
     list-style: none;
     counter-reset: count;
+    @apply pl-12 my-2 space-y-1 text;
 }
+
+main ol li::before {
+    content: counter(count) "] ";
+    list-style-position: inside;
+    @apply  -ml-8;
+}
+
+main ul {
+    list-style: none;
+    @apply pl-10 my-2 space-y-1 text;
+}
+
+main ul li::before {
+  content: "- ";
+  list-style-position: inside;
+  @apply  -ml-6;
+}
+
 
 footer {
  @apply flex items-center justify-between w-full px-20 py-6 text-white shadow-md md:px-8 md:flex-col bg-black-500;
@@ -134,7 +150,7 @@ footer {
 }
 
 #mia main a {
-  @apply text-yellow-300 hover:opacity-50;
+  @apply italic bg-red-600;
 }
 
 /* AR Cité Page */
@@ -146,10 +162,11 @@ footer {
   @apply bg-pink-400;
 }
 
-#space ::-webkit-scrollbar-thumb{
-  @apply bg-black-900;
+#ar-cite main a {
+  @apply italic bg-pink-600;
 }
 
+/* Zombie Paradise Page */
 #zombie-paradise ::-webkit-scrollbar-thumb{
   @apply bg-yellow-900;
 }
@@ -158,28 +175,73 @@ footer {
   @apply bg-yellow-700;
 }
 
-#bathroom ::-webkit-scrollbar-thumb:hover {
-  @apply bg-blue-900;
+#zombie-paradise main a {
+  @apply italic bg-yellow-600;
 }
 
-#game-jams ::-webkit-scrollbar-thumb:hover, #tory ::-webkit-scrollbar-thumb:hover {
+/* Portfolio Page */
+#portfolio ::-webkit-scrollbar-thumb:hover {
+  @apply bg-green-900;
+}
+
+#portfolio main a {
+  @apply italic bg-green-900;
+}
+
+/* Tory Page */
+#tory ::-webkit-scrollbar-thumb:hover {
     @apply bg-red-900;
+}
+
+#tory main a {
+  @apply italic bg-red-500;
+}
+
+/* Game Jams Page */
+#game-jams ::-webkit-scrollbar-thumb:hover {
+    @apply bg-red-900;
+}
+
+/* Flow Fields Page */
+#flow-fields ::-webkit-scrollbar-thumb:hover {
+  @apply bg-purple-900;
+}
+
+#flow-fields main a {
+  @apply italic bg-purple-600;
+}
+
+/* Mad Max Page */
+#madmax ::-webkit-scrollbar-thumb:hover {
+  @apply bg-yellow-900;
+}
+
+/* Space Page */
+#space ::-webkit-scrollbar-thumb{
+  @apply bg-black-900;
 }
 
 #space ::-webkit-scrollbar-thumb:hover {
   @apply bg-black-400;
 }
 
-#branchout ::-webkit-scrollbar-thumb:hover, #portfolio ::-webkit-scrollbar-thumb:hover {
+/* Bathroom Page */
+#bathroom ::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-900;
+}
+
+/* Branchout Page */
+#branchout ::-webkit-scrollbar-thumb:hover {
   @apply bg-green-900;
 }
 
-#madmax ::-webkit-scrollbar-thumb:hover {
-  @apply bg-yellow-900;
+/* Home Server Page */
+#home-server ::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-900;
 }
 
-#flow-fields ::-webkit-scrollbar-thumb:hover {
-  @apply bg-purple-900;
+#home-server main a {
+  @apply italic bg-blue-600;
 }
 
 @variants group-hover{
@@ -238,16 +300,12 @@ footer {
     @apply flex gap-4 px-4 py-4 mx-0 overflow-x-auto shadow-inner-b-hard-sm lg:py-2 max-h-96;
 }
 
-.special-container {
-    @apply px-4 py-4 mx-0 mb-4 overflow-x-visible shadow-inner-hard-sm lg:py-2 max-h-96;
-}
-
 .bigger-text{
-    @apply mt-3 text-6xl font-bold lg:mt-1 lg:text-4xl xs:text-2xl;
+    @apply mt-3 font-bold text-7xl lg:mt-1 lg:text-4xl xs:text-2xl;
 }
 
 .big-text{
-    @apply text-5xl lg:text-3xl xs:text-xl;
+    @apply text-6xl text-left lg:text-3xl xs:text-xl;
 }
 
 /* big text with margins */
@@ -256,7 +314,7 @@ footer {
 }
 
 .medium-text {
-    @apply text-4xl lg:text-xl xs:text-base;
+    @apply text-5xl lg:text-xl xs:text-base;
 }
 
 /* medium text with margins */
