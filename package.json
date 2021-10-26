@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "bestzip": "^2.2.0",
     "body-scroll-lock": "^3.1.5",
     "fs": "0.0.1-security",
     "jquery": "^3.6.0",
