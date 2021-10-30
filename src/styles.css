@@ -244,6 +244,11 @@ footer {
   @apply italic bg-blue-600;
 }
 
+/* Game Jams Page */
+#game-jams main a {
+  @apply italic bg-red-500;
+}
+
 @variants group-hover{
 .filter-saturate{
     @apply transition-all filter saturate-100;
