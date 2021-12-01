@@ -118,6 +118,10 @@ footer {
  @apply flex items-center justify-between w-full px-20 py-6 text-white shadow-md md:px-8 md:flex-col bg-black-500;
 }
 
+#header {
+  @apply fixed z-20 flex items-center justify-around w-full py-8 text-white transition-colors duration-300 ease-out;
+}
+
 #header-line{
     @apply transition-all duration-100 ease-in-out border-t-4 group-hover:w-full;
 }
@@ -272,7 +276,7 @@ footer {
 }
 
 .project-header{
-    @apply fixed z-20 flex items-center justify-around w-full text-white duration-300 ease-out shadow-md bg-black-500 py-9;
+    @apply fixed z-20 flex items-center justify-around w-full py-8 text-white duration-300 ease-out shadow-md bg-black-500;
 }
 
 .project-container {
