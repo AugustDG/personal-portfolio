@@ -123,74 +123,72 @@
             </header>
             <main>
                 <!-- main section -->
-                <div class="bg-green-500 project-container">
-                    <div class="text-justify text-white">
-                        <div class="bg-green-600 img-container" id="img-grid">
-                            <img src="../img/projects/portfolio/portfolio-old-1.webp" alt="screenshot of my old website" id="img-child" class="img-select">
-                            <img src="../img/projects/portfolio/portfolio-old-2.webp" alt="screenshot of old website's ugly header" id="img-child" class="img-select">
-                            <img src="../img/projects/portfolio/portfolio-old-3.webp" alt="images taking long to load on my old website" id="img-child" class="img-select">
-                            <img src="../img/projects/portfolio/portfolio-old-scores.webp" alt="screenshot of Google's lighthouse performance scorer for my old website" id="img-child" class="img-select">
-                            <!-- long lasting dispute about overflow hack-fix -->
-                            <div class="text-xs text-transparent" aria-hidden="true">i</div>
-                        </div>
-                        <h2 class="project-title">This.Portfolio</h2>
-                        <p class="text-wm">
-                            <span class="font-bold">Creator:</span> Augusto Mota Pinheiro <br>
-                            <span class="font-bold">Start Date:</span> 17/01/2021 <br>
-                            <span class="font-bold">End Date:</span> 01/02/2020 <br>
-                            <span class="font-bold">Medium:</span> Tailwindcss | Browserify | Node.js | <span class="italic">Others</span> <br>
-                        </p>
-                        <p class="text-wm"> I wanted to make this website to replace my old one for various reasons: first
-                            and foremost, my original portfolio was made with Mobirise™, a website building platform based
-                            on Bootstrap 5. Although a very easy platform, it was super buggy and not very open to
-                            customization (notably the forced white header at the bottom of each page, 2nd picture). Not
-                            only that, but as you can see from the 3rd and 4th pictures above, the site's
-                            performance was terrible and I wasn't at all satisfied with it.<br><br>
+                <div class="bg-green-500 project-container text-justify text-white">
+                    <div class="bg-green-600 img-container" id="img-grid">
+                        <img src="../img/projects/portfolio/portfolio-old-1.webp" alt="screenshot of my old website" id="img-child" class="img-select">
+                        <img src="../img/projects/portfolio/portfolio-old-2.webp" alt="screenshot of old website's ugly header" id="img-child" class="img-select">
+                        <img src="../img/projects/portfolio/portfolio-old-3.webp" alt="images taking long to load on my old website" id="img-child" class="img-select">
+                        <img src="../img/projects/portfolio/portfolio-old-scores.webp" alt="screenshot of Google's lighthouse performance scorer for my old website" id="img-child" class="img-select">
+                        <!-- long lasting dispute about overflow hack-fix -->
+                        <div class="text-xs text-transparent" aria-hidden="true">i</div>
+                    </div>
+                    <h2 class="project-title">This.Portfolio</h2>
+                    <p class="text-wm">
+                        <span class="font-bold">Creator:</span> Augusto Mota Pinheiro <br>
+                        <span class="font-bold">Start Date:</span> 17/01/2021 <br>
+                        <span class="font-bold">End Date:</span> 01/02/2020 <br>
+                        <span class="font-bold">Medium:</span> Tailwindcss | Browserify | Node.js | <span class="italic">Others</span> <br>
+                    </p>
+                    <p class="text-wm"> I wanted to make this website to replace my old one for various reasons: first
+                        and foremost, my original portfolio was made with Mobirise™, a website building platform based
+                        on Bootstrap 5. Although a very easy platform, it was super buggy and not very open to
+                        customization (notably the forced white header at the bottom of each page, 2nd picture). Not
+                        only that, but as you can see from the 3rd and 4th pictures above, the site's
+                        performance was terrible and I wasn't at all satisfied with it.<br><br>
 
-                            I decided then to create my own website from scratch as efficiently as possible! Starting off
-                            the project, I was aiming for 3 things: performance, ease of maintenance and
-                            mobile-friendliness. Already understanding pretty well how HTML5 and CSS3 worked, I looked for
-                            some tools and techniques I could use to accomplish my set goals. After some research I found
-                            out a couple of things: </p>
+                        I decided then to create my own website from scratch as efficiently as possible! Starting off
+                        the project, I was aiming for 3 things: performance, ease of maintenance and
+                        mobile-friendliness. Already understanding pretty well how HTML5 and CSS3 worked, I looked for
+                        some tools and techniques I could use to accomplish my set goals. After some research I found
+                        out a couple of things: </p>
 
-                        <ol>
-                            <li>
-                                <a href="https://tailwindcss.com/">tailwindcss</a> is a great option to get into web
-                                design for someone with my Xamarin.Forms experience + it's not a shippable framework, so
-                                more performance!
-                            </li>
-                            <li>
-                                <span class="italic">.webp</span> is the format to use for web images, it has an
-                                incredible compression ratio with little visual quality loss.
-                            </li>
-                            <li>
-                                going all out on a entire framework like React, Vue.js or even Svelte is overkill for my
-                                current use case, so jQuery is just fine, despite its age.
-                            </li>
-                            <li>
-                                finally, to optimize my .css and .js files (as well as jQuery & others), <a href="https://postcss.org/">Postcss</a> & <a href="http://browserify.org/">Browserify</a> are the ideal
-                                tools, once again, for my use case.
-                            </li>
-                        </ol>
-                        <p class="mt-8 text">
-                            Having that in hand (and armed with this TailwindCSS <a href="https://www.youtube.com/watch?v=bxmDnn7lrnk">tutorial</a> by <span class="italic">The
+                    <ol>
+                        <li>
+                            <a href="https://tailwindcss.com/">tailwindcss</a> is a great option to get into web
+                            design for someone with my Xamarin.Forms experience + it's not a shippable framework, so
+                            more performance!
+                        </li>
+                        <li>
+                            <span class="italic">.webp</span> is the format to use for web images, it has an
+                            incredible compression ratio with little visual quality loss.
+                        </li>
+                        <li>
+                            going all out on a entire framework like React, Vue.js or even Svelte is overkill for my
+                            current use case, so jQuery is just fine, despite its age.
+                        </li>
+                        <li>
+                            finally, to optimize my .css and .js files (as well as jQuery & others), <a href="https://postcss.org/">Postcss</a> & <a href="http://browserify.org/">Browserify</a> are the ideal
+                            tools, once again, for my use case.
+                        </li>
+                    </ol>
+                    <p class="mt-8 text">
+                        Having that in hand (and armed with this TailwindCSS <a href="https://www.youtube.com/watch?v=bxmDnn7lrnk">tutorial</a> by <span class="italic">The
                                 Net Ninja</span>), I got started! <br><br>
 
-                            After 2 weeks of work (with school starting and everything), I finally finished! And in my
-                            opinion, I achieved my goals pretty well :D! Everything I built is solid and maintainable all
-                            while being peformant and pretty to look at! <br><br> </p>
+                        After 2 weeks of work (with school starting and everything), I finally finished! And in my
+                        opinion, I achieved my goals pretty well :D! Everything I built is solid and maintainable all
+                        while being peformant and pretty to look at! <br><br> </p>
 
-                        <img src="../img/projects/portfolio/portfolio-new-scores.webp" alt="a screenshot of the new scores of my website" id="img-child" class="mx-auto img-select">
+                    <img src="../img/projects/portfolio/portfolio-new-scores.webp" alt="a screenshot of the new scores of my website" id="img-child" class="mx-auto img-select">
 
-                        <p class="text-wm">
-                            Finally, I also wanted to have the source code of this entire project open for anyone to see
-                            (and possibly suggest improvements here or there), so I uploaded everything on <a href="https://github.com/AugustDG/personal-portfolio">Github</a> :)
+                    <p class="text-wm">
+                        Finally, I also wanted to have the source code of this entire project open for anyone to see
+                        (and possibly suggest improvements here or there), so I uploaded everything on <a href="https://github.com/AugustDG/personal-portfolio">Github</a> :)
 
-                            I setup 2 Github Actions (sitemap generation & copying the public folder to an external repository) to automate the deployment process to Hostinger, so I can just push and everything will be deployed automatically!
-                        </p>
+                        I setup 2 Github Actions (sitemap generation & copying the public folder to an external repository) to automate the deployment process to Hostinger, so I can just push and everything will be deployed automatically!
+                    </p>
 
-                        </p>
-                    </div>
+                    </p>
                 </div>
             </main>
 

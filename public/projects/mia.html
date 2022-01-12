@@ -123,126 +123,124 @@
             </header>
             <main>
                 <!-- main section -->
-                <div class="bg-red-500 project-container">
-                    <div class="text-justify text-white">
-                        <div class="bg-red-600 video-container">
-                            <div class="video-wrapper">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/cL5B1oQsl2E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
+                <div class="bg-red-500 project-container text-justify text-white">
+                    <div class="bg-red-600 video-container">
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/cL5B1oQsl2E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
-                        <div class="bg-red-600 img-container-sb" id="img-grid">
-                            <img src="../img/projects/mia/robotgator-v1.webp" alt="Mia's 'ancestor': Robotgator, V1" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v1-corner.webp" alt="first version of Mia, V1" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v2-corner.webp" alt="latest version of Mia, V2" id="img-child" class="img-select">
-                        </div>
-                        <h2 class="project-title">Mia</h2>
-                        <p class="text-wm">
-                            <span class="font-bold">Creators:</span> Augusto Mota Pinheiro <br>
-                            <span class="font-bold">Start Date:</span> ~ 08/2020 <br>
-                            <span class="font-bold">End Date:</span> N/A <br>
-                            <span class="font-bold">Medium & Tools:</span> Arduino | FreeCAD | 3D Printing <br>
-                        </p>
-                        <h3 class="font-bold medium-text-wm">Project Summary</h3>
-                        <p class="text">
-                            During my 2 years at Dawson, I had the opportunity to work on a more advanced project, one of my choosing, for my <span class="italic">Art of Physical Computing</span> class. With the very appreciated help from my teacher, <a href="https://www.linkedin.com/in/john-connolly-b7432540">John Connolly</a>, I came up with this project idea: a quadruped robot! <br><br>
-
-                            Having done close to no embedded projects in the past, this was a completely new field for me, mixing CAD, 3D printing and the Arduino platform. I had to learn a lot of new things on the fly which meant a lot of mistakes, from those I managed to grow my knowledge of the field considerably as well as come up with a pretty cool bot! <br><br>
-
-                            As I will detail more below, I had to restart the project from scratch with different objectives halfway through, which is where <span class="italic">Mia</span> is born. It's a project that I intend to keep working on, so I'll update this page as I go! <br><br>
-                        </p>
-                        <div class="bg-red-600 img-container" id="img-grid">
-                            <img src="../img/projects/mia/robotgator-1.webp" alt="FreeCAD design of the front skeleton of the bot" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/robotgator-2.webp" alt="FreeCAD design of the entire skeleton of the bot" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/robotgator-3.webp" alt="FreeCAD design of the bot with servo mockups" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/robotgator-4.webp" alt="FreeCAD design of the bot with more detailed servo and Arduino mockups" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/robotgator-5.webp" alt="FreeCAD design of the entire bot with legs and all" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/robotgator-body-corner.webp" alt="overview of the 3D printed bot's skeleton" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/robotgator-v1.webp" alt="full 3D printed view of the standing bot" id="img-child" class="img-select">
-                        </div>
-                        <h3 class="font-bold medium-text-wm">Robotgator</h3>
-                        <span class="block font-bold smaller-text">Bill of Materials</span>
-                        <ul>
-                            <li>
-                                <a href="https://store.arduino.cc/products/arduino-uno-rev3">Arduino UNO</a> & <a href="https://www.adafruit.com/product/815">PCA9685 Servo Driver</a>
-                            </li>
-                            <li>
-                                <a href="https://www.canadarobotix.com/products/1713">9G Servos</a>
-                            </li>
-                            <li>
-                                4x AAA Batteries & <a href="https://www.canadarobotix.com/collections/battery-holder/products/985">Battery Holder</a>
-                            </li>
-                            <li>
-                                Various Screws, Nuts & Bolts
-                            </li>
-                            <li>
-                                PLA Filament (~500g)
-                            </li>
-                            <br>
-                        </ul>
-                        <p class="text">
-                            My initial idea was to create an aquatic alligator-like robot that would have a gait very similar to an alligator's. <br><br>
-
-                            This meant coming up with the design, creating it in FreeCAD, printing it and testing it. The best way to approach this is in an iterative fashion, so quick design and quick testing to rapidly get useful feedback which was not what I did and was my first big mistake. <br><br>
-
-                            Looking back, it's obvious now why <span class="italic">Robotgator</span> failed so badly in the "functional" sense. The base concept was decent, but the joints were fragile, the ground contacts were too small, the bot was too heavy for its 9G servos and it lacked space to properly attach the <span class="italic">Arduino UNO</span>. <br><br>
-
-                            The result of this first attempt was very physically underwhelming, but I learned a lot and I applied those learnings in my next iteration <span class="italic">Mia</span>. <br><br>
-                        </p>
-
-                        <div class="flex-col gap-5 bg-red-600 video-container">
-                            <div class="video-wrapper">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/LyrGNhZ8n5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <div class="video-wrapper">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/fHt7LexGxoo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="bg-red-600 img-container-sb" id="img-grid">
-                            <img src="../img/projects/mia/mia-v1-corner.webp" alt="Mia lifting a paw off the floor" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v1-inside.webp" alt="the bot's internal circuitry" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v1-head.webp" alt="the inside of the bot's head" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v1-paw.webp" alt="elastic around her paw's to improve adherence" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v2-corner.webp" alt="corner view of version 2 of the robot, with reinforced shoulders" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v2-top.webp" alt="top view of version 2 of the robot, with reinforced shoulders" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/mia-v2-paw.webp" alt="side view of the TPU paws" id="img-child" class="img-select">
-                            <img src="../img/projects/mia/companion-app.webp" alt="Windows companion app screenshot" id="img-child" class="img-select">
-                        </div>
-                        <h3 class="font-bold medium-text-wm">Mia</h3>
-                        <span class="block font-bold smaller-text">Bill of Materials</span>
-                        <ul>
-                            <li>
-                                <a href="https://store.arduino.cc/products/arduino-uno-rev3">Arduino UNO</a> & <a href="https://www.adafruit.com/product/815">PCA9685 Servo Driver</a>
-                            </li>
-                            <li>
-                                <a href="https://www.canadarobotix.com/collections/servos/products/1715">12 MG995 Servos</a>
-                            </li>
-                            <li>
-                                <a href="https://www.amazon.ca/-/fr/HM305-Alimentation-daffichage-verrouillage-commutateur/dp/B0852JZQZR">DC Variable Power Supply</a>
-                            </li>
-                            <li>
-                                <a href="https://www.sparkfun.com/products/15569">Ultrasonic Sensors</a>
-                            </li>
-                            <li>
-                                Various Screws, Nuts & Bolts
-                            </li>
-                            <li>
-                                PLA Filament (2 colors, ~1000g)
-                            </li>
-                            <li>
-                                TPU Filament (~80g)
-                            </li>
-                            <br>
-                        </ul>
-                        <p class="text">
-                            <span class="italic">Mia</span> is the best and most relevant part of this project. Having learned everything I could from <span class="italic">Robotgator</span> (and having done an extensive after action report, accessible <a href="/docs/after_action_report-robotgator.docx" download="after_action_report-robotgator.docx">here</a>) I set out to accomplish a few, more specific goals with this iteration: <span class="font-bold">start from a base, not from scratch</span> and <span class="font-bold">focus more on the software</span>. These goals would allow me to concentrate on a smaller project, that I could take further and farther. <br><br>
-
-                            With that mindset, I found the <a href="https://spotmicroai.readthedocs.io/en/latest/"> Spot Micro Open Source Project</a> and started work on <a href="https://github.com/michaelkubina"> Michael Kubina's</a> version which was excellent for a beginner like me! From the project's Github <a href="https://github.com/michaelkubina/SpotMicroESP32">page</a> I found all of the necessary CAD files to start printing. My teacher and I decided that it was best to get the physical design part out of the way, as it was the biggest slowdown last time. <br><br>
-
-                            I managed to have inverse kinematics to work, implementing an algorithm from scratch using trigonometry, have some a kind of obstacle avoidance system using its ultrasonic sensors (where it simply stops moving if there's an obstacle close) and code a companion app with WPF where the bot can be controlled through Bluetooth (repository <a href="https://github.com/AugustDG/spotmicro-companion-windows">here</a>) and sensor data is displayed (last image above). All of that, programmed in decently optimized C++ on an Arduino, the repo of which you can check out <a href="https://github.com/AugustDG/spotmicro">here</a>.<br><br>
-
-                            I finished the "school" part of the project at the end of my program at Dawson, in June of 2021, and I've been improving it ever since with some recently added reinforced shoulders (from the mod section of Michael's Repository) and some flexible TPU paws, as well as improving the codebase for the companion app. <br><br>
-                        </p>
                     </div>
+                    <div class="bg-red-600 img-container-sb" id="img-grid">
+                        <img src="../img/projects/mia/robotgator-v1.webp" alt="Mia's 'ancestor': Robotgator, V1" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v1-corner.webp" alt="first version of Mia, V1" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v2-corner.webp" alt="latest version of Mia, V2" id="img-child" class="img-select">
+                    </div>
+                    <h2 class="project-title">Mia</h2>
+                    <p class="text-wm">
+                        <span class="font-bold">Creators:</span> Augusto Mota Pinheiro <br>
+                        <span class="font-bold">Start Date:</span> ~ 08/2020 <br>
+                        <span class="font-bold">End Date:</span> N/A <br>
+                        <span class="font-bold">Medium & Tools:</span> Arduino | FreeCAD | 3D Printing <br>
+                    </p>
+                    <h3 class="font-bold medium-text-wm">Project Summary</h3>
+                    <p class="text">
+                        During my 2 years at Dawson, I had the opportunity to work on a more advanced project, one of my choosing, for my <span class="italic">Art of Physical Computing</span> class. With the very appreciated help from my teacher, <a href="https://www.linkedin.com/in/john-connolly-b7432540">John Connolly</a>, I came up with this project idea: a quadruped robot! <br><br>
+
+                        Having done close to no embedded projects in the past, this was a completely new field for me, mixing CAD, 3D printing and the Arduino platform. I had to learn a lot of new things on the fly which meant a lot of mistakes, from those I managed to grow my knowledge of the field considerably as well as come up with a pretty cool bot! <br><br>
+
+                        As I will detail more below, I had to restart the project from scratch with different objectives halfway through, which is where <span class="italic">Mia</span> is born. It's a project that I intend to keep working on, so I'll update this page as I go! <br><br>
+                    </p>
+                    <div class="bg-red-600 img-container" id="img-grid">
+                        <img src="../img/projects/mia/robotgator-1.webp" alt="FreeCAD design of the front skeleton of the bot" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/robotgator-2.webp" alt="FreeCAD design of the entire skeleton of the bot" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/robotgator-3.webp" alt="FreeCAD design of the bot with servo mockups" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/robotgator-4.webp" alt="FreeCAD design of the bot with more detailed servo and Arduino mockups" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/robotgator-5.webp" alt="FreeCAD design of the entire bot with legs and all" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/robotgator-body-corner.webp" alt="overview of the 3D printed bot's skeleton" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/robotgator-v1.webp" alt="full 3D printed view of the standing bot" id="img-child" class="img-select">
+                    </div>
+                    <h3 class="font-bold medium-text-wm">Robotgator</h3>
+                    <span class="block font-bold smaller-text">Bill of Materials</span>
+                    <ul>
+                        <li>
+                            <a href="https://store.arduino.cc/products/arduino-uno-rev3">Arduino UNO</a> & <a href="https://www.adafruit.com/product/815">PCA9685 Servo Driver</a>
+                        </li>
+                        <li>
+                            <a href="https://www.canadarobotix.com/products/1713">9G Servos</a>
+                        </li>
+                        <li>
+                            4x AAA Batteries & <a href="https://www.canadarobotix.com/collections/battery-holder/products/985">Battery Holder</a>
+                        </li>
+                        <li>
+                            Various Screws, Nuts & Bolts
+                        </li>
+                        <li>
+                            PLA Filament (~500g)
+                        </li>
+                        <br>
+                    </ul>
+                    <p class="text">
+                        My initial idea was to create an aquatic alligator-like robot that would have a gait very similar to an alligator's. <br><br>
+
+                        This meant coming up with the design, creating it in FreeCAD, printing it and testing it. The best way to approach this is in an iterative fashion, so quick design and quick testing to rapidly get useful feedback which was not what I did and was my first big mistake. <br><br>
+
+                        Looking back, it's obvious now why <span class="italic">Robotgator</span> failed so badly in the "functional" sense. The base concept was decent, but the joints were fragile, the ground contacts were too small, the bot was too heavy for its 9G servos and it lacked space to properly attach the <span class="italic">Arduino UNO</span>. <br><br>
+
+                        The result of this first attempt was very physically underwhelming, but I learned a lot and I applied those learnings in my next iteration <span class="italic">Mia</span>. <br><br>
+                    </p>
+
+                    <div class="flex-col gap-5 bg-red-600 video-container">
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/LyrGNhZ8n5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-wrapper">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/fHt7LexGxoo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="bg-red-600 img-container-sb" id="img-grid">
+                        <img src="../img/projects/mia/mia-v1-corner.webp" alt="Mia lifting a paw off the floor" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v1-inside.webp" alt="the bot's internal circuitry" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v1-head.webp" alt="the inside of the bot's head" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v1-paw.webp" alt="elastic around her paw's to improve adherence" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v2-corner.webp" alt="corner view of version 2 of the robot, with reinforced shoulders" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v2-top.webp" alt="top view of version 2 of the robot, with reinforced shoulders" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/mia-v2-paw.webp" alt="side view of the TPU paws" id="img-child" class="img-select">
+                        <img src="../img/projects/mia/companion-app.webp" alt="Windows companion app screenshot" id="img-child" class="img-select">
+                    </div>
+                    <h3 class="font-bold medium-text-wm">Mia</h3>
+                    <span class="block font-bold smaller-text">Bill of Materials</span>
+                    <ul>
+                        <li>
+                            <a href="https://store.arduino.cc/products/arduino-uno-rev3">Arduino UNO</a> & <a href="https://www.adafruit.com/product/815">PCA9685 Servo Driver</a>
+                        </li>
+                        <li>
+                            <a href="https://www.canadarobotix.com/collections/servos/products/1715">12 MG995 Servos</a>
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.ca/-/fr/HM305-Alimentation-daffichage-verrouillage-commutateur/dp/B0852JZQZR">DC Variable Power Supply</a>
+                        </li>
+                        <li>
+                            <a href="https://www.sparkfun.com/products/15569">Ultrasonic Sensors</a>
+                        </li>
+                        <li>
+                            Various Screws, Nuts & Bolts
+                        </li>
+                        <li>
+                            PLA Filament (2 colors, ~1000g)
+                        </li>
+                        <li>
+                            TPU Filament (~80g)
+                        </li>
+                        <br>
+                    </ul>
+                    <p class="text">
+                        <span class="italic">Mia</span> is the best and most relevant part of this project. Having learned everything I could from <span class="italic">Robotgator</span> (and having done an extensive after action report, accessible <a href="/docs/after_action_report-robotgator.docx" download="after_action_report-robotgator.docx">here</a>) I set out to accomplish a few, more specific goals with this iteration: <span class="font-bold">start from a base, not from scratch</span> and <span class="font-bold">focus more on the software</span>. These goals would allow me to concentrate on a smaller project, that I could take further and farther. <br><br>
+
+                        With that mindset, I found the <a href="https://spotmicroai.readthedocs.io/en/latest/"> Spot Micro Open Source Project</a> and started work on <a href="https://github.com/michaelkubina"> Michael Kubina's</a> version which was excellent for a beginner like me! From the project's Github <a href="https://github.com/michaelkubina/SpotMicroESP32">page</a> I found all of the necessary CAD files to start printing. My teacher and I decided that it was best to get the physical design part out of the way, as it was the biggest slowdown last time. <br><br>
+
+                        I managed to have inverse kinematics to work, implementing an algorithm from scratch using trigonometry, have some a kind of obstacle avoidance system using its ultrasonic sensors (where it simply stops moving if there's an obstacle close) and code a companion app with WPF where the bot can be controlled through Bluetooth (repository <a href="https://github.com/AugustDG/spotmicro-companion-windows">here</a>) and sensor data is displayed (last image above). All of that, programmed in decently optimized C++ on an Arduino, the repo of which you can check out <a href="https://github.com/AugustDG/spotmicro">here</a>.<br><br>
+
+                        I finished the "school" part of the project at the end of my program at Dawson, in June of 2021, and I've been improving it ever since with some recently added reinforced shoulders (from the mod section of Michael's Repository) and some flexible TPU paws, as well as improving the codebase for the companion app. <br><br>
+                    </p>
                 </div>
             </main>
 
