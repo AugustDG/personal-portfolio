@@ -1,14 +1,5 @@
 module.exports = {
-  purge: {
-    mode: 'all',
-    preserveHtmlElements: false,
-    content: ['public/*.html', 'public/projects/*.html'],
-    options: {
-      safelist: ['w-0'],
-      keyframes: true,
-    }
-  },
-  darkMode: false, // or 'media' or 'class'
+  content: ['./dev/*.html', './dev/projects/*.html'],
   theme: {
     screens: {
       '2xl': { 'max': '1535px' },
@@ -60,11 +51,6 @@ module.exports = {
         'earth': 'url("/img/icons/earth-bg.webp")',
         'mars': 'url("/img/icons/mars-bg.webp")',
       }),
-    },
-  },
-  variants: {
-    extend: {
-      width: ['group-hover'],
     },
   },
 };
