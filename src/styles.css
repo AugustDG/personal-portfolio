@@ -381,8 +381,12 @@ footer {
     @apply transition ease-in-out shadow-hard-sm hover:shadow-none hover:translate-x-1.25 hover:translate-y-1.25 inline-block h-full max-w-md overflow-hidden duration-100 bg-green-400 hover:bg-black-500;
 }
 
+.card > a {
+  @apply hover:opacity-100; 
+}
+
 .card-image {
-    @apply object-cover w-full h-80 filter-unsaturate;
+    @apply object-cover w-full h-80;
 }
 
 .card-text {

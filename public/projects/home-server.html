@@ -146,12 +146,13 @@
 
                         I had a few key points I wanted to hit with this project, namely having access to it from <span class="font-bold"> outside my home network</span> (for my friends to use) and <span class="font-bold">be easy to maintain</span>. Good news on the latter, Docker was the best solution for me! However, making it secure was a whole new challenge that took me a while to figure out. <br><br>
 
-                        I won't go into too much detail for security purposes, but my setup goes a little like this: I got a DDNS from DynV6 to point to my router, forwarded random ports for SSH, Minecraft and NPM, setup 2FA for SSH and used NPM to manage HTTPS traffic to the right places which is just Filerun for now. With everything running in their own Docker container! And to manage all of the containers in a more streamlined way I'm using Portainer!<br><br>
+                        I won't go into too much detail for security purposes, but my setup goes a little like this: I got a DDNS from DynV6 to point to my router, forwarded random ports for SSH, Minecraft and NPM, setup 2FA for SSH and used NPM to manage HTTPS traffic to the right places which is Filerun, some projects' websites, personal tools and my very own Docker registry. With everything running in their own Docker container! And to manage all of the containers in a more streamlined way I'm using Portainer!<br><br>
                     </p>
 
                     <h3 class="font-bold medium-text-wm">Possible Improvements</h3>
                     <p class="text">
-                        It was the first time I had ever used Docker and Linux for extended periods of time since I had played with both those tools in the past, but nothing serious. From this, if I had the opportunity of restarting (and I probably will in the future), I would do a couple of things differently:
+                        It was the first time I had ever used Docker and Linux for extended periods of time since I had played with both those tools in the past, but nothing serious. <br><br>
+                        From this, if I had the opportunity of restarting (and I probably will in the future), I would do a couple of things differently:
                     </p>
                     <ul>
                         <li>
@@ -164,7 +165,7 @@
                             making regular backups of my configuration files as well as my data is a great way to avoid panicked afternoons, thinking I lost everything while in reality my drive wasn't automatically mounted.
                         </li>
                     </ul>
-                    <p class="text">
+                    <p class="text-wm">
                         That being said, I'm very proud of what I achieved and will definitely be working on improving it in the future :)
                     </p>
                 </div>
