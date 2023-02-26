@@ -4,8 +4,8 @@ import { useRouter } from "vue-router";
 
 const state = reactive({ canTransition: false, firstTransitioned: false, allTransitioned: false });
 
-const logoTransitionDuration = 2000;
-const rainbowTransitionDuration = 2000;
+const logoTransitionDuration = 1500;
+const rainbowTransitionDuration = 1200;
 
 const router = useRouter();
 
@@ -36,11 +36,13 @@ onMounted(() => {
     <div :class="['vhs-wrapper']">
       <div class="vhs one"></div>
       <div class="vhs two"></div>
-      <div class="vhs three">
+      <div class="vhs three"></div>
+      <div class="vhs four">
         <p>Press RETURN to continue:<span class="blinking">■</span></p>
       </div>
-      <div class="vhs four"></div>
-      <div class="vhs five">
+      <div class="vhs five"></div>
+      <div class="vhs six"></div>
+      <div class="vhs seven">
         <p>© 2022</p>
       </div>
     </div>
@@ -57,17 +59,17 @@ onMounted(() => {
   background-color: var(--splash-background);
 
   &.transitionOut {
-    animation: fadeOut 1s ease-in-out forwards 3s;
+    animation: fadeOut 1s ease-in-out forwards 1.7s;
 
     #logo {
-      animation: slideOutLeft 2s forwards;
+      animation: slideOutLeft 1.5s forwards;
       animation-timing-function: var(--custom-bezier-1);
     }
 
     .vhs-wrapper {
       .vhs {
         p {
-          animation: slideOutLeft 2s forwards;
+          animation: slideOutLeft 1.5s forwards;
           animation-timing-function: var(--custom-bezier-1);
         }
 
@@ -78,8 +80,8 @@ onMounted(() => {
         }
       }
 
-      animation: VHS_slideToCenter 3s forwards;
-      animation-delay: 1.25s;
+      animation: VHS_slideToCenter 2.2s forwards;
+      animation-delay: 0.2s;
       animation-timing-function: var(--custom-bezier-1);
 
       //top: var(--logo-margin);
@@ -145,6 +147,10 @@ onMounted(() => {
 
     &.three {
       background-color: var(--vhs-three);
+    }
+
+    &.four {
+      background-color: var(--vhs-four);
 
       p {
         font-family: var(--mono-font-family);
@@ -155,12 +161,17 @@ onMounted(() => {
       }
     }
 
-    &.four {
-      background-color: var(--vhs-four);
-    }
-
     &.five {
       background-color: var(--vhs-five);
+    }
+
+    &.six {
+      background-color: var(--vhs-six);
+    }
+
+
+    &.seven {
+      background-color: var(--vhs-seven);
 
       p {
         font-family: var(--sans-font-family);

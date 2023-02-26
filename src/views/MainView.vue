@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import type { ProjectSummary } from '@/models';
-import { getCurrentInstance } from 'vue';
+import type { ContactInfo, ProjectSummary } from '@/models';
+import { getCurrentInstance, onMounted } from 'vue';
 
 const instance = getCurrentInstance();
+
+let contact: ContactInfo = {
+    id: '1',
+    github: 'https://github.com/AugustDG',
+    linkedin: 'https://www.linkedin.com/in/augustomp/',
+    email: 'contact@augustopinheiro.com'
+}
 
 let summaries: ProjectSummary[] = [{
     id: '1',
@@ -10,7 +17,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 1',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '2',
@@ -18,7 +24,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 2',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '3',
@@ -26,7 +31,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 3',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '4',
@@ -34,7 +38,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 4',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '5',
@@ -42,7 +45,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 5',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '6',
@@ -50,7 +52,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 6',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '7',
@@ -58,7 +59,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 7',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '8',
@@ -66,7 +66,6 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 8',
     year: 2021,
     images: [],
-    hovered: false,
 },
 {
     id: '9',
@@ -74,14 +73,32 @@ let summaries: ProjectSummary[] = [{
     medium: 'Medium 9',
     year: 2021,
     images: [],
-    hovered: false,
 }
 ];
 
-function summaryHovered(summaryIndex: number) {
-    summaries[summaryIndex].hovered = true;
+onMounted(() => {
+    window.onresize = (ev: UIEvent) => {
+        //resizeOutro();
+    };
 
-    summaries.splice(summaryIndex, 1, summaries[summaryIndex]);
+    assignRandomColorsToLinks();
+    //resizeOutro();
+});
+
+function assignRandomColorsToLinks() {
+    const links = document.querySelectorAll('a');
+
+    links.forEach((link) => {
+        const randomColor = Math.floor(Math.random() * 7);
+
+        link.classList.add(`vhs-color-${randomColor}`);
+    });
+}
+
+function resizeOutro() {
+    let outroElement = instance?.refs?.outro as HTMLElement;
+
+    outroElement?.style.setProperty('--outro-width', `${outroElement?.clientWidth}px`);
 
     instance?.proxy?.$forceUpdate();
 }
@@ -89,9 +106,9 @@ function summaryHovered(summaryIndex: number) {
 
 <template>
     <div class="view-root">
-        <div id="intro"><span class="underline">Augusto Pinheiro</span> is a game designer and general coding enthusiast based out of Montreal / Tiohtià:ke. He specializes in interactive media experiences, robotics, and creative development.</div>
+        <div id="intro" class="non-project"><span class="underline">Augusto Pinheiro</span> is a game designer and general coding enthusiast based out of Montreal. He specializes in interactive media experiences, robotics, and creative development.</div>
 
-        <div class="projects-wrapper">
+        <div id="projects-wrapper">
             <table class="projects">
                 <tr class="table-headings-row">
                     <th>Title</th>
@@ -99,7 +116,7 @@ function summaryHovered(summaryIndex: number) {
                     <th>Year</th>
                 </tr>
 
-                <tr v-for="(summary, index) in summaries" :key="summary.id" :class="[summary.hovered ? 'hovered' : '', 'color-' + (index % 5)]" @mouseenter="summaryHovered(index)">
+                <tr v-for="(summary, index) in summaries" :key="summary.id" :class="['vhs-bg-color-' + ((index % 7) + 1)]">
                     <td>{{ summary.title }}</td>
                     <td>{{ summary.medium }}</td>
                     <td>{{ summary.year }}</td>
@@ -107,12 +124,17 @@ function summaryHovered(summaryIndex: number) {
                 </tr>
             </table>
         </div>
+
+        <div id="contact" class="non-project"><a target="_blank" :href="contact.github">github</a>, <a target="_blank" :href="contact.linkedin">linkedin</a>, <a target="_blank" :href="'mailto:' + contact.email">email</a></div>
+
+        <!-- <div id="outro" ref="outro" class="non-project uppercase sans">Augusto Pinheiro</div> -->
     </div>
 </template>
 
 <style lang="scss" scoped>
 .view-root {
     --page-padding: 2rem;
+    --section-padding: 5rem;
 
     color: var(--home-contrast);
     background-color: var(--home-background);
@@ -120,17 +142,36 @@ function summaryHovered(summaryIndex: number) {
     animation: fadeIn 1s ease-in-out;
 }
 
-#intro {
-    padding: var(--page-padding);
-
+.non-project {
     font-size: 3rem;
     line-height: 5.4rem;
 }
 
-.projects-wrapper {
+#intro {
+    padding: var(--page-padding);
+    padding-bottom: 0;
+}
+
+#contact {
+    padding-inline: var(--page-padding);
+    padding-block: 0 var(--section-padding);
+
+    line-height: 3.8rem;
+}
+
+#outro {
+    font-size: calc(var(--outro-width) * 0.16 - var(--page-padding) *2);
+
+    text-align: left;
+
+    padding-inline: var(--page-padding);
+    padding-block: calc(var(--outro-width) * 0.01 + var(--section-padding)) 0;
+}
+
+#projects-wrapper {
     width: 100%;
 
-    margin-top: 8rem;
+    margin-block: 8rem;
 
     font-size: 2.6rem;
     text-transform: uppercase;
@@ -145,35 +186,23 @@ function summaryHovered(summaryIndex: number) {
         }
 
         tr {
+            padding-left: calc(100vw / 2);
+            margin-left: calc(100vw / 2);
             border-bottom: 3px solid var(--home-contrast);
 
             height: 0;
 
-            transition: background-color 2s ease-in-out, height 0.5s ease-in-out;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, height 0.3s ease-in-out;
             transition-delay: 0s;
 
-            &.hovered {
+            &:not(:hover) {
+                background-color: var(--home-background) !important;
+                color: var(--home-contrast) !important;
+            }
+
+            &:hover:not(.table-headings-row) {
                 height: 10rem;
-
-                &.color-0 {
-                    background-color: var(--vhs-one);
-                }
-
-                &.color-1 {
-                    background-color: var(--vhs-two);
-                }
-
-                &.color-2 {
-                    background-color: var(--vhs-three);
-                }
-
-                &.color-3 {
-                    background-color: var(--vhs-four);
-                }
-
-                &.color-4 {
-                    background-color: var(--vhs-five);
-                }
+                cursor: pointer;
             }
         }
 

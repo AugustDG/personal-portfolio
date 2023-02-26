@@ -1,10 +1,12 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --vintage-yellow: #e4e974;
-  --vintage-pink: #ffd5f0;
-  --vintage-green: #a9cda9;
-  --vintage-blue: #7ad6ff;
-  --vintage-orange: #f3c748;
+  --vintage-pink: #dd6c9e;
+  --vintage-purple: #395795;
+  --vintage-blue: #a4d7d6;
+  --vintage-green: #79c139;
+  --vintage-yellow: #f9e227;
+  --vintage-orange: #ea7a16;
+  --vintage-red: #ed4a1a;
 
   --pure-black: #000000;
   --pure-white: #ffffff;
@@ -13,16 +15,29 @@
 
 /* semantic color variables for this project */
 :root {
-  --vhs-one: var(--vintage-yellow);
-  --vhs-two: var(--vintage-pink);
-  --vhs-three: var(--vintage-green);
-  --vhs-four: var(--vintage-blue);
-  --vhs-five: var(--vintage-orange);
+  --vhs-one: var(--vintage-pink);
+  --vhs-two: var(--vintage-purple);
+  --vhs-three: var(--vintage-blue);
+  --vhs-four: var(--vintage-green);
+  --vhs-five: var(--vintage-yellow);
+  --vhs-six: var(--vintage-orange);
+  --vhs-seven: var(--vintage-red);
+
+  --vhs-1: var(--vintage-pink);
+  --vhs-2: var(--vintage-purple);
+  --vhs-3: var(--vintage-blue);
+  --vhs-4: var(--vintage-green);
+  --vhs-5: var(--vintage-yellow);
+  --vhs-6: var(--vintage-orange);
+  --vhs-7: var(--vintage-red);
 
   --splash-background: var(--pure-black);
 
   --home-background: var(--pure-grey);
   --home-contrast: var(--pure-black);
+
+  --bright-text: var(--pure-white);
+  --dark-text: var(--pure-black);
 
   --mono-font-family: "IBM Plex Mono", monospace;
   --sans-font-family: "MD Nichrome Black", "Arial Black", sans-serif;

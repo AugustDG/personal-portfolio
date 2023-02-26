@@ -1,4 +1,20 @@
+@use 'sass:math';
+
 @import "./base.scss";
+
+@for $i from 1 through 7 {
+  .vhs-color-#{$i} {
+    color: var(--vhs-#{$i});
+  }
+
+  .vhs-bg-color-#{$i} {
+    @if $i ==2 or $i ==7 {
+      color: var(--bright-text) !important;
+    }
+
+    background-color: var(--vhs-#{$i});
+  }
+}
 
 .view-root {
   min-height: 100vh;
@@ -7,6 +23,30 @@
   margin: 0 auto;
 }
 
+a {
+  text-decoration: none;
+  font-weight: bold;
+
+  transition: color 0.2s ease-in-out;
+  transition-delay: 0s;
+
+  &:not(:hover) {
+    color: var(--color-text);
+  }
+}
+
 .underline {
   text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.sans {
+  font-family: var(--sans-font-family);
+}
+
+.mono {
+  font-family: var(--mono-font-family);
 }
