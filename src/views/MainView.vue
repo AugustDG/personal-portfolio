@@ -16,7 +16,7 @@ let summaries: ProjectSummary[] = [{
     title: 'Project 1',
     medium: 'Medium 1',
     year: 2021,
-    images: [],
+    images: ["thumbs/gl_FragCoord.png"],
 },
 {
     id: '2',
@@ -109,7 +109,7 @@ function resizeOutro() {
         <div id="intro" class="non-project"><span class="underline">Augusto Pinheiro</span> is a game designer and general coding enthusiast based out of Montreal. He specializes in interactive media experiences, robotics, and creative development.</div>
 
         <div id="projects-wrapper">
-            <table class="projects">
+            <table id="projects">
                 <tr class="table-headings-row">
                     <th>Title</th>
                     <th>Medium</th>
@@ -117,10 +117,10 @@ function resizeOutro() {
                 </tr>
 
                 <tr v-for="(summary, index) in summaries" :key="summary.id" :class="['vhs-bg-color-' + ((index % 7) + 1)]">
-                    <td>{{ summary.title }}</td>
-                    <td>{{ summary.medium }}</td>
-                    <td>{{ summary.year }}</td>
-                    <td>{{ summary.id }}</td>
+                    <td class="title">{{ summary.title }}</td>
+                    <td class="medium">{{ summary.medium }}</td>
+                    <td class="year">{{ summary.year }}</td>
+                    <td class="thumbs"><img v-for="(image) in summary.images" :key="image" :src="image" alt=""></td>
                 </tr>
             </table>
         </div>
@@ -176,7 +176,7 @@ function resizeOutro() {
     font-size: 2.6rem;
     text-transform: uppercase;
 
-    .projects {
+    #projects {
         width: 100%;
 
         tr:first-of-type {
@@ -191,8 +191,9 @@ function resizeOutro() {
             border-bottom: 3px solid var(--home-contrast);
 
             height: 0;
+            max-height: 10rem;
 
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, height 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, height 0.3s ease-in-out, font-weight 0.3s ease-in-out;
             transition-delay: 0s;
 
             &:not(:hover) {
@@ -210,6 +211,21 @@ function resizeOutro() {
         td {
             text-align: left;
             padding: 0 var(--page-padding);
+        }
+
+        td {
+            &.thumbs {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+
+                height: 100%;
+
+                img {
+                    max-height: 3rem;
+                }
+            }
         }
     }
 }

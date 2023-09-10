@@ -11,21 +11,37 @@ const router = useRouter();
 
 onMounted(() => {
   window.onkeyup = (e) => {
-    if (e.key === "Enter") {
-      state.canTransition = true;
+      if (e.key === "Enter") {
+        transitionOut();
+      }   
+  };
+
+  window.ontouchstart = () => {
+    transitionOut();
+  };
+
+  window.onclick = () => {
+    transitionOut();
+  };
+
+  function transitionOut() {
+    state.canTransition = true;
+
+    setTimeout(() => {
+      state.firstTransitioned = true;
 
       setTimeout(() => {
-        state.firstTransitioned = true;
+        state.allTransitioned = true;
 
-        setTimeout(() => {
-          state.allTransitioned = true;
+        window.onkeyup = null;
+        window.ontouchstart = null;
+        window.onclick = null;
 
-          router.push({ name: "projects" });
+        router.push({ name: "projects" });
 
-        }, rainbowTransitionDuration);
-      }, logoTransitionDuration);
-    }
-  };
+      }, rainbowTransitionDuration);
+    }, logoTransitionDuration);
+  }
 });
 </script>
 
@@ -43,7 +59,7 @@ onMounted(() => {
       <div class="vhs five"></div>
       <div class="vhs six"></div>
       <div class="vhs seven">
-        <p>© 2022</p>
+        <p>© 2023</p>
       </div>
     </div>
   </div>

@@ -8,8 +8,8 @@
   }
 
   .vhs-bg-color-#{$i} {
-    @if $i ==2 or $i ==7 {
-      color: var(--bright-text) !important;
+    @if $i >=3 and $i <=5 {
+      color: var(--dark-text) !important;
     }
 
     background-color: var(--vhs-#{$i});
@@ -18,7 +18,7 @@
 
 .view-root {
   min-height: 100vh;
-  max-width: 1920px;
+  //max-width: 1920px;
 
   margin: 0 auto;
 }
