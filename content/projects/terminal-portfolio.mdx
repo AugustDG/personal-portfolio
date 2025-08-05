@@ -1,0 +1,266 @@
+---
+title: "Terminal Portfolio"
+slug: "terminal-portfolio"
+description: "An interactive terminal-style portfolio website built with Next.js, featuring command-line navigation and Vim-style content modals"
+featured_image: ""
+technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "TinaCMS"]
+live_url: "https://terminal-portfolio.vercel.app"
+github_url: "https://github.com/yourusername/terminal-portfolio"
+date: "2024-01-15T00:00:00Z"
+featured: true
+---
+
+# Terminal Portfolio
+
+A unique portfolio experience that brings the power and familiarity of the command line to the web. This project showcases modern web development skills through an interactive terminal interface.
+
+## Project Overview
+
+The Terminal Portfolio is more than just a website—it's an immersive experience that allows visitors to explore my work using familiar command-line interactions. Built with modern web technologies, it demonstrates both technical proficiency and creative interface design.
+
+### Key Features
+
+- **Interactive Command System**: Full-featured terminal with auto-completion, command history, and error handling
+- **Vim-Style Modals**: Content viewing system inspired by Vim editor interactions
+- **Responsive Design**: Optimized for both desktop and mobile experiences
+- **Content Management**: Integrated with TinaCMS for easy content updates
+- **Performance Optimized**: Fast loading times and smooth interactions
+
+## Technical Implementation
+
+### Architecture
+
+The project follows a modern React architecture with careful consideration for state management and performance:
+
+```
+├── components/
+│   ├── Terminal.tsx          # Main terminal interface
+│   ├── VimModal.tsx         # Content viewing modal
+│   └── MarkdownRenderer.tsx # Markdown content display
+├── lib/
+│   ├── cms.ts              # TinaCMS integration
+│   └── commands.ts         # Command system logic
+└── types/
+    └── index.ts            # TypeScript definitions
+```
+
+### Command System
+
+The terminal supports a hierarchical command structure with intelligent auto-completion:
+
+- **help** - Display available commands
+- **about** - Show personal information
+- **blog** - Blog post management
+  - `list` - Show all posts
+  - `view <slug>` - Read specific post
+- **projects** - Project showcase
+  - `list` - Display all projects
+  - `view <slug>` - View project details
+- **gallery** - Image galleries
+  - `list` - Show available galleries
+  - `show <name>` - Browse specific gallery
+- **clear** - Clear terminal output
+
+### Auto-completion Engine
+
+One of the most challenging aspects was building a robust auto-completion system:
+
+```typescript
+interface CommandTreeNode {
+  [key: string]: {
+    description?: string;
+    children?: CommandTreeNode;
+    isComplete?: boolean;
+  };
+}
+```
+
+The tree-based structure enables:
+
+- Real-time command suggestions
+- Space-triggered subcommand exploration
+- Intelligent filtering based on user input
+- Keyboard navigation with arrow keys
+
+### Mobile Optimization
+
+Adapting a terminal interface for mobile required creative solutions:
+
+- Touch-friendly auto-completion suggestions
+- Optimized virtual keyboard interactions
+- Responsive terminal window sizing
+- Accessible navigation patterns
+
+## Development Challenges
+
+### State Management Complexity
+
+Managing the terminal state involved coordinating:
+
+- Command input and history
+- Auto-completion suggestions
+- Modal state for content viewing
+- Navigation between terminal and modals
+
+### Performance Optimization
+
+Ensuring smooth interactions required:
+
+- Memoized command handlers with `useCallback`
+- Efficient re-rendering patterns
+- Optimized bundle size
+- Strategic component splitting
+
+### User Experience Design
+
+Balancing novelty with usability meant:
+
+- Providing clear visual feedback
+- Supporting both keyboard and mouse interactions
+- Maintaining accessibility standards
+- Creating intuitive navigation patterns
+
+## Technical Stack
+
+### Frontend
+
+- **Next.js 14** with App Router for SSR and routing
+- **React 18** with hooks for state management
+- **TypeScript** for type safety and developer experience
+- **Tailwind CSS** for utility-first styling
+
+### Content Management
+
+- **TinaCMS** for headless content management
+- **MDX** for rich blog post content
+- **JSON** for structured data (projects, galleries)
+
+### Development Tools
+
+- **ESLint** and **Prettier** for code quality
+- **Husky** for git hooks
+- **GitHub Actions** for CI/CD
+
+## Performance Metrics
+
+The portfolio achieves excellent performance scores:
+
+- **Lighthouse Performance**: 95+
+- **First Contentful Paint**: < 1.5s
+- **Largest Contentful Paint**: < 2.5s
+- **Cumulative Layout Shift**: < 0.1
+
+## Content Management Integration
+
+TinaCMS integration enables non-technical content updates:
+
+- Visual editing interface
+- Real-time content preview
+- Git-based workflow
+- Automatic deployment on content changes
+
+### Content Types
+
+1. **Blog Posts**: Rich MDX content with metadata
+2. **Projects**: Structured project information with media
+3. **Galleries**: Image collections with captions
+4. **About**: Personal information and contact details
+
+## Future Enhancements
+
+Planned features for future iterations:
+
+### Enhanced Terminal Features
+
+- Command aliases and shortcuts
+- File system simulation
+- Multiple terminal tabs
+- Command output piping
+
+### Visual Improvements
+
+- Theme switching (dark/light/retro)
+- Custom terminal color schemes
+- Animated command execution
+- Enhanced mobile gestures
+
+### Content Features
+
+- Search functionality across all content
+- Tag-based content filtering
+- Related content suggestions
+- Social sharing integration
+
+## Lessons Learned
+
+This project provided valuable insights into:
+
+1. **Creative UI Design**: Pushing beyond conventional portfolio patterns
+2. **Performance Optimization**: Managing complex React state efficiently
+3. **Accessibility**: Ensuring keyboard-first interfaces work for everyone
+4. **Mobile UX**: Adapting desktop-centric concepts for touch devices
+5. **Content Strategy**: Structuring information for discovery and engagement
+
+## Code Highlights
+
+### Command Processing System
+
+```typescript
+const processCommand = useCallback(
+  async (input: string) => {
+    const parts = input.trim().split(" ");
+    const command = parts[0].toLowerCase();
+    const args = parts.slice(1);
+
+    const handler = commands[command];
+    if (handler) {
+      await handler.execute(args);
+    } else {
+      showCommandNotFound(command);
+    }
+  },
+  [commands]
+);
+```
+
+### Tree-based Auto-completion
+
+```typescript
+const getAutoCompleteSuggestions = (input: string): AutoCompleteItem[] => {
+  const parts = input.trim().split(/\s+/);
+  let currentNode = commandTree;
+
+  // Navigate through command tree
+  for (let i = 0; i < parts.length - 1; i++) {
+    const part = parts[i];
+    if (currentNode[part]?.children) {
+      currentNode = currentNode[part].children;
+    } else {
+      return [];
+    }
+  }
+
+  // Return matching suggestions
+  const currentPart = parts[parts.length - 1];
+  return Object.keys(currentNode)
+    .filter((key) => key.startsWith(currentPart))
+    .map((key) => ({
+      text: key,
+      description: currentNode[key].description,
+    }));
+};
+```
+
+## Conclusion
+
+The Terminal Portfolio demonstrates that portfolio websites don't have to follow conventional patterns. By combining modern web technologies with creative interface design, it's possible to create memorable experiences that showcase both technical skills and personality.
+
+This project serves as both a functional portfolio and a testament to the possibilities of modern web development, proving that the best showcases are those that reflect the creator's passion and expertise.
+
+---
+
+**Technologies Used**: Next.js, React, TypeScript, Tailwind CSS, TinaCMS, Vercel
+
+**Live Demo**: [terminal-portfolio.vercel.app](https://terminal-portfolio.vercel.app)
+
+**Source Code**: [GitHub Repository](https://github.com/yourusername/terminal-portfolio)

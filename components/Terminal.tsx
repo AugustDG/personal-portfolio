@@ -2,17 +2,48 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { CommandMap, OutputFunction } from "../types";
-import {
-  getAbout,
-  getBlogPosts,
-  getBlogPost,
-  getProjects,
-  getProject,
-  getGalleries,
-  getGallery,
-} from "../lib/cms";
 import MarkdownRenderer from "./MarkdownRenderer";
 import VimModal from "./VimModal";
+
+// API fetch functions instead of direct CMS imports
+async function getAbout() {
+  const response = await fetch("/api/about");
+  if (!response.ok) throw new Error("Failed to fetch about");
+  return response.json();
+}
+
+async function getBlogPosts() {
+  const response = await fetch("/api/blog");
+  if (!response.ok) throw new Error("Failed to fetch blog posts");
+  return response.json();
+}
+
+async function getBlogPost(slug: string) {
+  const posts = await getBlogPosts();
+  return posts.find((post: any) => post.slug === slug) || null;
+}
+
+async function getProjects() {
+  const response = await fetch("/api/projects");
+  if (!response.ok) throw new Error("Failed to fetch projects");
+  return response.json();
+}
+
+async function getProject(slug: string) {
+  const projects = await getProjects();
+  return projects.find((project: any) => project.slug === slug) || null;
+}
+
+async function getGalleries() {
+  const response = await fetch("/api/galleries");
+  if (!response.ok) throw new Error("Failed to fetch galleries");
+  return response.json();
+}
+
+async function getGallery(name: string) {
+  const galleries = await getGalleries();
+  return galleries.find((gallery: any) => gallery.name === name) || null;
+}
 
 interface TerminalLine {
   id: string;
@@ -222,6 +253,20 @@ export default function Terminal() {
       onClick={() => {
         setCurrentInput(command);
         processCommand(command);
+        // Clear the input after processing the command
+        setCurrentInput("");
+        // Show all top-level commands after executing a command
+        const topLevelSuggestions = Object.keys(commandTree).map((cmd) => ({
+          text: cmd,
+          description: commandTree[cmd].description,
+        }));
+        setAutoCompleteItems(topLevelSuggestions);
+        setShowAutoComplete(true);
+        setSelectedAutoComplete(0);
+        // Refocus the input field after command execution
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
       }}
     >
       {children}
@@ -338,7 +383,7 @@ export default function Terminal() {
               <div className="mb-4">
                 <div className="accent-cyan font-semibold mb-2">Skills:</div>
                 <div className="flex flex-wrap gap-2">
-                  {about.skills.map((skill) => (
+                  {about.skills.map((skill: string) => (
                     <span
                       key={skill}
                       className="bg-terminal-accent-blue/20 text-terminal-accent-blue px-2 py-1 rounded text-sm"
@@ -416,7 +461,7 @@ export default function Terminal() {
                   Blog Posts:
                 </div>
                 <div className="space-y-2">
-                  {posts.map((post) => (
+                  {posts.map((post: any) => (
                     <div
                       key={post.slug}
                       className="border-l-2 border-terminal-accent-cyan pl-3"
@@ -513,7 +558,7 @@ export default function Terminal() {
               <div className="command-output">
                 <div className="accent-green font-semibold mb-3">Projects:</div>
                 <div className="space-y-3">
-                  {projects.map((project) => (
+                  {projects.map((project: any) => (
                     <div
                       key={project.slug}
                       className="border-l-2 border-terminal-accent-magenta pl-3"
@@ -522,7 +567,7 @@ export default function Terminal() {
                         {project.title}
                       </div>
                       <div className="flex flex-wrap gap-1 mt-1">
-                        {project.technologies.map((tech) => (
+                        {project.technologies.map((tech: string) => (
                           <span
                             key={tech}
                             className="bg-terminal-accent-purple/20 text-terminal-accent-purple px-2 py-0.5 rounded text-xs"
@@ -623,7 +668,7 @@ export default function Terminal() {
                   Available Galleries:
                 </div>
                 <div className="space-y-2">
-                  {galleries.map((gallery) => (
+                  {galleries.map((gallery: any) => (
                     <div
                       key={gallery.name}
                       className="border-l-2 border-terminal-accent-amber pl-3"
@@ -667,7 +712,7 @@ export default function Terminal() {
                     {gallery.name.replace("-", " ")} Gallery
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {gallery.images.map((image) => (
+                    {gallery.images.map((image: any) => (
                       <div
                         key={image.filename}
                         className="border border-terminal-frame-light dark:border-terminal-frame-dark rounded p-2"

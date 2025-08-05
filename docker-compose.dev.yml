@@ -1,0 +1,43 @@
+services:
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"
+      - "4001:4001"
+    environment:
+      - NODE_ENV=development
+      - TINA_PUBLIC_IS_LOCAL=true
+      - DATABASE_URL=mongodb://admin:password@mongo:27017/tinacms?authSource=admin
+      - NEXTAUTH_SECRET=development-secret-key-at-least-32-chars
+      - NEXTAUTH_URL=http://localhost:3000
+    volumes:
+      # Host-based volume mounts for development
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+    command: npm run dev
+
+volumes:
+  mongo_data:
+
+networks:
+  app-network:
+    driver: bridge

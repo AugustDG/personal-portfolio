@@ -1,0 +1,27 @@
+{
+  "name": "Screenshots",
+  "description": "Screenshots of the terminal portfolio interface and various features",
+  "images": [
+    {
+      "filename": "terminal-ui.png",
+      "url": "/images/terminal-ui.png",
+      "thumbnail": "/images/terminal-ui_thumb.png",
+      "alt": "Terminal interface screenshot showing command prompt and file browser",
+      "caption": "Main terminal interface with interactive command prompt"
+    },
+    {
+      "filename": "vim-modal.png",
+      "url": "/images/vim-modal.png",
+      "thumbnail": "/images/vim-modal_thumb.png",
+      "alt": "Vim modal interface showing text editor",
+      "caption": "Integrated Vim-style text editor modal"
+    },
+    {
+      "filename": "admin-panel.png",
+      "url": "/images/admin-panel.png",
+      "thumbnail": "/images/admin-panel_thumb.png",
+      "alt": "TinaCMS admin panel interface",
+      "caption": "Content management system admin interface"
+    }
+  ]
+}

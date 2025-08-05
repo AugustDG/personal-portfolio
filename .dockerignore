@@ -1,0 +1,14 @@
+Dockerfile
+node_modules
+README.md
+.env
+.env.local
+.env.production.local
+.env.local
+.env.development.local
+.env.test.local
+.next
+.git
+.gitignore
+.md
+public/admin

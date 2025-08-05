@@ -32,6 +32,38 @@ export default function VimModal({
   const [isClosing, setIsClosing] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
   const [commandInput, setCommandInput] = useState("");
+  const [lineCount, setLineCount] = useState(50); // Start with a reasonable default
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Calculate line count based on content height
+  useEffect(() => {
+    if (!isOpen || !contentRef.current) return;
+
+    const calculateLines = () => {
+      const contentElement = contentRef.current;
+      if (!contentElement) return;
+
+      // Get the height of the content
+      const contentHeight = contentElement.scrollHeight;
+      // Estimate line height (adjust based on your CSS)
+      const lineHeight = 20; // Approximate line height in pixels
+      const estimatedLines = Math.ceil(contentHeight / lineHeight);
+
+      // Set minimum of 30 lines for better UX
+      setLineCount(Math.max(30, estimatedLines + 5)); // Add some buffer
+    };
+
+    // Calculate after a short delay to ensure content is rendered
+    const timeoutId = setTimeout(calculateLines, 100);
+
+    // Also recalculate when window resizes
+    window.addEventListener("resize", calculateLines);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("resize", calculateLines);
+    };
+  }, [isOpen, content]);
 
   // Handle commands and click outside
   useEffect(() => {
@@ -165,18 +197,15 @@ export default function VimModal({
         <div className="vim-content">
           {/* Line Numbers */}
           <div className="vim-line-numbers">
-            {Array.from(
-              { length: Math.max(20, String(content).split("\n").length) },
-              (_, i) => (
-                <div key={i + 1} className="vim-line-number">
-                  {i + 1}
-                </div>
-              )
-            )}
+            {Array.from({ length: lineCount }, (_, i) => (
+              <div key={i + 1} className="vim-line-number">
+                {i + 1}
+              </div>
+            ))}
           </div>
 
           {/* Content Area */}
-          <div className="vim-editor">
+          <div className="vim-editor" ref={contentRef}>
             {type === "image" && typeof content === "string" ? (
               <div className="vim-image-container">
                 <img

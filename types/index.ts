@@ -5,6 +5,9 @@ export interface BlogPost {
   content: string;
   date: string;
   excerpt: string;
+  tags?: string[];
+  published?: boolean;
+  featured_image?: string;
 }
 
 export interface Project {
@@ -14,18 +17,24 @@ export interface Project {
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
+  description?: string;
+  date?: string;
+  featured?: boolean;
+  featured_image?: string;
 }
 
 export interface Gallery {
   name: string;
   images: GalleryImage[];
+  description?: string;
 }
 
 export interface GalleryImage {
   filename: string;
   url: string;
-  thumbnail: string;
+  thumbnail?: string;
   alt: string;
+  caption?: string;
 }
 
 export interface AboutContent {
@@ -37,7 +46,9 @@ export interface AboutContent {
     email: string;
     github: string;
     linkedin: string;
+    twitter?: string;
   };
+  avatar?: string;
 }
 
 // Command system types

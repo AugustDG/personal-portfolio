@@ -1,0 +1,27 @@
+{
+  "name": "Design Process",
+  "description": "Design iterations and development process for the terminal portfolio",
+  "images": [
+    {
+      "filename": "wireframe.png",
+      "url": "/images/wireframe.png",
+      "thumbnail": "/images/wireframe_thumb.png",
+      "alt": "Initial wireframe design sketches",
+      "caption": "Early wireframe concepts and layout planning"
+    },
+    {
+      "filename": "mockup.png",
+      "url": "/images/mockup.png",
+      "thumbnail": "/images/mockup_thumb.png",
+      "alt": "High-fidelity design mockup",
+      "caption": "Final design mockup with terminal styling"
+    },
+    {
+      "filename": "color-scheme.png",
+      "url": "/images/color-scheme.png",
+      "thumbnail": "/images/color-scheme_thumb.png",
+      "alt": "Color scheme and typography choices",
+      "caption": "Terminal color palette and font selection"
+    }
+  ]
+}

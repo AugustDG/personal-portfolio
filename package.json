@@ -4,29 +4,43 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "dev:tina": "tinacms dev -c \"next dev\"",
         "build": "next build",
+        "build:tina": "tinacms build && next build",
         "start": "next start",
         "lint": "next lint"
     },
     "dependencies": {
+        "@tinacms/auth": "^1.1.0",
+        "@tinacms/cli": "^1.10.2",
+        "@tinacms/datalayer": "^1.4.1",
+        "fuse.js": "^7.0.0",
+        "gray-matter": "^4.0.3",
+        "level": "^10.0.0",
+        "markdown-to-jsx": "^7.3.2",
+        "mongodb": "^6.18.0",
+        "mongodb-client-encryption": "^6.4.0",
+        "mongodb-level": "^0.0.4",
         "next": "14.0.0",
+        "next-auth": "^4.24.11",
         "react": "^18",
         "react-dom": "^18",
+        "tinacms": "^2.8.2",
+        "tinacms-authjs": "^11.0.2",
+        "tinacms-gitprovider-github": "^3.0.1",
         "xterm": "^5.3.0",
         "xterm-addon-fit": "^0.8.0",
-        "xterm-addon-web-links": "^0.9.0",
-        "markdown-to-jsx": "^7.3.2",
-        "fuse.js": "^7.0.0"
+        "xterm-addon-web-links": "^0.9.0"
     },
     "devDependencies": {
-        "typescript": "^5",
-        "@types/node": "^20",
+        "@types/node": "^20.19.9",
         "@types/react": "^18",
         "@types/react-dom": "^18",
         "autoprefixer": "^10",
+        "eslint": "^8",
+        "eslint-config-next": "14.0.0",
         "postcss": "^8",
         "tailwindcss": "^3",
-        "eslint": "^8",
-        "eslint-config-next": "14.0.0"
+        "typescript": "^5"
     }
 }
