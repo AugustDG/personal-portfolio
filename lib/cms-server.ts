@@ -1,135 +1,189 @@
-import fs from "fs";
-import { BlogPost, Project, Gallery, AboutContent } from "@/types";
-import { client } from "../tina/__generated__/databaseClient";
+import { directus } from "./directus";
+import { readItems } from "@directus/sdk";
+import {
+  BlogPost,
+  Project as ProjectType,
+  Gallery as GalleryType,
+  AboutContent,
+} from "@/types";
+
+// Directus types (redefined locally to avoid import issues)
+interface Blog {
+  id: string;
+  title: string;
+  slug: string;
+  date: string;
+  excerpt: string;
+  featured_image?: string;
+  tags?: string[];
+  published: boolean;
+  body: string;
+}
+
+interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  featured_image?: string;
+  technologies: string[];
+  live_url?: string;
+  github_url?: string;
+  date?: string;
+  featured: boolean;
+  body: string;
+}
+
+interface Gallery {
+  id: string;
+  name: string;
+  description?: string;
+  images: any[];
+}
+
+interface About {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  avatar?: string;
+  skills: string[];
+  contact: {
+    email: string;
+    github: string;
+    linkedin: string;
+    twitter?: string;
+  };
+}
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
   try {
-    const response = await client.queries.blogConnection();
-    if (!response.data.blogConnection.edges) return [];
-
-    const posts = response.data.blogConnection.edges
-      .filter((edge) => edge && edge.node)
-      .map((edge) => ({
-        slug: edge!.node!.slug,
-        title: edge!.node!.title,
-        content: edge!.node!.body || "",
-        date: edge!.node!.date,
-        excerpt: edge!.node!.excerpt || "",
-        tags: (edge!.node!.tags || []).filter(
-          (tag): tag is string => tag !== null
-        ),
-        published: edge!.node!.published,
-        featured_image: edge!.node!.featured_image || undefined,
-      }))
-      .filter((post: any) => post.published !== false);
-
-    return posts.sort(
-      (a: BlogPost, b: BlogPost) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime()
+    const blogs = await directus.request(
+      readItems("blog", {
+        filter: { published: { _eq: true } },
+        sort: ["-date"],
+      })
     );
+
+    return blogs.map((blog: Blog) => ({
+      slug: blog.slug,
+      title: blog.title,
+      content: blog.body || "",
+      date: blog.date,
+      excerpt: blog.excerpt || "",
+      tags: blog.tags || [],
+      published: blog.published,
+      featured_image: blog.featured_image
+        ? `/assets/${blog.featured_image}`
+        : undefined,
+    }));
   } catch (error) {
-    console.error("Error fetching blog posts:", error);
+    console.error(
+      "Error fetching blog posts from Directus, falling back to file system:",
+      error
+    );
+
     return [];
   }
 }
 
-export async function getAllProjects(): Promise<Project[]> {
+export async function getAllProjects(): Promise<ProjectType[]> {
   try {
-    const response = await client.queries.projectConnection();
-    if (!response.data.projectConnection.edges) return [];
-
-    const projects = response.data.projectConnection.edges
-      .filter((edge) => edge && edge.node)
-      .map((edge) => ({
-        slug: edge!.node!.slug,
-        title: edge!.node!.title,
-        content: edge!.node!.body || "",
-        description: edge!.node!.description || "",
-        technologies: (edge!.node!.technologies || []).filter(
-          (tech): tech is string => tech !== null
-        ),
-        githubUrl: edge!.node!.github_url || undefined,
-        liveUrl: edge!.node!.live_url || undefined,
-        date: edge!.node!.date,
-        featured: edge!.node!.featured || false,
-        featured_image: edge!.node!.featured_image || undefined,
-      }));
-
-    return projects.sort(
-      (a: Project, b: Project) =>
-        new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+    const projects = await directus.request(
+      readItems("projects", {
+        sort: ["-date"],
+      })
     );
+
+    return projects.map((project: Project) => ({
+      slug: project.slug,
+      title: project.title,
+      content: project.body || "",
+      description: project.description || "",
+      technologies: project.technologies || [],
+      githubUrl: project.github_url || undefined,
+      liveUrl: project.live_url || undefined,
+      date: project.date,
+      featured: project.featured || false,
+      featured_image: project.featured_image
+        ? `/assets/${project.featured_image}`
+        : undefined,
+    }));
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error(
+      "Error fetching projects from Directus, falling back to file system:",
+      error
+    );
+
     return [];
   }
 }
 
-export async function getAllGalleries(): Promise<Gallery[]> {
+export async function getAllGalleries(): Promise<GalleryType[]> {
   try {
-    const response = await client.queries.galleryConnection();
-    if (!response.data.galleryConnection.edges) return [];
+    const galleries = await directus.request(
+      readItems("galleries", {
+        fields: ["*", "images.*"],
+      })
+    );
 
-    const galleries = response.data.galleryConnection.edges
-      .filter((edge: any) => edge && edge.node)
-      .map((edge: any) => ({
-        name: edge.node.name,
-        description: edge.node.description || "",
-        images: (edge.node.images || [])
-          .filter((image: any) => image !== null)
-          .map((image: any) => ({
-            filename: image.filename,
-            url: image.url,
-            thumbnail: image.thumbnail || undefined,
-            alt: image.alt,
-            caption: image.caption || undefined,
-          })),
-      }));
-
-    return galleries;
+    return galleries.map((gallery: Gallery) => ({
+      name: gallery.name,
+      description: gallery.description || "",
+      images: (gallery.images || []).map((image: any) => ({
+        filename: image.filename,
+        url: `/assets/${image.directus_files_id}`,
+        thumbnail: image.directus_files_id
+          ? `/assets/${image.directus_files_id}?width=512&height=512`
+          : undefined,
+        alt: image.alt,
+        caption: image.caption || undefined,
+      })),
+    }));
   } catch (error) {
-    console.error("Error fetching galleries:", error);
+    console.error(
+      "Error fetching galleries from Directus, falling back to file system:",
+      error
+    );
+
     return [];
   }
 }
 
 export async function getAboutContent(): Promise<AboutContent> {
   try {
-    const response = await client.queries.aboutConnection();
-    if (
-      !response.data.aboutConnection.edges ||
-      response.data.aboutConnection.edges.length === 0
-    ) {
+    const aboutData = await directus.request(
+      readItems("about", {
+        limit: 1,
+      })
+    );
+
+    if (!aboutData || aboutData.length === 0) {
       return getDefaultAbout();
     }
 
-    const aboutData = response.data.aboutConnection.edges[0]?.node;
-    if (!aboutData) return getDefaultAbout();
-
+    const about = aboutData[0] as About;
     return {
-      name: aboutData.name,
-      title: aboutData.title,
-      bio: aboutData.bio || "",
-      avatar: aboutData.avatar || "/images/avatar.jpg",
-      skills: (aboutData.skills || []).filter(
-        (skill: any): skill is string => skill !== null
-      ),
+      name: about.name,
+      title: about.title,
+      bio: about.bio || "",
+      avatar: about.avatar ? `/assets/${about.avatar}` : "/images/avatar.jpg",
+      skills: about.skills || [],
       contact: {
-        email: aboutData.contact?.email || "",
-        github: aboutData.contact?.github || "",
-        linkedin: aboutData.contact?.linkedin || "",
-        twitter: aboutData.contact?.twitter || "",
+        email: about.contact?.email || "",
+        github: about.contact?.github || "",
+        linkedin: about.contact?.linkedin || "",
+        twitter: about.contact?.twitter || "",
       },
     };
   } catch (error) {
-    console.error("Error fetching about content:", error);
+    console.error(
+      "Error fetching about content from Directus, falling back to file system:",
+      error
+    );
+
     return getDefaultAbout();
   }
-}
-
-function readJsonFile(filePath: string) {
-  const fileContent = fs.readFileSync(filePath, "utf8");
-  return JSON.parse(fileContent);
 }
 
 function getDefaultAbout(): AboutContent {

@@ -1,13 +1,40 @@
 services:
-  mongo:
-    image: mongo:6.0
+  directus:
+    image: directus/directus:latest
     ports:
-      - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password
+      - "8055:8055"
     volumes:
-      - mongo_data:/data/db
+      - directus_uploads:/directus/uploads
+      - directus_extensions:/directus/extensions
+    environment:
+      KEY: "255d861b-5ea1-5996-9aa3-922530ec40b1"
+      SECRET: "6116487b-cda1-52c2-b5b5-c8022c45e263"
+      DB_CLIENT: "pg"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "directus"
+      DB_PASSWORD: "directus"
+      CACHE_ENABLED: "false"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "d1r3ctu5"
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "http://localhost:3000"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "directus"
+      POSTGRES_USER: "directus"
+      POSTGRES_PASSWORD: "directus"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 
@@ -17,26 +44,25 @@ services:
       target: development
     ports:
       - "3000:3000"
-      - "4001:4001"
     environment:
       - NODE_ENV=development
-      - TINA_PUBLIC_IS_LOCAL=true
-      - DATABASE_URL=mongodb://admin:password@mongo:27017/tinacms?authSource=admin
-      - NEXTAUTH_SECRET=development-secret-key-at-least-32-chars
-      - NEXTAUTH_URL=http://localhost:3000
+      - DIRECTUS_URL=http://directus:8055
+      - DIRECTUS_STATIC_TOKEN=${DIRECTUS_STATIC_TOKEN}
     volumes:
       # Host-based volume mounts for development
       - .:/app
       - /app/node_modules
       - /app/.next
     depends_on:
-      - mongo
+      - directus
     networks:
       - app-network
     command: npm run dev
 
 volumes:
-  mongo_data:
+  postgres_data:
+  directus_uploads:
+  directus_extensions:
 
 networks:
   app-network:
