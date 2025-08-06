@@ -65,6 +65,8 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
       })
     );
 
+    console.log("Fetched blog posts from Directus:", blogs);
+
     return blogs.map((blog: Blog) => ({
       slug: blog.slug,
       title: blog.title,
@@ -94,6 +96,8 @@ export async function getAllProjects(): Promise<ProjectType[]> {
         sort: ["-date"],
       })
     );
+
+    console.log("Fetched projects from Directus:", projects);
 
     return projects.map((project: Project) => ({
       slug: project.slug,

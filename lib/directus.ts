@@ -68,8 +68,9 @@ interface DirectusSchema {
 
 // Create Directus client
 const directusUrl = process.env.DIRECTUS_URL || "http://localhost:8055";
-
 const directus = createDirectus<DirectusSchema>(directusUrl).with(rest());
+
+console.log("Directus client initialized with URL:", directusUrl);
 
 export { directus };
 export type { Blog, Project, Gallery, GalleryImage, About };

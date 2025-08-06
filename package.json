@@ -9,6 +9,7 @@
         "lint": "next lint",
         "migrate:generate": "node scripts/generate-migration-files.js",
         "migrate:directus": "node scripts/migrate-to-directus.js",
+        "export:schema": "node scripts/export-schema.js",
         "apply:schema": "node scripts/apply-schema.js",
         "seed:dummy": "node scripts/create-dummy-data.js"
     },
@@ -17,7 +18,7 @@
         "fuse.js": "^7.0.0",
         "gray-matter": "^4.0.3",
         "markdown-to-jsx": "^7.3.2",
-        "next": "14.0.0",
+        "next": "^15.4.5",
         "react": "^18",
         "react-dom": "^18",
         "xterm": "^5.3.0",

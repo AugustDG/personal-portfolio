@@ -3,14 +3,6 @@ const nextConfig = {
     output: 'standalone',
     images: {
         unoptimized: true,
-        remotePatterns: [
-            {
-                protocol: 'http',
-                hostname: 'localhost',
-                port: '8055',
-                pathname: '/assets/**',
-            },
-        ],
     },
     async rewrites() {
         const directusUrl = process.env.DIRECTUS_URL || 'http://localhost:8055';
@@ -52,6 +44,10 @@ const nextConfig = {
         });
 
         return config;
+    },
+    experimental: {
+        // Enable webpack 5 support for TinaCMS
+        esmExternals: 'loose',
     },
 };
 
