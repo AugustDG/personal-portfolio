@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { RetroNav } from "@/components/layout/RetroNav";
 import { ColorBar } from "@/components/layout/ColorBar";
 import { SearchProvider } from "@/components/search/SearchContext";
+import { SearchIndexer } from "@/components/search/Indexer";
 import { LightboxProvider } from "@/components/lightbox/LightboxContext";
 import { Lightbox } from "@/components/lightbox/Lightbox";
 import { Chakra_Petch, Inter, JetBrains_Mono } from "next/font/google";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <LightboxProvider>
           <Lightbox />
           <SearchProvider>
+            <SearchIndexer />
             <ColorBar />
             <RetroNav />
             <main className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto">

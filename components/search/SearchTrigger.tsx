@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearch } from "./SearchContext";
+import Link from "next/link";
 
 export function SearchTrigger() {
   const { setQuery, results } = useSearch();
@@ -32,21 +33,36 @@ export function SearchTrigger() {
               className="pixel-border bg-retro-beige text-retro-cyan placeholder-retro-purple w-full px-2 py-1 focus:outline-none"
               onChange={(e) => setQuery(e.target.value)}
             />
-            <ul className="text-retro-brown max-h-64 space-y-1 overflow-auto font-mono text-xs">
-              {results.map((r) => (
-                <li
-                  key={r.id}
-                  className="pixel-border text-retro-brown hover:bg-retro-purple/40 bg-[#12162b] p-2 transition-colors"
-                >
-                  <span className="text-retro-magenta font-bold">
-                    {r.title}
-                  </span>
-                  <span className="text-retro-cyan block opacity-70">
-                    {r.type}
-                  </span>
-                </li>
-              ))}
-              {!results.length && <li className="opacity-60">No results</li>}
+            <ul className="text-retro-brown divide-retro-purple/30 max-h-72 divide-y overflow-auto font-mono text-xs">
+              {results.map((r) => {
+                const href = `/${r.type === "blog" ? "blog" : r.type === "project" ? "projects" : "galleries"}/${r.slug}`;
+                return (
+                  <li key={r.id}>
+                    <Link
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className="hover:bg-retro-purple/30 block space-y-1 p-2 transition-colors"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-retro-magenta font-semibold tracking-wide">
+                          {r.title}
+                        </span>
+                        <span className="border-retro-purple/50 text-retro-cyan rounded border px-1 py-[1px] text-[10px] uppercase">
+                          {r.type}
+                        </span>
+                      </div>
+                      {r.body && (
+                        <p className="text-retro-brown/70 line-clamp-2 text-[10px] leading-snug">
+                          {String(r.body).slice(0, 120)}
+                        </p>
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
+              {!results.length && (
+                <li className="p-2 text-[10px] opacity-60">No results</li>
+              )}
             </ul>
           </motion.div>
         )}
