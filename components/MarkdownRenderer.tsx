@@ -2,6 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
+import rehypeRaw from "rehype-raw";
 import clsx from "clsx";
 import { useLightbox } from "@/components/lightbox/LightboxContext";
 
@@ -16,7 +17,7 @@ export function MarkdownRenderer({ content, className }: Props) {
     <div className={clsx("prose prose-invert max-w-none", className)}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypePrism]}
+        rehypePlugins={[rehypePrism, rehypeRaw]}
         components={{
           pre: ({ children }) => (
             <pre className="pixel-border bg-retro-beige overflow-auto font-mono text-sm leading-relaxed">
