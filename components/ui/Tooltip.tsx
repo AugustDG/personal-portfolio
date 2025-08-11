@@ -24,7 +24,6 @@ export function Tooltip({
     if (timer.current) window.clearTimeout(timer.current);
     setOpen(false);
   };
-  const pos: Record<string, string> = {};
   return (
     <span
       className="relative inline-flex"

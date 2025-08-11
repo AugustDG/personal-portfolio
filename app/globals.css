@@ -1,3 +1,77 @@
+/* Blog focus mode (animated) */
+header[role="banner"],
+header:has(nav) {
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+[data-focus-blog="true"] header[role="banner"],
+[data-focus-blog="true"] header:has(nav) {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+[data-focus-blog="true"] header:hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sidebar + primary layout transitions (space always reserved) */
+#__content_grid > :last-child {
+  /* sidebar */
+  transition:
+    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* Animate article focus appearance */
+#__primary article {
+  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#__primary article:where(.focus-enter) {
+  animation: focusEnter 0.5s both;
+}
+@keyframes focusEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-focus-blog="true"] #__content_grid > :last-child {
+  /* sidebar hidden but space kept */
+  opacity: 0;
+  transform: translateX(40px);
+  pointer-events: none;
+}
+[data-focus-blog="true"] #__content_grid {
+  grid-template-columns: minmax(0, 1fr) 0 !important;
+}
+[data-focus-blog="true"] #__content_grid > :last-child {
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+[data-focus-blog="true"] #__primary {
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: center;
+}
+[data-focus-blog="true"] #__primary > * {
+  max-width: 900px;
+  width: 100%;
+  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-family: var(--font-body);
+}
 @import "tailwindcss";
 
 @theme {

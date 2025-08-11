@@ -37,7 +37,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning={true}
       className={`${heading.variable} ${body.variable} ${mono.variable} bg-retro-beige text-retro-brown h-full`}
     >
-      <body className="font-body selection:bg-retro-magenta flex h-screen min-h-0 w-full flex-col overflow-hidden antialiased selection:text-black">
+      <body
+        className="font-body selection:bg-retro-magenta flex h-screen min-h-0 w-full flex-col overflow-hidden antialiased selection:text-black"
+        id="__app_root"
+      >
         <LightboxProvider>
           <Lightbox />
           <AccessibilityProvider>
@@ -51,9 +54,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   </Tooltip>
                 }
               />
-              <main className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto">
-                <div className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]">
-                  <div className="space-y-12">{children}</div>
+              <main
+                className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto"
+                id="__main"
+              >
+                <div
+                  className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]"
+                  id="__content_grid"
+                >
+                  <div className="space-y-12" id="__primary">
+                    {children}
+                  </div>
                   <SidebarSocials />
                 </div>
               </main>

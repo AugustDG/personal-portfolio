@@ -6,6 +6,7 @@ import { useApi } from "@/lib/hooks/useApi";
 import type { BlogPost } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function BlogPostPage({ params }: { params: PageProps }) {
   const { slug } = React.use(params);
@@ -15,9 +16,24 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
     error,
   } = useApi<BlogPost>(`/api/blog/${slug}`);
   const rt = readingTime(post?.body || "");
+  const [focus, setFocus] = React.useState(false);
+  React.useEffect(() => {
+    if (focus) {
+      document.documentElement.setAttribute("data-focus-blog", "true");
+    } else {
+      document.documentElement.removeAttribute("data-focus-blog");
+    }
+    return () => {
+      document.documentElement.removeAttribute("data-focus-blog");
+    };
+  }, [focus]);
   return (
-    <article className="space-y-6">
-      <header className="space-y-2">
+    <article
+      className={
+        focus ? "focus-enter mx-auto max-w-3xl space-y-6" : "space-y-6"
+      }
+    >
+      <header className={focus ? "space-y-2" : "space-y-2"}>
         {isLoading && (
           <p className="text-retro-cyan text-sm opacity-70">Loading…</p>
         )}
@@ -25,7 +41,7 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
         {!isLoading && !error && !post && (
           <p className="opacity-60">Not found.</p>
         )}
-        {post?.header_image_url && (
+        {!focus && post?.header_image_url && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={post.header_image_url}
@@ -36,29 +52,45 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
         )}
         {post && (
           <>
-            <h1 className="font-pixel text-2xl font-semibold tracking-tight">
-              <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
-                {post.title}
-              </span>
-            </h1>
-            <p className="text-retro-cyan font-mono text-xs opacity-80">
-              {(post.published_at || post.updated_at) && (
-                <span className="text-retro-yellow/80 mr-2">
-                  {post.published_at || post.updated_at}
+            <div className="flex w-full items-start gap-4">
+              <h1 className="font-pixel text-2xl font-semibold tracking-tight">
+                <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
+                  {post.title}
                 </span>
-              )}
-              {rt.text}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {post.tags?.map((t) => (
-                <TagPill key={t} tag={t} />
-              ))}
+              </h1>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ y: -2 }}
+                onClick={() => setFocus((f) => !f)}
+                className="pixel-border glow-cyan/0 hover:glow-cyan/30 text-retro-cyan focus:ring-retro-yellow mt-1 ml-auto inline-flex h-7 items-center rounded-sm bg-[#12162b]/70 px-2 font-mono text-[10px] tracking-wide whitespace-nowrap uppercase transition focus:ring-2 focus:outline-none"
+                aria-pressed={focus}
+                aria-label={focus ? "Exit focus mode" : "Enter focus mode"}
+              >
+                {focus ? "EXIT FOCUS" : "FOCUS"}
+              </motion.button>
             </div>
+            {!focus && (
+              <>
+                <p className="text-retro-cyan font-mono text-xs opacity-80">
+                  {(post.published_at || post.updated_at) && (
+                    <span className="text-retro-yellow/80 mr-2">
+                      {post.published_at || post.updated_at}
+                    </span>
+                  )}
+                  {rt.text}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags?.map((t) => (
+                    <TagPill key={t} tag={t} />
+                  ))}
+                </div>
+              </>
+            )}
           </>
         )}
       </header>
       {post && (
-        <section>
+        <section className={focus ? "mt-6" : undefined}>
           <MarkdownRenderer content={post.body || ""} />
         </section>
       )}
