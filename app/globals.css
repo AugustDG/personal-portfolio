@@ -204,4 +204,64 @@
     padding: 0.4rem 0.5rem;
     border: 1px solid rgba(157, 75, 255, 0.3);
   }
+  .prose-readable {
+    --tw-prose-body: var(--color-retro-brown);
+    --tw-prose-headings: #e3e4ef;
+    --tw-prose-links: #5fd4ff;
+    --tw-prose-bold: #ffe780;
+    --tw-prose-code: #ffd54a;
+    --tw-prose-quotes: #c9b8ff;
+  }
+  .prose-readable h1,
+  .prose-readable h2,
+  .prose-readable h3 {
+    margin-top: 1.4em; /* reduced from 2.2em */
+    margin-bottom: 0.75em; /* slightly tighter */
+    line-height: 1.25;
+  }
+  .prose-readable :where(h1, h2, h3):first-child {
+    margin-top: 0;
+  }
+  .prose-readable p {
+    /* remove max-width for full width usage */
+    margin-top: 1.05em;
+    margin-bottom: 1.05em;
+    line-height: 1.65;
+    max-width: none;
+  }
+  .prose-readable ul,
+  .prose-readable ol {
+    margin-top: 1.1em;
+    margin-bottom: 1.1em;
+    padding-left: 1.4em;
+  }
+  .prose-readable li {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+  }
+  .prose-readable blockquote {
+    margin-left: 0;
+    border-left-width: 3px;
+    line-height: 1.5;
+  }
+  .prose-readable pre {
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    font-size: 0.9rem;
+  }
+  .prose-readable code:not(pre code) {
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+  }
+  .prose-readable hr {
+    margin: 2.5em 0;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .prose-readable table {
+    font-size: 0.85rem;
+  }
+  .prose-readable img {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 }

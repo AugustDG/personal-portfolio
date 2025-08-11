@@ -14,20 +14,22 @@ interface Props {
 export function MarkdownRenderer({ content, className }: Props) {
   const { openLightbox } = useLightbox();
   return (
-    <div className={clsx("prose prose-invert max-w-none", className)}>
+    <div
+      className={clsx("prose prose-invert prose-readable w-full", className)}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypePrism, rehypeRaw]}
         components={{
           pre: ({ children }) => (
-            <pre className="pixel-border bg-retro-beige overflow-auto font-mono text-sm leading-relaxed">
+            <pre className="pixel-border bg-retro-beige/80 overflow-auto font-mono text-sm leading-relaxed backdrop-blur-sm">
               {children}
             </pre>
           ),
           code: ({ className, children }) => {
             const isInline = !/language-/.test(className || "");
             return isInline ? (
-              <code className="bg-retro-purple/30 text-retro-yellow rounded px-1 py-0.5 font-mono text-[0.85em]">
+              <code className="text-retro-yellow/90 rounded bg-white/10 px-1 py-0.5 font-mono text-[0.85em]">
                 {children}
               </code>
             ) : (
