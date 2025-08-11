@@ -7,6 +7,7 @@ import type { BlogPost } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
 import React from "react";
 import { motion } from "framer-motion";
+import { Tooltip } from "@/components/ui/Tooltip";
 
 export default function BlogPostPage({ params }: { params: PageProps }) {
   const { slug } = React.use(params);
@@ -17,6 +18,35 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
   } = useApi<BlogPost>(`/api/blog/${slug}`);
   const rt = readingTime(post?.body || "");
   const [focus, setFocus] = React.useState(false);
+  const [shareState, setShareState] = React.useState<"idle" | "copied" | "shared" | "error">("idle");
+
+  const handleShare = React.useCallback(async () => {
+    try {
+      const url = window.location.href;
+      if (navigator.share) {
+        await navigator.share({ title: post?.title || document.title, url });
+        setShareState("shared");
+        setTimeout(() => setShareState("idle"), 1600);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+        setShareState("copied");
+        setTimeout(() => setShareState("idle"), 1600);
+      } else {
+        // final fallback: create temp input
+        const input = document.createElement("input");
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        setShareState("copied");
+        setTimeout(() => setShareState("idle"), 1600);
+      }
+    } catch (e) {
+      setShareState("error");
+      setTimeout(() => setShareState("idle"), 1600);
+    }
+  }, [post?.title]);
   React.useEffect(() => {
     if (focus) {
       document.documentElement.setAttribute("data-focus-blog", "true");
@@ -52,7 +82,7 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
         )}
         {post && (
           <>
-            <div className="flex w-full items-start gap-4">
+            <div className="flex w-full items-start gap-3">
               <h1 className="font-pixel text-2xl font-semibold tracking-tight">
                 <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
                   {post.title}
@@ -79,11 +109,40 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
                   )}
                   {rt.text}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {post.tags?.map((t) => (
                     <TagPill key={t} tag={t} />
                   ))}
                 </div>
+                <div className="mt-3">
+                  <Tooltip
+                    label={
+                      shareState === "copied"
+                        ? "Link copied"
+                        : shareState === "shared"
+                        ? "Shared!"
+                        : shareState === "error"
+                        ? "Failed – click to retry"
+                        : (typeof navigator !== "undefined" && typeof navigator.share === "function")
+                        ? "Native share"
+                        : "Copy link"
+                    }
+                  >
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      whileHover={{ y: -2 }}
+                      onClick={handleShare}
+                      className="pixel-border glow-purple/0 hover:glow-purple/40 text-retro-yellow font-semibold focus:ring-retro-yellow inline-flex h-7 items-center rounded-sm bg-[#12162b]/80 px-3 font-mono text-[10px] uppercase tracking-wide transition focus:ring-2 focus:outline-none"
+                      aria-label="Share this post"
+                    >
+                      {shareState === "idle" && "SHARE"}
+                      {shareState === "copied" && "COPIED"}
+                      {shareState === "shared" && "SHARED"}
+                      {shareState === "error" && "RETRY"}
+                    </motion.button>
+                  </Tooltip>
+                </div>
+                <div className="my-5 h-px w-full bg-retro-purple/30" />
               </>
             )}
           </>
