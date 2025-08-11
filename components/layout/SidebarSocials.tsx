@@ -1,8 +1,7 @@
-"use client";
-import { useApi } from "@/lib/hooks/useApi";
+import { getSiteMeta } from "@/lib/directus";
 
-export default function SidebarSocials() {
-  const { data: site } = useApi<any>("/api/site");
+export default async function SidebarSocials() {
+  const site = await getSiteMeta();
   return (
     <aside className="hidden flex-col gap-6 pt-2 text-xs tracking-wide lg:flex">
       <div>

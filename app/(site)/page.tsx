@@ -1,43 +1,39 @@
-"use client";
-import { motion } from "framer-motion";
-import { useApi } from "@/lib/hooks/useApi";
-import type { Project, BlogPost, Gallery } from "@/lib/directus";
 import Link from "next/link";
+import { getProjects, getBlogs, getPhotos, getSiteMeta } from "@/lib/directus";
+import type { Metadata } from "next";
 
-export default function HomePage() {
-  const {
-    data: projects,
-    isLoading: projetsLoading,
-    error: projectsError,
-  } = useApi<Project[]>("/api/projects");
-  const {
-    data: posts,
-    isLoading: postsLoading,
-    error: postsError,
-  } = useApi<BlogPost[]>("/api/blog");
-  const {
-    data: galleries,
-    isLoading: galleriesLoading,
-    error: galleriesError,
-  } = useApi<Gallery[]>("/api/galleries");
-  const {
-    data: site,
-    isLoading: siteLoading,
-    error: siteError,
-  } = useApi<any>("/api/site");
+export async function generateMetadata(): Promise<Metadata> {
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const canonical = base || undefined;
+  return {
+    title: "Augusto Pinheiro - Portfolio",
+    description:
+      "Personal portfolio: projects, writing and photos by Augusto Pinheiro.",
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      title: "Augusto Pinheiro - Portfolio",
+      description: "Projects, writing and photos by Augusto Pinheiro.",
+      url: canonical,
+    },
+    twitter: {
+      card: "summary",
+      title: "Augusto Pinheiro - Portfolio",
+      description: "Projects, writing and photos by Augusto Pinheiro.",
+    },
+  };
+}
 
-  const featuredProjects = (projects || [])
-    .filter((p) => p.featured)
-    .slice(0, 3);
-  const latestPosts = (posts || [])
-    .slice()
-    .sort(
-      (a: any, b: any) =>
-        (b.published_at || b.updated_at || 0) -
-        (a.published_at || a.updated_at || 0),
-    )
-    .slice(0, 3);
-  const featuredPhotos = (galleries || []).slice(0, 3);
+export default async function HomePage() {
+  const [projects, posts, galleries, site] = await Promise.all([
+    getProjects(),
+    getBlogs(),
+    getPhotos(),
+    getSiteMeta(),
+  ]);
+  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+  const latestPosts = posts.slice(0, 3); // already sorted desc by published_at
+  const featuredPhotos = galleries.slice(0, 3);
 
   return (
     <div className="space-y-12">
@@ -77,19 +73,9 @@ export default function HomePage() {
           <span className="from-retro-purple via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {projetsLoading && (
-            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
-          )}
-          {projectsError && (
-            <div className="text-retro-magenta text-sm">Failed to load.</div>
-          )}
-          {featuredProjects.map((p, i) => (
-            <motion.article
+          {featuredProjects.map((p) => (
+            <article
               key={p.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 * i, duration: 0.4 }}
-              whileHover={{ y: -4 }}
               className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
             >
               <Link href={`/projects/${p.slug}`} className="block">
@@ -103,7 +89,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </Link>
-            </motion.article>
+            </article>
           ))}
           {!featuredProjects.length && (
             <p className="opacity-60">No featured projects yet.</p>
@@ -118,39 +104,25 @@ export default function HomePage() {
           <span className="from-retro-magenta via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {postsLoading && (
-            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
-          )}
-          {postsError && (
-            <div className="text-retro-magenta text-sm">Failed to load.</div>
-          )}
-          {!postsLoading &&
-            !postsError &&
-            latestPosts.map((p, i) => (
-              <motion.article
-                key={p.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 * i, duration: 0.4 }}
-                whileHover={{ y: -4 }}
-                className="group border-retro-purple/40 hover:border-retro-cyan relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-              >
-                <Link href={`/blog/${p.slug}`} className="block">
-                  <div className="from-retro-cyan/10 via-retro-purple/0 to-retro-magenta/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
-                  <div className="relative z-10 space-y-2 p-4">
-                    <h3 className="text-retro-cyan group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                      {p.title}
-                    </h3>
-                    <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
-                      {p.excerpt}
-                    </p>
-                  </div>
-                </Link>
-              </motion.article>
-            ))}
-          {!postsLoading && !postsError && !latestPosts.length && (
-            <p className="opacity-60">No posts yet.</p>
-          )}
+          {latestPosts.map((p) => (
+            <article
+              key={p.id}
+              className="group border-retro-purple/40 hover:border-retro-cyan relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
+            >
+              <Link href={`/blog/${p.slug}`} className="block">
+                <div className="from-retro-cyan/10 via-retro-purple/0 to-retro-magenta/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="relative z-10 space-y-2 p-4">
+                  <h3 className="text-retro-cyan group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                    {p.title}
+                  </h3>
+                  <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
+                    {p.excerpt}
+                  </p>
+                </div>
+              </Link>
+            </article>
+          ))}
+          {!latestPosts.length && <p className="opacity-60">No posts yet.</p>}
         </div>
       </section>
       <section>
@@ -161,37 +133,25 @@ export default function HomePage() {
           <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {galleriesLoading && (
-            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
-          )}
-          {galleriesError && (
-            <div className="text-retro-magenta text-sm">Failed to load.</div>
-          )}
-          {!galleriesLoading &&
-            !galleriesError &&
-            featuredPhotos.map((g, i) => (
-              <motion.article
-                key={g.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05 * i, duration: 0.4 }}
-                whileHover={{ y: -4 }}
-                className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
+          {featuredPhotos.map((g) => (
+            <article
+              key={g.id}
+              className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
+            >
+              <Link
+                href={`/galleries/${g.slug}`}
+                className="block space-y-2 p-4"
               >
-                <Link
-                  href={`/galleries/${g.slug}`}
-                  className="block space-y-2 p-4"
-                >
-                  <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                    {g.title}
-                  </h3>
-                  <p className="text-retro-cyan/90 text-xs leading-relaxed md:text-[13px]">
-                    {g.images?.length || 0} images
-                  </p>
-                </Link>
-              </motion.article>
-            ))}
-          {!galleriesLoading && !galleriesError && !featuredPhotos.length && (
+                <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                  {g.title}
+                </h3>
+                <p className="text-retro-cyan/90 text-xs leading-relaxed md:text-[13px]">
+                  {g.images?.length || 0} images
+                </p>
+              </Link>
+            </article>
+          ))}
+          {!featuredPhotos.length && (
             <p className="opacity-60">No galleries yet.</p>
           )}
         </div>
@@ -204,27 +164,37 @@ export default function HomePage() {
           <span className="from-retro-cyan via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-          {siteLoading && (
-            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
-          )}
-          {siteError && (
-            <div className="text-retro-magenta text-sm">Failed to load.</div>
-          )}
-          {site &&
-            site.socials.map((s: any) => (
-              <li key={s.url}>
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
+          {site?.socials?.map((s: any) => (
+            <li key={s.url}>
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
+              >
+                {s.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Augusto Pinheiro Portfolio",
+            url: process.env.PUBLIC_URL || undefined,
+            description: "Projects, writing and photos by Augusto Pinheiro.",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${process.env.PUBLIC_URL || ""}/?q={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
     </div>
   );
 }

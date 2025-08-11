@@ -1,15 +1,30 @@
-"use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useApi } from "@/lib/hooks/useApi";
-import type { Gallery } from "@/lib/directus";
+import { getPhotos } from "@/lib/directus";
+import type { Metadata } from "next";
 
-export default function PhotosPage() {
-  const {
-    data: galleries,
-    isLoading,
-    error,
-  } = useApi<Gallery[]>("/api/galleries");
+export async function generateMetadata(): Promise<Metadata> {
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const canonical = `${base}/galleries`;
+  return {
+    title: "Photos – Augusto Pinheiro",
+    description: "Photo galleries and visual explorations.",
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      title: "Photos – Augusto Pinheiro",
+      description: "Photo galleries and visual explorations.",
+      url: canonical,
+    },
+    twitter: {
+      card: "summary",
+      title: "Photos – Augusto Pinheiro",
+      description: "Photo galleries and visual explorations.",
+    },
+  };
+}
+
+export default async function PhotosPage() {
+  const galleries = await getPhotos();
   return (
     <div className="space-y-10">
       <h1 className="font-pixel text-3xl font-semibold tracking-tight">
@@ -19,19 +34,9 @@ export default function PhotosPage() {
         <span className="from-retro-yellow via-retro-magenta/60 mt-4 block h-1 w-56 bg-linear-to-r to-transparent" />
       </h1>
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {isLoading && (
-          <li className="text-retro-cyan text-sm opacity-70">Loading…</li>
-        )}
-        {error && (
-          <li className="text-retro-magenta text-sm">Failed to load.</li>
-        )}
-        {(galleries || []).map((g, i) => (
-          <motion.li
+        {galleries.map((g) => (
+          <li
             key={g.id}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 * i }}
-            whileHover={{ y: -4 }}
             className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
           >
             <Link href={`/galleries/${g.slug}`} className="block space-y-1 p-4">
@@ -42,12 +47,26 @@ export default function PhotosPage() {
                 {g.images?.length || 0} images
               </p>
             </Link>
-          </motion.li>
+          </li>
         ))}
-        {!isLoading && !error && (!galleries || galleries.length === 0) && (
-          <li className="opacity-60">No galleries yet.</li>
-        )}
+        {!galleries.length && <li className="opacity-60">No galleries yet.</li>}
       </ul>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Photo Galleries",
+            itemListElement: galleries.map((g, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `/galleries/${g.slug}`,
+              name: g.title,
+            })),
+          }),
+        }}
+      />
     </div>
   );
 }

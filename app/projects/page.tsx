@@ -1,17 +1,32 @@
-"use client";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useApi } from "@/lib/hooks/useApi";
-import type { Project } from "@/lib/directus";
+import { getProjects } from "@/lib/directus";
+import type { Metadata } from "next";
 
-export default function ProjectsPage() {
-  const {
-    data: projects,
-    isLoading,
-    error,
-  } = useApi<Project[]>("/api/projects");
-  const featured = (projects || []).filter((p) => p.featured);
-  const others = (projects || []).filter((p) => !p.featured);
+export async function generateMetadata(): Promise<Metadata> {
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const canonical = `${base}/projects`;
+  return {
+    title: "Projects – Augusto Pinheiro",
+    description: "Selected software projects, side quests and experiments.",
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      title: "Projects – Augusto Pinheiro",
+      description: "Selected software projects, side quests and experiments.",
+      url: canonical,
+    },
+    twitter: {
+      card: "summary",
+      title: "Projects – Augusto Pinheiro",
+      description: "Selected software projects, side quests and experiments.",
+    },
+  };
+}
+
+export default async function ProjectsPage() {
+  const projects = await getProjects();
+  const featured = projects.filter((p) => p.featured);
+  const others = projects.filter((p) => !p.featured);
   return (
     <div className="space-y-14">
       <section>
@@ -28,35 +43,23 @@ export default function ProjectsPage() {
           <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {isLoading && (
-            <p className="text-retro-cyan text-sm opacity-70">Loading…</p>
-          )}
-          {error && (
-            <p className="text-retro-magenta text-sm">Failed to load.</p>
-          )}
-          {featured.map((p, i) => (
-            <motion.div
+          {featured.map((p) => (
+            <div
               key={p.id}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.04 * i, duration: 0.4 }}
-              whileHover={{ y: -4 }}
+              className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
             >
               <Link
                 href={`/projects/${p.slug}`}
-                className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
+                className="relative z-10 block space-y-2 p-4"
               >
-                <div className="from-retro-magenta/10 via-retro-purple/0 to-retro-cyan/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="relative z-10 space-y-2 p-4">
-                  <h3 className="text-retro-magenta text-sm font-semibold tracking-wide md:text-base">
-                    {p.title}
-                  </h3>
-                  <p className="text-retro-cyan/90 line-clamp-3 text-xs leading-relaxed md:text-[13px]">
-                    {p.description}
-                  </p>
-                </div>
+                <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                  {p.title}
+                </h3>
+                <p className="text-retro-cyan/90 line-clamp-3 text-xs leading-relaxed md:text-[13px]">
+                  {p.description}
+                </p>
               </Link>
-            </motion.div>
+            </div>
           ))}
           {!featured.length && (
             <p className="opacity-60">No featured projects yet.</p>
@@ -71,19 +74,9 @@ export default function ProjectsPage() {
           <span className="from-retro-teal via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <ul className="space-y-3">
-          {isLoading && (
-            <li className="text-retro-cyan text-sm opacity-70">Loading…</li>
-          )}
-          {error && (
-            <li className="text-retro-magenta text-sm">Failed to load.</li>
-          )}
-          {others.map((p, i) => (
-            <motion.li
+          {others.map((p) => (
+            <li
               key={p.id}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.02 * i + 0.2, duration: 0.35 }}
-              whileHover={{ x: 4 }}
               className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
             >
               <Link
@@ -97,11 +90,27 @@ export default function ProjectsPage() {
                   {p.description}
                 </span>
               </Link>
-            </motion.li>
+            </li>
           ))}
           {!others.length && <li className="opacity-60">No other projects.</li>}
         </ul>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Projects",
+            itemListElement: projects.map((p, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: `/projects/${p.slug}`,
+              name: p.title,
+            })),
+          }),
+        }}
+      />
     </div>
   );
 }

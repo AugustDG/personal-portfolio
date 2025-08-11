@@ -1,75 +1,86 @@
-"use client";
 import { TagPill } from "@/components/TagPill";
-import { motion } from "framer-motion";
-import { useApi } from "@/lib/hooks/useApi";
-import type { Gallery } from "@/lib/directus";
+import { GalleryImagesClient } from "./client";
+import type { Metadata } from "next";
+import { getGallery } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
-import React from "react";
-import { useLightbox } from "@/components/lightbox/LightboxContext";
 
-export default function GalleryPage({ params }: { params: PageProps }) {
-  const { slug } = React.use(params);
-  const {
-    data: gallery,
-    isLoading,
-    error,
-  } = useApi<Gallery>(`/api/galleries/${slug}`);
-  const { openLightbox } = useLightbox();
+export async function generateMetadata({
+  params,
+}: {
+  params: PageProps;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const gallery = await getGallery(slug);
+  if (!gallery) return { title: "Not found" };
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const canonical = `${base}/galleries/${gallery.slug}`;
+  const desc = gallery.title;
+  return {
+    title: `${gallery.title} - Augusto Pinheiro`,
+    description: desc,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      title: gallery.title,
+      description: desc,
+      url: canonical,
+      images: gallery.images?.[0]?.src_url
+        ? [{ url: gallery.images[0].src_url as string }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: gallery.title,
+      description: desc,
+      images: gallery.images?.[0]?.src_url
+        ? [gallery.images[0].src_url as string]
+        : undefined,
+    },
+  };
+}
+
+export default async function GalleryPage({ params }: { params: PageProps }) {
+  const { slug } = await params;
+  const gallery = await getGallery(slug);
+
+  if (!gallery) return <p className="opacity-60">Not found.</p>;
+
   return (
     <div className="space-y-6">
       <div className="space-y-3">
-        {isLoading && (
-          <p className="text-retro-cyan text-sm opacity-70">Loading…</p>
-        )}
-        {error && <p className="text-retro-magenta text-sm">Failed to load.</p>}
-        {!isLoading && !error && !gallery && (
-          <p className="opacity-60">Not found.</p>
-        )}
-        {gallery && (
-          <>
-            <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">
-              {gallery.title}
-            </h1>
-            {Array.isArray(gallery.tags) && gallery.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {gallery.tags.map((t: string) => (
-                  <TagPill key={t} tag={t} />
-                ))}
-              </div>
-            )}
-          </>
+        <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">
+          {gallery.title}
+        </h1>
+        {Array.isArray(gallery.tags) && gallery.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {gallery.tags.map((t: string) => (
+              <TagPill key={t} tag={t} />
+            ))}
+          </div>
         )}
       </div>
-      {gallery && (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {gallery.images?.map((img, i) => (
-            <motion.figure
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.03 * i, duration: 0.35 }}
-              whileHover={{ scale: 1.02 }}
-              className="pixel-border hover:bg-retro-purple/30 overflow-hidden bg-[#12162b] transition-colors"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img.src_url}
-                alt={img.description || ""}
-                className="h-48 w-full cursor-zoom-in object-cover"
-                onClick={() => openLightbox(img.src_url || "", img.description)}
-              />
-              {img.description && (
-                <figcaption className="text-retro-cyan p-2 font-mono text-xs opacity-80">
-                  {img.description}
-                </figcaption>
-              )}
-            </motion.figure>
-          ))}
-          {!gallery.images?.length && (
-            <p className="opacity-60">No images yet.</p>
-          )}
-        </div>
+      {gallery.images?.length ? (
+        <GalleryImagesClient images={gallery.images} />
+      ) : (
+        <p className="opacity-60">No images yet.</p>
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: gallery.title,
+            itemListElement: gallery.images?.map((img, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              url: img.src_url,
+              name: img.description || `Image ${index + 1}`,
+            })),
+            keywords: gallery.tags?.join(", "),
+          }),
+        }}
+      />
     </div>
   );
 }
