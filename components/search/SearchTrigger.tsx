@@ -1,19 +1,17 @@
 "use client";
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearch } from "./SearchContext";
 import Link from "next/link";
 
 export function SearchTrigger() {
-  const { setQuery, results } = useSearch();
-  const [open, setOpen] = useState(false);
+  const { setQuery, results, open, setOpen, query } = useSearch();
 
   return (
     <div className="relative">
       <motion.button
         whileTap={{ scale: 0.9 }}
         whileHover={{ y: -2 }}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setOpen(!open)}
         className="pixel-border glow-magenta bg-retro-magenta hover:bg-retro-purple px-3 py-2 text-white transition-colors"
       >
         SEARCH
@@ -30,6 +28,7 @@ export function SearchTrigger() {
             <input
               autoFocus
               placeholder="Search..."
+              value={query}
               className="pixel-border bg-retro-beige text-retro-cyan placeholder-retro-purple w-full px-2 py-1 focus:outline-none"
               onChange={(e) => setQuery(e.target.value)}
             />

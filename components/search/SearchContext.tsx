@@ -20,6 +20,8 @@ interface SearchContextValue {
   addDocuments: (docs: IndexedDoc[]) => void;
   indexed: boolean;
   setIndexed: (v: boolean) => void;
+  open: boolean;
+  setOpen: (v: boolean) => void;
 }
 
 const SearchContext = createContext<SearchContextValue | undefined>(undefined);
@@ -30,6 +32,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState("");
   const [version, setVersion] = useState(0);
   const [indexed, setIndexed] = useState(false);
+  const [open, setOpen] = useState(false);
 
   if (!mini) {
     mini = new MiniSearch({
@@ -51,7 +54,16 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   return (
     <SearchContext.Provider
-      value={{ query, setQuery, results, addDocuments, indexed, setIndexed }}
+      value={{
+        query,
+        setQuery,
+        results,
+        addDocuments,
+        indexed,
+        setIndexed,
+        open,
+        setOpen,
+      }}
     >
       {children}
     </SearchContext.Provider>
