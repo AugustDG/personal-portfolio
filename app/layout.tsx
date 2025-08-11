@@ -6,6 +6,8 @@ import { ColorBar } from "@/components/layout/ColorBar";
 import { SearchProvider } from "@/components/search/SearchContext";
 import { SearchIndexer } from "@/components/search/Indexer";
 import { LightboxProvider } from "@/components/lightbox/LightboxContext";
+import { AccessibilityProvider } from "@/components/accessibility/AccessibilityContext";
+import { AccessibilityToggle } from "@/components/accessibility/AccessibilityToggle";
 import { Lightbox } from "@/components/lightbox/Lightbox";
 import { Chakra_Petch, Inter, JetBrains_Mono } from "next/font/google";
 
@@ -22,6 +24,7 @@ export const metadata = {
   description: "Neon cyberpunk portfolio of Augusto Pinheiro",
 };
 
+// @ts-ignore - dynamic import path resolution
 const SidebarSocials = dynamic(
   () => import("@/components/layout/SidebarSocials"),
 );
@@ -36,17 +39,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="font-body selection:bg-retro-magenta flex h-screen min-h-0 w-full flex-col overflow-hidden antialiased selection:text-black">
         <LightboxProvider>
           <Lightbox />
-          <SearchProvider>
-            <SearchIndexer />
-            <ColorBar />
-            <RetroNav />
-            <main className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto">
-              <div className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]">
-                <div className="space-y-12">{children}</div>
-                <SidebarSocials />
-              </div>
-            </main>
-          </SearchProvider>
+          <AccessibilityProvider>
+            <SearchProvider>
+              <SearchIndexer />
+              <ColorBar />
+              <RetroNav rightSlot={<AccessibilityToggle />} />
+              <main className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto">
+                <div className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]">
+                  <div className="space-y-12">{children}</div>
+                  <SidebarSocials />
+                </div>
+              </main>
+            </SearchProvider>
+          </AccessibilityProvider>
         </LightboxProvider>
       </body>
     </html>

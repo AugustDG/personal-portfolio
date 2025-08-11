@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { SearchTrigger } from "@/components/search/SearchTrigger";
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-export function RetroNav() {
+export function RetroNav({ rightSlot }: { rightSlot?: ReactNode }) {
   return (
     <header className="bg-retro-beige/80 border-retro-purple/40 sticky top-0 z-20 border-b backdrop-blur">
       <nav className="font-pixel mx-auto flex max-w-6xl items-center gap-3 p-3 text-[10px] sm:text-xs md:text-sm">
@@ -40,8 +41,9 @@ export function RetroNav() {
             GALLERIES
           </Link>
         </motion.div>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-6">
           <SearchTrigger />
+          {rightSlot}
         </div>
       </nav>
     </header>

@@ -265,3 +265,53 @@
     margin-bottom: 2rem;
   }
 }
+
+/* Accessibility mode overrides */
+html.a11y-reduced-chroma .from-retro-magenta,
+html.a11y-reduced-chroma .via-retro-yellow,
+html.a11y-reduced-chroma .to-retro-cyan,
+html.a11y-reduced-chroma .text-transparent {
+  background: none !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: #e5e7eb !important;
+}
+html.a11y-reduced-chroma [class*="bg-linear-to-"],
+html.a11y-reduced-chroma .bg-linear-to-r {
+  background-image: none !important;
+  background-color: #12162b !important;
+}
+html.a11y-reduced-chroma .pixel-border,
+html.a11y-reduced-chroma .glow-cyan,
+html.a11y-reduced-chroma .glow-magenta,
+html.a11y-reduced-chroma .glow-purple,
+html.a11y-reduced-chroma .glow-yellow {
+  box-shadow: none !important;
+  filter: none !important;
+}
+html.a11y-reduced-chroma .text-retro-magenta,
+html.a11y-reduced-chroma .text-retro-cyan,
+html.a11y-reduced-chroma .text-retro-yellow {
+  color: #e5e7eb !important;
+}
+html.a11y-reduced-chroma .prose a {
+  text-decoration: underline;
+  text-decoration-color: #9ca3af;
+}
+html.a11y-reduced-chroma .prose a:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+/* Remove glow / drop-shadows from titles when simplified mode is active */
+html.a11y-reduced-chroma h1,
+html.a11y-reduced-chroma h2,
+html.a11y-reduced-chroma h3,
+html.a11y-reduced-chroma h4,
+html.a11y-reduced-chroma h5,
+html.a11y-reduced-chroma h6 {
+  text-shadow: none !important;
+  filter: none !important;
+}
+html.a11y-reduced-chroma [class*="drop-shadow"] {
+  filter: none !important;
+  text-shadow: none !important;
+}
