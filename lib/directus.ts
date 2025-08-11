@@ -8,7 +8,9 @@ export interface Project {
   body: string;
   featured: boolean;
   collaborators?: string[];
+  // Formatted as MM/YYYY
   started_at?: string;
+  // Formatted as MM/YYYY (null if ongoing)
   ended_at?: string | null;
   tools?: string[];
   tags?: string[];
@@ -25,7 +27,9 @@ export interface BlogPost {
   excerpt: string;
   tags?: string[];
   header_image?: Image;
+  // Formatted as HH:mm DD/MM/YYYY
   published_at?: string;
+  // Formatted as HH:mm DD/MM/YYYY
   updated_at?: string;
   header_image_url?: string;
 }
@@ -107,13 +111,25 @@ export async function getProjects(): Promise<Project[]> {
       }),
     ),
   );
-  return ((data as Project[]) || []).map((p) => ({
-    ...p,
-    header_image_url: expandAsset(p.header_image?.src, {
-      width: 1600,
-      quality: 85,
-    }),
-  }));
+  return ((data as any[]) || []).map((p) => {
+    const formatMonthYear = (value?: string | null) => {
+      if (!value) return undefined;
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return undefined;
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const yyyy = d.getFullYear();
+      return `${mm}/${yyyy}`;
+    };
+    return {
+      ...p,
+      started_at: formatMonthYear(p.started_at),
+      ended_at: p.ended_at ? formatMonthYear(p.ended_at) : null,
+      header_image_url: expandAsset(p.header_image?.src, {
+        width: 1600,
+        quality: 85,
+      }),
+    } as Project;
+  });
 }
 
 export async function getBlogs(): Promise<BlogPost[]> {
@@ -136,13 +152,28 @@ export async function getBlogs(): Promise<BlogPost[]> {
       }),
     ),
   );
-  return ((data as BlogPost[]) || []).map((b) => ({
-    ...b,
-    header_image_url: expandAsset(b.header_image?.src, {
-      width: 1600,
-      quality: 85,
-    }),
-  }));
+  return ((data as any[]) || []).map((b) => {
+    const formatDateTime = (value?: string | null) => {
+      if (!value) return undefined;
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return undefined;
+      const hh = String(d.getHours()).padStart(2, "0");
+      const mm = String(d.getMinutes()).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      const mon = String(d.getMonth() + 1).padStart(2, "0");
+      const yyyy = d.getFullYear();
+      return `${hh}:${mm} ${day}/${mon}/${yyyy}`;
+    };
+    return {
+      ...b,
+      published_at: formatDateTime(b.published_at),
+      updated_at: formatDateTime(b.updated_at),
+      header_image_url: expandAsset(b.header_image?.src, {
+        width: 1600,
+        quality: 85,
+      }),
+    } as BlogPost;
+  });
 }
 
 export async function getPhotos(): Promise<Gallery[]> {

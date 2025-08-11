@@ -34,6 +34,9 @@ export default function BlogIndex() {
               <h2 className="text-retro-magenta group-hover:text-retro-yellow font-semibold tracking-wide transition-colors">
                 {p.title}
               </h2>
+              <p className="text-retro-cyan/70 font-mono text-[10px] md:text-[11px]">
+                {p.published_at || p.updated_at}
+              </p>
               <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed opacity-80 md:text-[13px]">
                 {p.excerpt}
               </p>

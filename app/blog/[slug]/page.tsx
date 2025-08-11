@@ -40,6 +40,11 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
               {post.title}
             </h1>
             <p className="text-retro-cyan font-mono text-xs opacity-80">
+              {(post.published_at || post.updated_at) && (
+                <span className="text-retro-yellow/80 mr-2">
+                  {post.published_at || post.updated_at}
+                </span>
+              )}
               {rt.text}
             </p>
             <div className="flex flex-wrap gap-2">
