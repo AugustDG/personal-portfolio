@@ -8,6 +8,7 @@ import { SearchIndexer } from "@/components/search/Indexer";
 import { LightboxProvider } from "@/components/lightbox/LightboxContext";
 import { AccessibilityProvider } from "@/components/accessibility/AccessibilityContext";
 import { AccessibilityToggle } from "@/components/accessibility/AccessibilityToggle";
+import { Tooltip } from "@/components/ui/Tooltip";
 import { Lightbox } from "@/components/lightbox/Lightbox";
 import { Chakra_Petch, Inter, JetBrains_Mono } from "next/font/google";
 
@@ -43,7 +44,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <SearchProvider>
               <SearchIndexer />
               <ColorBar />
-              <RetroNav rightSlot={<AccessibilityToggle />} />
+              <RetroNav
+                rightSlot={
+                  <Tooltip label={"Toggle simplified colors"}>
+                    <AccessibilityToggle />
+                  </Tooltip>
+                }
+              />
               <main className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto">
                 <div className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]">
                   <div className="space-y-12">{children}</div>
