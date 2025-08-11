@@ -22,9 +22,11 @@ export interface BlogPost {
   slug: string;
   title: string;
   body: string;
+  excerpt: string;
   tags?: string[];
-  header_image?: string;
+  header_image?: Image;
   published_at?: string;
+  updated_at?: string;
   header_image_url?: string;
 }
 
@@ -90,9 +92,7 @@ export async function getProjects(): Promise<Project[]> {
           "ended_at",
           "tools",
           "tags",
-          "header_image.id",
-          "header_image.src",
-          "header_image.description",
+          "header_image.*",
         ],
         limit: -1,
         sort: ["-started_at"],
@@ -111,15 +111,17 @@ export async function getProjects(): Promise<Project[]> {
 export async function getBlogs(): Promise<BlogPost[]> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("blog_posts", {
+      readItems("blog", {
         fields: [
           "id",
           "slug",
           "title",
           "body",
+          "excerpt",
           "tags",
-          "header_image",
+          "header_image.*",
           "published_at",
+          "updated_at",
         ],
         limit: -1,
         sort: ["-published_at"],
@@ -128,7 +130,10 @@ export async function getBlogs(): Promise<BlogPost[]> {
   );
   return ((data as BlogPost[]) || []).map((b) => ({
     ...b,
-    header_image_url: expandAsset(b.header_image, { width: 1600, quality: 85 }),
+    header_image_url: expandAsset(b.header_image?.src, {
+      width: 1600,
+      quality: 85,
+    }),
   }));
 }
 
