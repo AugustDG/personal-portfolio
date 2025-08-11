@@ -48,6 +48,8 @@ export interface SiteMeta {
   id: string;
   intro: string;
   socials: { label: string; url: string }[];
+  profile_image?: Image;
+  profile_image_url?: string;
 }
 
 const url = process.env.DIRECTUS_URL || "";
@@ -143,7 +145,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
   }));
 }
 
-export async function getGalleries(): Promise<Gallery[]> {
+export async function getPhotos(): Promise<Gallery[]> {
   const data = await safeRequest(() =>
     directus.request(
       readItems("galleries", {
@@ -173,7 +175,7 @@ export async function getSiteMeta(): Promise<SiteMeta | null> {
   const data = await safeRequest(() =>
     directus.request(
       readItems("site_meta", {
-        fields: ["id", "intro", "socials"],
+        fields: ["id", "intro", "socials", "profile_image.*"],
         limit: 1,
       }),
     ),
@@ -188,5 +190,10 @@ export async function getSiteMeta(): Promise<SiteMeta | null> {
       label: s.label,
       url: s.url,
     })),
+    profile_image: record.profile_image,
+    profile_image_url: expandAsset(record.profile_image?.src, {
+      width: 320,
+      quality: 85,
+    }),
   };
 }

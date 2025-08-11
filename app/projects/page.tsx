@@ -23,7 +23,7 @@ export default function ProjectsPage() {
         </h1>
         <h2 className="font-pixel mb-6 flex items-center gap-3 text-2xl">
           <span className="bg-retro-yellow px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffe600,4px_4px_0_0_#ff00ff]">
-            Featured
+            Featured Projects
           </span>
           <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>

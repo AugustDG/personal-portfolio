@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useApi } from "@/lib/hooks/useApi";
 import type { Gallery } from "@/lib/directus";
 
-export default function GalleriesPage() {
+export default function PhotosPage() {
   const {
     data: galleries,
     isLoading,
@@ -14,7 +14,7 @@ export default function GalleriesPage() {
     <div className="space-y-10">
       <h1 className="font-pixel text-3xl font-semibold tracking-tight">
         <span className="from-retro-yellow via-retro-orange to-retro-magenta bg-linear-to-r bg-clip-text text-transparent">
-          Galleries
+          Photos
         </span>
         <span className="from-retro-yellow via-retro-magenta/60 mt-4 block h-1 w-56 bg-linear-to-r to-transparent" />
       </h1>

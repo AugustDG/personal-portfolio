@@ -20,7 +20,7 @@ export default function SidebarSocials() {
           </li>
           <li>
             <a href="/galleries" className="hover:text-retro-magenta">
-              Galleries
+              Photos
             </a>
           </li>
         </ul>

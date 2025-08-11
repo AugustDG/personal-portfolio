@@ -7,75 +7,83 @@ import Link from "next/link";
 export default function HomePage() {
   const {
     data: projects,
-    isLoading,
-    error,
+    isLoading: projetsLoading,
+    error: projectsError,
   } = useApi<Project[]>("/api/projects");
-  const { data: posts } = useApi<BlogPost[]>("/api/blog");
-  const { data: galleries } = useApi<Gallery[]>("/api/galleries");
-  const { data: site } = useApi<any>("/api/site");
-  const featured = (projects || []).filter((p) => p.featured).slice(0, 3);
+  const {
+    data: posts,
+    isLoading: postsLoading,
+    error: postsError,
+  } = useApi<BlogPost[]>("/api/blog");
+  const {
+    data: galleries,
+    isLoading: galleriesLoading,
+    error: galleriesError,
+  } = useApi<Gallery[]>("/api/galleries");
+  const {
+    data: site,
+    isLoading: siteLoading,
+    error: siteError,
+  } = useApi<any>("/api/site");
+
+  const featuredProjects = (projects || [])
+    .filter((p) => p.featured)
+    .slice(0, 3);
   const featuredPosts = (posts || [])
     .slice()
     .sort(
       (a: any, b: any) =>
-        (b.date || b.created_at || 0) - (a.date || a.created_at || 0),
+        (b.published_at || b.updated_at || 0) -
+        (a.published_at || a.updated_at || 0),
     )
     .slice(0, 3);
-  const featuredGalleries = (galleries || []).slice(0, 3);
+  const featuredPhotos = (galleries || []).slice(0, 3);
+
   return (
     <div className="space-y-12">
       <section>
-        <h1 className="font-pixel relative mb-6 inline-block text-3xl font-semibold tracking-tight md:text-4xl">
-          <span className="from-retro-magenta via-retro-yellow to-retro-cyan relative z-10 bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
-            Hi, I'm Augusto
-          </span>
-          <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
-        </h1>
-        {site?.intro && (
-          <p className="mt-4 max-w-prose leading-relaxed whitespace-pre-line">
-            {site.intro}
-          </p>
-        )}
+        <div className="flex flex-col gap-6 md:flex-row md:items-start">
+          <div className="min-w-0 flex-1">
+            <h1 className="font-pixel relative mb-6 inline-block text-3xl font-semibold tracking-tight md:text-4xl">
+              <span className="from-retro-magenta via-retro-yellow to-retro-cyan relative z-10 bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
+                Hi, I'm Augusto
+              </span>
+              <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
+            </h1>
+            {site?.intro && (
+              <p className="mt-4 max-w-prose leading-relaxed whitespace-pre-line">
+                {site.intro}
+              </p>
+            )}
+          </div>
+          {site?.profile_image_url && (
+            <div className="pixel-border relative mx-auto w-40 shrink-0 overflow-hidden rounded-sm bg-[#12162b] shadow-md md:mx-0 md:w-48">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={site.profile_image_url}
+                alt={site.profile_image?.description || "Profile photo"}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          )}
+        </div>
       </section>
-      {site?.socials?.length > 0 && (
-        <section>
-          <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
-            <span className="bg-retro-cyan px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
-              Connect
-            </span>
-            <span className="from-retro-cyan via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
-          </h2>
-          <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-            {site.socials.map((s: any) => (
-              <li key={s.url}>
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
-                >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
       <section>
         <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
           <span className="bg-retro-purple px-3 py-1 font-semibold text-white shadow-[0_0_0_2px_#9d4bff,4px_4px_0_0_#ff00ff]">
-            Featured
+            Featured Projects
           </span>
           <span className="from-retro-purple via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {isLoading && (
+          {projetsLoading && (
             <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
           )}
-          {error && (
+          {projectsError && (
             <div className="text-retro-magenta text-sm">Failed to load.</div>
           )}
-          {featured.map((p, i) => (
+          {featuredProjects.map((p, i) => (
             <motion.article
               key={p.id}
               initial={{ opacity: 0, y: 20 }}
@@ -97,21 +105,28 @@ export default function HomePage() {
               </Link>
             </motion.article>
           ))}
-          {!featured.length && (
+          {!featuredProjects.length && (
             <p className="opacity-60">No featured projects yet.</p>
           )}
         </div>
       </section>
-      {featuredPosts.length > 0 && (
-        <section>
-          <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
-            <span className="bg-retro-magenta px-3 py-1 font-semibold text-white shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
-              Latest Posts
-            </span>
-            <span className="from-retro-magenta via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredPosts.map((p, i) => (
+      <section>
+        <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
+          <span className="bg-retro-magenta px-3 py-1 font-semibold text-white shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
+            Latest Posts
+          </span>
+          <span className="from-retro-magenta via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
+        </h2>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {postsLoading && (
+            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
+          )}
+          {postsError && (
+            <div className="text-retro-magenta text-sm">Failed to load.</div>
+          )}
+          {!postsLoading &&
+            !postsError &&
+            featuredPosts.map((p, i) => (
               <motion.article
                 key={p.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -133,19 +148,28 @@ export default function HomePage() {
                 </Link>
               </motion.article>
             ))}
-          </div>
-        </section>
-      )}
-      {featuredGalleries.length > 0 && (
-        <section>
-          <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
-            <span className="bg-retro-yellow px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
-              Galleries
-            </span>
-            <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredGalleries.map((g, i) => (
+          {!postsLoading && !postsError && !featuredPosts.length && (
+            <p className="opacity-60">No posts yet.</p>
+          )}
+        </div>
+      </section>
+      <section>
+        <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
+          <span className="bg-retro-yellow px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
+            Photos
+          </span>
+          <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
+        </h2>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {galleriesLoading && (
+            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
+          )}
+          {galleriesError && (
+            <div className="text-retro-magenta text-sm">Failed to load.</div>
+          )}
+          {!galleriesLoading &&
+            !galleriesError &&
+            featuredPhotos.map((g, i) => (
               <motion.article
                 key={g.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -167,9 +191,40 @@ export default function HomePage() {
                 </Link>
               </motion.article>
             ))}
-          </div>
-        </section>
-      )}
+          {!galleriesLoading && !galleriesError && !featuredPhotos.length && (
+            <p className="opacity-60">No galleries yet.</p>
+          )}
+        </div>
+      </section>
+      <section>
+        <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
+          <span className="bg-retro-cyan px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
+            Connect
+          </span>
+          <span className="from-retro-cyan via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
+        </h2>
+        <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+          {siteLoading && (
+            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
+          )}
+          {siteError && (
+            <div className="text-retro-magenta text-sm">Failed to load.</div>
+          )}
+          {site &&
+            site.socials.map((s: any) => (
+              <li key={s.url}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+        </ul>
+      </section>
     </div>
   );
 }
