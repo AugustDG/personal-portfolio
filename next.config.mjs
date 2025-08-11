@@ -7,8 +7,6 @@ const nextConfig = {
             { protocol: 'https', hostname: 'assets.directus.io' }
         ]
     },
-    experimental: {
-        typedRoutes: true
-    }
 };
+
 export default nextConfig;

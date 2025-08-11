@@ -10,7 +10,7 @@ export function SearchTrigger() {
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="pixel-border bg-retro-magenta text-white px-3 py-2"
+        className="pixel-border glow-magenta bg-retro-magenta text-white px-3 py-2 hover:bg-retro-purple transition-colors"
       >
         SEARCH
       </button>
@@ -19,17 +19,19 @@ export function SearchTrigger() {
           <input
             autoFocus
             placeholder="Search..."
-            className="w-full pixel-border px-2 py-1 bg-white"
+            className="w-full pixel-border px-2 py-1 bg-[#0d0f17] text-retro-cyan placeholder-retro-purple focus:outline-none"
             onChange={(e) => setQuery(e.target.value)}
           />
-          <ul className="max-h-64 overflow-auto space-y-1 text-xs font-mono">
+          <ul className="max-h-64 overflow-auto space-y-1 text-xs font-mono text-retro-brown">
             {results.map((r) => (
               <li
                 key={r.id}
-                className="pixel-border p-2 bg-white hover:bg-retro-yellow transition-colors"
+                className="pixel-border p-2 bg-[#12162b] text-retro-brown hover:bg-retro-purple/40 transition-colors"
               >
-                <span className="font-bold">{r.title}</span>
-                <span className="block opacity-60">{r.type}</span>
+                <span className="font-bold text-retro-magenta">{r.title}</span>
+                <span className="block opacity-70 text-retro-cyan">
+                  {r.type}
+                </span>
               </li>
             ))}
             {!results.length && <li className="opacity-60">No results</li>}
