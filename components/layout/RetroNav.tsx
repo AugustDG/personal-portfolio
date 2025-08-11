@@ -46,7 +46,7 @@ export function RetroNav({ rightSlot }: { rightSlot?: ReactNode }) {
               href="/galleries"
               className="pixel-border glow-yellow bg-retro-yellow hover:bg-retro-orange inline-block px-3 py-2 text-black transition-colors"
             >
-              GALLERIES
+              PHOTOS
             </Link>
           </motion.div>
         </Tooltip>

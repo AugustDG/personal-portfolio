@@ -56,7 +56,7 @@ export interface SiteMeta {
   profile_image_url?: string;
 }
 
-const publicDirectusUrl = process.env.DIRECTUS_PUBLIC_URL || "";
+const publicDirectusUrl = process.env.PUBLIC_DIRECTUS_URL || "";
 const url = process.env.DIRECTUS_URL || "";
 export const directus = createDirectus(url).with(rest());
 
@@ -78,7 +78,7 @@ function expandAsset(
 ): string | undefined {
   if (!id) return undefined;
   if (id.startsWith("http://") || id.startsWith("https://")) return id; // already full
-  if (!url) return undefined;
+  if (!publicDirectusUrl) return undefined;
   const base = publicDirectusUrl.replace(/\/$/, "");
   const qs = params
     ? "?" +
