@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
 import clsx from "clsx";
+import { useLightbox } from "@/components/lightbox/LightboxContext";
 
 interface Props {
   className?: string;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function MarkdownRenderer({ content, className }: Props) {
+  const { openLightbox } = useLightbox();
   return (
     <div className={clsx("prose prose-invert max-w-none", className)}>
       <ReactMarkdown
@@ -17,7 +19,7 @@ export function MarkdownRenderer({ content, className }: Props) {
         rehypePlugins={[rehypePrism]}
         components={{
           pre: ({ children }) => (
-            <pre className="pixel-border overflow-auto bg-retro-beige font-mono text-sm leading-relaxed">
+            <pre className="pixel-border bg-retro-beige overflow-auto font-mono text-sm leading-relaxed">
               {children}
             </pre>
           ),
@@ -59,7 +61,8 @@ export function MarkdownRenderer({ content, className }: Props) {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               {...props}
-              className="pixel-border mx-auto my-6 h-auto max-w-full"
+              className="pixel-border mx-auto my-6 h-auto max-w-full cursor-zoom-in"
+              onClick={() => openLightbox(props.src ?? "", props.alt)}
             />
           ),
         }}

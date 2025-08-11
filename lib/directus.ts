@@ -136,16 +136,7 @@ export async function getGalleries(): Promise<Gallery[]> {
   const data = await safeRequest(() =>
     directus.request(
       readItems("galleries", {
-        fields: [
-          "id",
-          "slug",
-          "title",
-          // relational images.* (explicit fields for safety)
-          "images.id",
-          "images.src",
-          "images.description",
-          "tags",
-        ],
+        fields: ["id", "slug", "title", "images.images_id.*", "tags"],
         limit: -1,
         sort: ["title"],
       }),
@@ -158,10 +149,10 @@ export async function getGalleries(): Promise<Gallery[]> {
     slug: g.slug,
     title: g.title,
     images: (g.images || []).map((img: any) => ({
-      id: img.id,
-      src: img.src,
-      src_url: expandAsset(img.src, { width: 1400, quality: 80 }),
-      description: img.description,
+      id: img.images_id.id,
+      src: img.images_id.src,
+      src_url: expandAsset(img.images_id.src, { width: 1400, quality: 80 }),
+      description: img.images_id.description,
     })),
     tags: g.tags || [],
   })) as Gallery[];

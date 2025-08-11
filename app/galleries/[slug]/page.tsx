@@ -5,6 +5,7 @@ import { useApi } from "@/lib/hooks/useApi";
 import type { Gallery } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
 import React from "react";
+import { useLightbox } from "@/components/lightbox/LightboxContext";
 
 export default function GalleryPage({ params }: { params: PageProps }) {
   const { slug } = React.use(params);
@@ -13,6 +14,7 @@ export default function GalleryPage({ params }: { params: PageProps }) {
     isLoading,
     error,
   } = useApi<Gallery>(`/api/galleries/${slug}`);
+  const { openLightbox } = useLightbox();
   return (
     <div className="space-y-6">
       <div className="space-y-3">
@@ -51,9 +53,10 @@ export default function GalleryPage({ params }: { params: PageProps }) {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={img.src}
+                src={img.src_url}
                 alt={img.description || ""}
-                className="h-48 w-full object-cover"
+                className="h-48 w-full cursor-zoom-in object-cover"
+                onClick={() => openLightbox(img.src_url || "", img.description)}
               />
               {img.description && (
                 <figcaption className="text-retro-cyan p-2 font-mono text-xs opacity-80">
