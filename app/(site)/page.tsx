@@ -1,46 +1,63 @@
-import { getProjects } from "@/lib/directus";
+"use client";
+import { motion } from "framer-motion";
+import { useApi } from "@/lib/hooks/useApi";
+import type { Project } from "@/lib/directus";
 
-export default async function HomePage() {
-  const projects = await getProjects();
-  const featured = projects.filter((p) => p.featured).slice(0, 4);
+export default function HomePage() {
+  const {
+    data: projects,
+    isLoading,
+    error,
+  } = useApi<Project[]>("/api/projects");
+  const featured = (projects || []).filter((p) => p.featured).slice(0, 4);
   return (
-    <div className="space-y-12 animate-fadeIn">
+    <div className="space-y-12">
       <section>
-        <h1 className="font-pixel text-3xl md:text-4xl mb-6 inline-block font-semibold tracking-tight relative">
-          <span className="relative z-10 bg-linear-to-r from-retro-magenta via-retro-yellow to-retro-cyan bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
+        <h1 className="font-pixel relative mb-6 inline-block text-3xl font-semibold tracking-tight md:text-4xl">
+          <span className="from-retro-magenta via-retro-yellow to-retro-cyan relative z-10 bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
             Hi, I'm Augusto
           </span>
-          <span className="block h-1 mt-3 w-56 bg-linear-to-r from-retro-magenta via-retro-purple to-transparent"></span>
+          <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
         </h1>
-        <p className="max-w-prose leading-relaxed mt-4">
+        <p className="mt-4 max-w-prose leading-relaxed">
           Retro-inspired colorful portfolio. Explore featured projects, dive
           into detailed write-ups, browse photography galleries, and read the
           blog.
         </p>
       </section>
       <section>
-        <h2 className="font-pixel text-2xl mb-5 tracking-tight flex items-center gap-3">
-          <span className="bg-retro-purple text-white px-3 py-1 font-semibold shadow-[0_0_0_2px_#9d4bff,4px_4px_0_0_#ff00ff]">
+        <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
+          <span className="bg-retro-purple px-3 py-1 font-semibold text-white shadow-[0_0_0_2px_#9d4bff,4px_4px_0_0_#ff00ff]">
             Featured
           </span>
-          <span className="flex-1 h-[2px] bg-linear-to-r from-retro-purple via-retro-magenta to-transparent" />
+          <span className="from-retro-purple via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((p) => (
-            <article
+          {isLoading && (
+            <div className="text-retro-cyan text-sm opacity-70">Loading…</div>
+          )}
+          {error && (
+            <div className="text-retro-magenta text-sm">Failed to load.</div>
+          )}
+          {featured.map((p, i) => (
+            <motion.article
               key={p.id}
-              className="group relative bg-[#12162b] border border-retro-purple/40 hover:border-retro-magenta transition-colors rounded-sm overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 * i, duration: 0.4 }}
+              whileHover={{ y: -4 }}
+              className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-linear-to-br from-retro-magenta/10 via-retro-purple/0 to-retro-cyan/10" />
-              <div className="p-4 relative z-10 space-y-2">
-                <h3 className="font-semibold text-retro-magenta text-sm md:text-base tracking-wide">
+              <div className="from-retro-magenta/10 via-retro-purple/0 to-retro-cyan/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="relative z-10 space-y-2 p-4">
+                <h3 className="text-retro-magenta text-sm font-semibold tracking-wide md:text-base">
                   {p.title}
                 </h3>
-                <p className="text-xs md:text-[13px] leading-relaxed line-clamp-4 text-retro-cyan/90">
+                <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
                   {p.description}
                 </p>
               </div>
-            </article>
+            </motion.article>
           ))}
           {!featured.length && (
             <p className="opacity-60">No featured projects yet.</p>

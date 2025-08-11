@@ -22,18 +22,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${heading.variable} ${body.variable} ${mono.variable} bg-retro-beige text-retro-brown`}
+      suppressHydrationWarning={true}
+      className={`${heading.variable} ${body.variable} ${mono.variable} bg-retro-beige text-retro-brown h-full`}
     >
-      <body className="min-h-screen font-body antialiased selection:bg-retro-magenta selection:text-black">
+      <body className="font-body selection:bg-retro-magenta flex h-screen min-h-0 w-full flex-col overflow-hidden antialiased selection:text-black">
         <SearchProvider>
           <ColorBar />
           <RetroNav />
-          <main className="relative z-10 w-full crt-scanlines">
-            <div className="px-4 md:px-8 mx-auto max-w-[1200px] grid grid-cols-1 lg:grid-cols-[minmax(0,900px)_1fr] gap-10 py-6 md:py-10">
+          <main className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto">
+            <div className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]">
               <div className="space-y-12">{children}</div>
-              <aside className="hidden lg:flex flex-col gap-6 pt-2 text-xs tracking-wide">
+              <aside className="hidden flex-col gap-6 pt-2 text-xs tracking-wide lg:flex">
                 <div>
-                  <p className="font-pixel text-[10px] mb-2 text-retro-yellow">
+                  <p className="font-pixel text-retro-yellow mb-2 text-[10px]">
                     NAV
                   </p>
                   <ul className="space-y-1 font-mono">
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   </ul>
                 </div>
                 <div>
-                  <p className="font-pixel text-[10px] mb-2 text-retro-yellow">
+                  <p className="font-pixel text-retro-yellow mb-2 text-[10px]">
                     SOCIAL
                   </p>
                   <ul className="space-y-1 font-mono">
@@ -76,8 +77,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     </li>
                   </ul>
                 </div>
-                <div className="mt-auto opacity-60 font-mono">
-                  © {new Date().getFullYear()}
+                <div className="mt-auto font-mono opacity-60">
+                  Augusto M. Pinheiro © {new Date().getFullYear()}
                 </div>
               </aside>
             </div>

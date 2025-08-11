@@ -90,7 +90,6 @@ export async function getProjects(): Promise<Project[]> {
           "ended_at",
           "tools",
           "tags",
-          "palette",
           "header_image.id",
           "header_image.src",
           "header_image.description",

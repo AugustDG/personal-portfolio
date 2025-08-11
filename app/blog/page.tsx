@@ -1,33 +1,48 @@
-import { getBlogs } from "@/lib/directus";
+"use client";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useApi } from "@/lib/hooks/useApi";
+import type { BlogPost } from "@/lib/directus";
 
-export default async function BlogIndex() {
-  const posts = await getBlogs();
+export default function BlogIndex() {
+  const { data: posts, isLoading, error } = useApi<BlogPost[]>("/api/blog");
   return (
-    <div className="space-y-10 animate-fadeIn">
+    <div className="space-y-10">
       <h1 className="font-pixel text-3xl font-semibold tracking-tight">
-        <span className="bg-linear-to-r from-retro-magenta via-retro-yellow to-retro-cyan bg-clip-text text-transparent">
+        <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
           Blog
         </span>
-        <span className="block h-1 mt-4 w-48 bg-linear-to-r from-retro-magenta via-retro-purple/60 to-transparent" />
+        <span className="from-retro-magenta via-retro-purple/60 mt-4 block h-1 w-48 bg-linear-to-r to-transparent" />
       </h1>
       <ul className="space-y-3">
-        {posts.map((p) => (
-          <li
+        {isLoading && (
+          <li className="text-retro-cyan text-sm opacity-70">Loading…</li>
+        )}
+        {error && (
+          <li className="text-retro-magenta text-sm">Failed to load.</li>
+        )}
+        {(posts || []).map((p, i) => (
+          <motion.li
             key={p.id}
-            className="group relative bg-[#12162b] border border-retro-purple/40 hover:border-retro-magenta transition-colors rounded-sm overflow-hidden"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.04 * i }}
+            whileHover={{ x: 4 }}
+            className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
           >
-            <Link href={`/blog/${p.slug}`} className="block p-4 space-y-2">
-              <h2 className="font-semibold text-retro-magenta tracking-wide group-hover:text-retro-yellow transition-colors">
+            <Link href={`/blog/${p.slug}`} className="block space-y-2 p-4">
+              <h2 className="text-retro-magenta group-hover:text-retro-yellow font-semibold tracking-wide transition-colors">
                 {p.title}
               </h2>
-              <p className="text-xs md:text-[13px] opacity-80 line-clamp-2 text-retro-cyan/90 leading-relaxed">
+              <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed opacity-80 md:text-[13px]">
                 {p.body.slice(0, 140)}
               </p>
             </Link>
-          </li>
+          </motion.li>
         ))}
-        {!posts.length && <li className="opacity-60">No posts yet.</li>}
+        {!isLoading && !error && (!posts || posts.length === 0) && (
+          <li className="opacity-60">No posts yet.</li>
+        )}
       </ul>
     </div>
   );
