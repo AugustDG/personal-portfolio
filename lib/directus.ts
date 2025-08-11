@@ -59,7 +59,7 @@ async function safeRequest<T>(fn: () => Promise<T>): Promise<T | null> {
 
 function expandAsset(
   id?: string,
-  params?: Record<string, string | number>
+  params?: Record<string, string | number>,
 ): string | undefined {
   if (!id) return undefined;
   if (id.startsWith("http://") || id.startsWith("https://")) return id; // already full
@@ -68,7 +68,7 @@ function expandAsset(
   const qs = params
     ? "?" +
       new URLSearchParams(
-        Object.entries(params).map(([k, v]) => [k, String(v)])
+        Object.entries(params).map(([k, v]) => [k, String(v)]),
       ).toString()
     : "";
   return `${base}/assets/${id}${qs}`;
@@ -97,8 +97,8 @@ export async function getProjects(): Promise<Project[]> {
         ],
         limit: -1,
         sort: ["-started_at"],
-      })
-    )
+      }),
+    ),
   );
   return ((data as Project[]) || []).map((p) => ({
     ...p,
@@ -124,8 +124,8 @@ export async function getBlogs(): Promise<BlogPost[]> {
         ],
         limit: -1,
         sort: ["-published_at"],
-      })
-    )
+      }),
+    ),
   );
   return ((data as BlogPost[]) || []).map((b) => ({
     ...b,
@@ -149,8 +149,8 @@ export async function getGalleries(): Promise<Gallery[]> {
         ],
         limit: -1,
         sort: ["title"],
-      })
-    )
+      }),
+    ),
   );
   // Directus returns relational arrays flat inside object; ensure shape
   if (!data) return [];

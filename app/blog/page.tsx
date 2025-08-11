@@ -6,10 +6,10 @@ export default async function BlogIndex() {
   return (
     <div className="space-y-10 animate-fadeIn">
       <h1 className="font-pixel text-3xl font-semibold tracking-tight">
-        <span className="bg-gradient-to-r from-retro-magenta via-retro-yellow to-retro-cyan bg-clip-text text-transparent">
+        <span className="bg-linear-to-r from-retro-magenta via-retro-yellow to-retro-cyan bg-clip-text text-transparent">
           Blog
         </span>
-        <span className="block h-1 mt-4 w-48 bg-gradient-to-r from-retro-magenta via-retro-purple/60 to-transparent" />
+        <span className="block h-1 mt-4 w-48 bg-linear-to-r from-retro-magenta via-retro-purple/60 to-transparent" />
       </h1>
       <ul className="space-y-3">
         {posts.map((p) => (

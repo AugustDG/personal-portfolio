@@ -19,7 +19,7 @@ export function SearchTrigger() {
           <input
             autoFocus
             placeholder="Search..."
-            className="w-full pixel-border px-2 py-1 bg-[#0d0f17] text-retro-cyan placeholder-retro-purple focus:outline-none"
+            className="w-full pixel-border px-2 py-1 bg-retro-beige text-retro-cyan placeholder-retro-purple focus:outline-none"
             onChange={(e) => setQuery(e.target.value)}
           />
           <ul className="max-h-64 overflow-auto space-y-1 text-xs font-mono text-retro-brown">

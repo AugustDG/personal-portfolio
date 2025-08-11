@@ -6,10 +6,10 @@ export default async function GalleriesPage() {
   return (
     <div className="space-y-10 animate-fadeIn">
       <h1 className="font-pixel text-3xl font-semibold tracking-tight">
-        <span className="bg-gradient-to-r from-retro-yellow via-retro-orange to-retro-magenta bg-clip-text text-transparent">
+        <span className="bg-linear-to-r from-retro-yellow via-retro-orange to-retro-magenta bg-clip-text text-transparent">
           Galleries
         </span>
-        <span className="block h-1 mt-4 w-56 bg-gradient-to-r from-retro-yellow via-retro-magenta/60 to-transparent" />
+        <span className="block h-1 mt-4 w-56 bg-linear-to-r from-retro-yellow via-retro-magenta/60 to-transparent" />
       </h1>
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {galleries.map((g) => (

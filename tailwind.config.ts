@@ -17,7 +17,7 @@ const config: Config = {
         mono: ["var(--font-mono)", "monospace"],
         body: ["var(--font-body)", "sans-serif"],
       },
-      colors: {
+      color: {
         // Maintain token names but shift to neon palette
         retro: {
           beige: "#0d0f17",

@@ -17,7 +17,7 @@ export function MarkdownRenderer({ content, className }: Props) {
         rehypePlugins={[rehypePrism]}
         components={{
           pre: ({ children }) => (
-            <pre className="pixel-border overflow-auto bg-[#0d0f17] font-mono text-sm leading-relaxed">
+            <pre className="pixel-border overflow-auto bg-retro-beige font-mono text-sm leading-relaxed">
               {children}
             </pre>
           ),

@@ -1,24 +1,22 @@
 import { getGalleries } from "@/lib/directus";
 import { TagPill } from "@/components/TagPill";
 import { notFound } from "next/navigation";
+import { PageProps } from "@/lib/types";
 
 export async function generateStaticParams() {
   const galleries = await getGalleries();
   return galleries.map((g) => ({ slug: g.slug }));
 }
 
-export default async function GalleryPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function GalleryPage({ params }: { params: PageProps }) {
+  const { slug } = await params;
   const galleries = await getGalleries();
-  const gallery = galleries.find((g) => g.slug === params.slug);
+  const gallery = galleries.find((g) => g.slug === slug);
   if (!gallery) return notFound();
   return (
-    <div className="space-y-6 animate-fadeIn">
+    <div className="animate-fadeIn space-y-6">
       <div className="space-y-3">
-        <h1 className="font-pixel text-3xl pixel-border glow-yellow inline-block bg-gradient-to-br from-retro-yellow via-retro-orange to-retro-magenta text-black px-4 py-3">
+        <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">
           {gallery.title}
         </h1>
         {Array.isArray((gallery as any).tags) &&
@@ -34,16 +32,16 @@ export default async function GalleryPage({
         {gallery.images?.map((img) => (
           <figure
             key={img.id}
-            className="pixel-border bg-[#12162b] overflow-hidden hover:bg-retro-purple/30 transition-colors"
+            className="pixel-border hover:bg-retro-purple/30 overflow-hidden bg-[#12162b] transition-colors"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={img.src}
               alt={img.description || ""}
-              className="w-full h-48 object-cover"
+              className="h-48 w-full object-cover"
             />
             {img.description && (
-              <figcaption className="p-2 text-xs font-mono opacity-80 text-retro-cyan">
+              <figcaption className="text-retro-cyan p-2 font-mono text-xs opacity-80">
                 {img.description}
               </figcaption>
             )}

@@ -3,11 +3,11 @@ import { SearchTrigger } from "@/components/search/SearchTrigger";
 
 export function RetroNav() {
   return (
-    <header className="sticky top-0 z-20 backdrop-blur bg-[#0d0f17]/80 border-b border-retro-purple/40">
+    <header className="sticky top-0 z-20 backdrop-blur bg-retro-beige/80 border-b border-retro-purple/40">
       <nav className="mx-auto flex max-w-6xl items-center gap-3 p-3 text-[10px] sm:text-xs md:text-sm font-pixel">
         <Link
           href="/"
-          className="pixel-border glow-magenta bg-gradient-to-br from-retro-purple via-retro-magenta to-retro-orange px-3 py-2 text-white hover:from-retro-magenta hover:to-retro-purple transition-colors"
+          className="pixel-border glow-magenta bg-linear-to-br from-retro-purple via-retro-magenta to-retro-orange px-3 py-2 text-white hover:from-retro-magenta hover:to-retro-purple transition-colors"
         >
           HOME
         </Link>
