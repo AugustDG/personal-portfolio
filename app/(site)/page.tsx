@@ -29,7 +29,7 @@ export default function HomePage() {
   const featuredProjects = (projects || [])
     .filter((p) => p.featured)
     .slice(0, 3);
-  const featuredPosts = (posts || [])
+  const latestPosts = (posts || [])
     .slice()
     .sort(
       (a: any, b: any) =>
@@ -126,7 +126,7 @@ export default function HomePage() {
           )}
           {!postsLoading &&
             !postsError &&
-            featuredPosts.map((p, i) => (
+            latestPosts.map((p, i) => (
               <motion.article
                 key={p.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -148,7 +148,7 @@ export default function HomePage() {
                 </Link>
               </motion.article>
             ))}
-          {!postsLoading && !postsError && !featuredPosts.length && (
+          {!postsLoading && !postsError && !latestPosts.length && (
             <p className="opacity-60">No posts yet.</p>
           )}
         </div>
