@@ -18,7 +18,9 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
   } = useApi<BlogPost>(`/api/blog/${slug}`);
   const rt = readingTime(post?.body || "");
   const [focus, setFocus] = React.useState(false);
-  const [shareState, setShareState] = React.useState<"idle" | "copied" | "shared" | "error">("idle");
+  const [shareState, setShareState] = React.useState<
+    "idle" | "copied" | "shared" | "error"
+  >("idle");
 
   const handleShare = React.useCallback(async () => {
     try {
@@ -120,19 +122,20 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
                       shareState === "copied"
                         ? "Link copied"
                         : shareState === "shared"
-                        ? "Shared!"
-                        : shareState === "error"
-                        ? "Failed – click to retry"
-                        : (typeof navigator !== "undefined" && typeof navigator.share === "function")
-                        ? "Native share"
-                        : "Copy link"
+                          ? "Shared!"
+                          : shareState === "error"
+                            ? "Failed – click to retry"
+                            : typeof navigator !== "undefined" &&
+                                typeof navigator.share === "function"
+                              ? "Native share"
+                              : "Copy link"
                     }
                   >
                     <motion.button
                       whileTap={{ scale: 0.9 }}
                       whileHover={{ y: -2 }}
                       onClick={handleShare}
-                      className="pixel-border glow-purple/0 hover:glow-purple/40 text-retro-yellow font-semibold focus:ring-retro-yellow inline-flex h-7 items-center rounded-sm bg-[#12162b]/80 px-3 font-mono text-[10px] uppercase tracking-wide transition focus:ring-2 focus:outline-none"
+                      className="pixel-border glow-purple/0 hover:glow-purple/40 text-retro-yellow focus:ring-retro-yellow inline-flex h-7 items-center rounded-sm bg-[#12162b]/80 px-3 font-mono text-[10px] font-semibold tracking-wide uppercase transition focus:ring-2 focus:outline-none"
                       aria-label="Share this post"
                     >
                       {shareState === "idle" && "SHARE"}
@@ -142,7 +145,7 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
                     </motion.button>
                   </Tooltip>
                 </div>
-                <div className="my-5 h-px w-full bg-retro-purple/30" />
+                <div className="bg-retro-purple/30 my-5 h-px w-full" />
               </>
             )}
           </>
