@@ -62,7 +62,9 @@ export function MarkdownRenderer({ content, className }: Props) {
             <img
               {...props}
               className="pixel-border mx-auto my-6 h-auto max-w-full cursor-zoom-in"
-              onClick={() => openLightbox(props.src ?? "", props.alt)}
+              onClick={() =>
+                openLightbox((props.src as string) ?? "", props.alt)
+              }
             />
           ),
         }}
