@@ -35,7 +35,7 @@ export default function BlogIndex() {
                 {p.title}
               </h2>
               <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed opacity-80 md:text-[13px]">
-                {p.body.slice(0, 140)}
+                {p.excerpt}
               </p>
             </Link>
           </motion.li>

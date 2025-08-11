@@ -102,7 +102,7 @@ export default function HomePage() {
                       {p.title}
                     </h3>
                     <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
-                      {p.body.slice(0, 140)}
+                      {p.excerpt}
                     </p>
                   </div>
                 </Link>
