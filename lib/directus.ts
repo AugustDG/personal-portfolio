@@ -44,6 +44,12 @@ export interface Gallery {
   tags?: string[]; // optional if later added
 }
 
+export interface SiteMeta {
+  id: string;
+  intro: string;
+  socials: { label: string; url: string }[];
+}
+
 const url = process.env.DIRECTUS_URL || "";
 export const directus = createDirectus(url).with(rest());
 
@@ -161,4 +167,26 @@ export async function getGalleries(): Promise<Gallery[]> {
     })),
     tags: g.tags || [],
   })) as Gallery[];
+}
+
+export async function getSiteMeta(): Promise<SiteMeta | null> {
+  const data = await safeRequest(() =>
+    directus.request(
+      readItems("site_meta", {
+        fields: ["id", "intro", "socials"],
+        limit: 1,
+      }),
+    ),
+  );
+  if (!data) return null;
+  const record = Array.isArray(data) ? data[0] : (data as any);
+  if (!record) return null;
+  return {
+    id: record.id,
+    intro: record.intro || "",
+    socials: (record.socials || []).map((s: any) => ({
+      label: s.label,
+      url: s.url,
+    })),
+  };
 }

@@ -12,6 +12,7 @@ export default function HomePage() {
   } = useApi<Project[]>("/api/projects");
   const { data: posts } = useApi<BlogPost[]>("/api/blog");
   const { data: galleries } = useApi<Gallery[]>("/api/galleries");
+  const { data: site } = useApi<any>("/api/site");
   const featured = (projects || []).filter((p) => p.featured).slice(0, 3);
   const featuredPosts = (posts || [])
     .slice()
@@ -30,12 +31,36 @@ export default function HomePage() {
           </span>
           <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
         </h1>
-        <p className="mt-4 max-w-prose leading-relaxed">
-          Retro-inspired colorful portfolio. Explore featured projects, dive
-          into detailed write-ups, browse photography galleries, and read the
-          blog.
-        </p>
+        {site?.intro && (
+          <p className="mt-4 max-w-prose leading-relaxed whitespace-pre-line">
+            {site.intro}
+          </p>
+        )}
       </section>
+      {site?.socials?.length > 0 && (
+        <section>
+          <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
+            <span className="bg-retro-cyan px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffffff,4px_4px_0_0_#ff00ff]">
+              Connect
+            </span>
+            <span className="from-retro-cyan via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
+          </h2>
+          <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+            {site.socials.map((s: any) => (
+              <li key={s.url}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <section>
         <h2 className="font-pixel mb-5 flex items-center gap-3 text-2xl tracking-tight">
           <span className="bg-retro-purple px-3 py-1 font-semibold text-white shadow-[0_0_0_2px_#9d4bff,4px_4px_0_0_#ff00ff]">
