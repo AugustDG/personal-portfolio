@@ -36,8 +36,10 @@ export default function BlogPostPage({ params }: { params: PageProps }) {
         )}
         {post && (
           <>
-            <h1 className="font-pixel pixel-border glow-cyan bg-retro-cyan inline-block px-4 py-3 text-3xl text-black">
-              {post.title}
+            <h1 className="font-pixel text-2xl font-semibold tracking-tight">
+              <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
+                {post.title}
+              </span>
             </h1>
             <p className="text-retro-cyan font-mono text-xs opacity-80">
               {(post.published_at || post.updated_at) && (
