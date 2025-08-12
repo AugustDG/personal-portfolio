@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getProjects, getBlogs, getPhotos, getSiteMeta } from "@/lib/directus";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
@@ -54,12 +55,13 @@ export default async function HomePage() {
           </div>
           {site?.profile_image_url && (
             <div className="pixel-border relative mx-auto w-40 shrink-0 overflow-hidden rounded-sm bg-[#12162b] shadow-md md:mx-0 md:w-48">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={site.profile_image_url}
                 alt={site.profile_image?.description || "Profile photo"}
-                className="h-full w-full object-cover"
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 160px, 192px"
+                className="object-cover"
+                priority={false}
               />
             </div>
           )}

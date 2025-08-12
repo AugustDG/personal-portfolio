@@ -40,7 +40,7 @@ export function RetroNav({ rightSlot }: { rightSlot?: ReactNode }) {
             </Link>
           </motion.div>
         </Tooltip>
-        <Tooltip label="Browse galleries">
+        <Tooltip label="Browse photos">
           <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.94 }}>
             <Link
               href="/galleries"

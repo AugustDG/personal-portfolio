@@ -1,5 +1,6 @@
 "use client";
 import { useLightbox } from "@/components/lightbox/LightboxContext";
+import Image from "next/image";
 
 interface Img {
   id: string;
@@ -18,13 +19,18 @@ export function GalleryImagesClient({ images }: { images: Img[] }) {
           key={img.id}
           className="pixel-border hover:bg-retro-purple/30 overflow-hidden bg-[#12162b] transition-colors"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={img.src_url}
-            alt={img.description || ""}
-            className="h-48 w-full cursor-zoom-in object-cover"
+          <div
+            className="relative h-48 w-full cursor-zoom-in"
             onClick={() => openLightbox(img.src_url || "", img.description)}
-          />
+          >
+            <Image
+              src={img.src_url || ""}
+              alt={img.description || ""}
+              fill
+              sizes="(max-width: 1024px) 50vw, 33vw"
+              className="object-cover"
+            />
+          </div>
           {img.description && (
             <figcaption className="text-retro-cyan p-2 font-mono text-xs opacity-80">
               {img.description}

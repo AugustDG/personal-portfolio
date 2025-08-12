@@ -15,6 +15,7 @@ export async function generateMetadata({
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/galleries/${gallery.slug}`;
   const desc = gallery.title;
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(gallery.title)}&subtitle=${encodeURIComponent("Gallery")}`;
   return {
     title: `${gallery.title} - Augusto Pinheiro`,
     description: desc,
@@ -24,17 +25,13 @@ export async function generateMetadata({
       title: gallery.title,
       description: desc,
       url: canonical,
-      images: gallery.images?.[0]?.src_url
-        ? [{ url: gallery.images[0].src_url as string }]
-        : undefined,
+      images: [{ url: gallery.images?.[0]?.src_url || fallbackOg }],
     },
     twitter: {
       card: "summary_large_image",
       title: gallery.title,
       description: desc,
-      images: gallery.images?.[0]?.src_url
-        ? [gallery.images[0].src_url as string]
-        : undefined,
+      images: [gallery.images?.[0]?.src_url || fallbackOg],
     },
   };
 }

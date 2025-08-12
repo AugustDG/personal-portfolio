@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism-plus";
@@ -61,16 +62,24 @@ export function MarkdownRenderer({ content, className }: Props) {
               className="font-pixel text-retro-purple tracking-tight"
             />
           ),
-          img: (props) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              {...props}
-              className="pixel-border mx-auto my-6 h-auto max-w-full cursor-zoom-in"
-              onClick={() =>
-                openLightbox((props.src as string) ?? "", props.alt)
-              }
-            />
-          ),
+          img: (props) => {
+            const src = (props.src as string) || "";
+            return (
+              <span
+                className="pixel-border mx-auto my-6 block max-w-full cursor-zoom-in overflow-hidden"
+                onClick={() => openLightbox(src, props.alt)}
+              >
+                <Image
+                  src={src}
+                  alt={props.alt || "Image"}
+                  width={1200}
+                  height={800}
+                  className="h-auto w-full object-contain"
+                  sizes="100vw"
+                />
+              </span>
+            );
+          },
         }}
       >
         {content}

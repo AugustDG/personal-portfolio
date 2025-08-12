@@ -1,4 +1,5 @@
 import { getBlog } from "@/lib/directus";
+import Image from "next/image";
 import ClientBlogEnhancements from "./client";
 import type { Metadata } from "next";
 import readingTime from "reading-time";
@@ -20,6 +21,7 @@ export async function generateMetadata({
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/blog/${post.slug}`;
 
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent("Blog+Post")}`;
   return {
     title: `${post.title} – Augusto Pinheiro`,
     description: desc,
@@ -33,15 +35,13 @@ export async function generateMetadata({
       modifiedTime: post.updated_at || post.published_at,
       authors: ["Augusto Pinheiro"],
       tags: post.tags,
-      images: post.header_image_url
-        ? [{ url: post.header_image_url }]
-        : undefined,
+      images: [{ url: post.header_image_url || fallbackOg }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: desc,
-      images: post.header_image_url ? [post.header_image_url] : undefined,
+      images: [post.header_image_url || fallbackOg],
     },
   };
 }
@@ -59,13 +59,17 @@ export default async function BlogPostPage({ params }: { params: PageProps }) {
     <article className="space-y-6">
       <header className="space-y-2">
         {post.header_image_url && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={post.header_image_url}
-            alt={post.title}
-            className="border-retro-purple/40 mb-4 aspect-16/7 w-full rounded-sm border object-cover"
-            loading="lazy"
-          />
+          <div className="border-retro-purple/40 relative mb-4 h-[220px] w-full overflow-hidden rounded-sm border sm:h-[260px] md:h-[320px] lg:h-[380px]">
+            <Image
+              src={post.header_image_url}
+              alt={post.title}
+              fill
+              priority={false}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1000px"
+              className="object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+          </div>
         )}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <h1 className="font-pixel text-2xl font-semibold tracking-tight">
