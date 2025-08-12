@@ -4,6 +4,7 @@ import { TagPill } from "@/components/TagPill";
 import type { Metadata } from "next";
 import { getProject } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
+export const runtime = "edge";
 import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({

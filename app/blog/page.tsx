@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useApi } from "@/lib/hooks/useApi";
 import type { BlogPost } from "@/lib/directus";
 
+export const runtime = "edge";
+
 export default function BlogIndex() {
   const { data: posts, isLoading, error } = useApi<BlogPost[]>("/api/blog");
   return (

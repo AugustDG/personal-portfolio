@@ -3,6 +3,8 @@ import { getProjects, getBlogs, getPhotos, getSiteMeta } from "@/lib/directus";
 import type { Metadata } from "next";
 import Image from "next/image";
 
+export const runtime = "edge";
+
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = base || undefined;

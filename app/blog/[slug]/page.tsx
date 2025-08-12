@@ -6,6 +6,7 @@ import readingTime from "reading-time";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { TagPill } from "@/components/TagPill";
 import { PageProps } from "@/lib/types";
+export const runtime = "edge";
 import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({

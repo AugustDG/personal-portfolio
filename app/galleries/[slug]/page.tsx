@@ -3,6 +3,7 @@ import { GalleryImagesClient } from "./client";
 import type { Metadata } from "next";
 import { getGallery } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
+export const runtime = "edge";
 import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({

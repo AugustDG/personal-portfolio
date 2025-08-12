@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getPhotos } from "@/lib/directus";
 import type { Metadata } from "next";
 
+export const runtime = "edge";
+
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/galleries`;
