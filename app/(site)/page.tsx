@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [projects, posts, galleries, site] = await Promise.all([
+  const [projects, posts, photos, site] = await Promise.all([
     getProjects(),
     getBlogs(),
     getPhotos(),
@@ -36,7 +36,7 @@ export default async function HomePage() {
   ]);
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
   const latestPosts = posts.slice(0, 3); // already sorted desc by published_at
-  const featuredPhotos = galleries.slice(0, 3);
+  const featuredPhotos = photos.slice(0, 3);
 
   return (
     <div className="space-y-12">
@@ -142,10 +142,7 @@ export default async function HomePage() {
               key={g.id}
               className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
             >
-              <Link
-                href={`/galleries/${g.slug}`}
-                className="block space-y-2 p-4"
-              >
+              <Link href={`/photos/${g.slug}`} className="block space-y-2 p-4">
                 <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
                   {g.title}
                 </h3>
@@ -156,7 +153,7 @@ export default async function HomePage() {
             </article>
           ))}
           {!featuredPhotos.length && (
-            <p className="opacity-60">No galleries yet.</p>
+            <p className="opacity-60">No photos yet.</p>
           )}
         </div>
       </section>

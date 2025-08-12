@@ -2,31 +2,29 @@ import Link from "next/link";
 import { getPhotos } from "@/lib/directus";
 import type { Metadata } from "next";
 
-export const runtime = "edge";
-
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
-  const canonical = `${base}/galleries`;
+  const canonical = `${base}/photos`;
   return {
     title: "Photos – Augusto Pinheiro",
-    description: "Photo galleries and visual explorations.",
+    description: "Photo photos and visual explorations.",
     alternates: { canonical },
     openGraph: {
       type: "website",
       title: "Photos – Augusto Pinheiro",
-      description: "Photo galleries and visual explorations.",
+      description: "Photo photos and visual explorations.",
       url: canonical,
     },
     twitter: {
       card: "summary",
       title: "Photos – Augusto Pinheiro",
-      description: "Photo galleries and visual explorations.",
+      description: "Photo photos and visual explorations.",
     },
   };
 }
 
 export default async function PhotosPage() {
-  const galleries = await getPhotos();
+  const photos = await getPhotos();
   return (
     <div className="space-y-10">
       <h1 className="font-pixel text-3xl font-semibold tracking-tight">
@@ -36,12 +34,12 @@ export default async function PhotosPage() {
         <span className="from-retro-yellow via-retro-magenta/60 mt-4 block h-1 w-56 bg-linear-to-r to-transparent" />
       </h1>
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {galleries.map((g) => (
+        {photos.map((g) => (
           <li
             key={g.id}
             className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
           >
-            <Link href={`/galleries/${g.slug}`} className="block space-y-1 p-4">
+            <Link href={`/photos/${g.slug}`} className="block space-y-1 p-4">
               <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 font-semibold tracking-wide transition-colors">
                 {g.title}
               </h2>
@@ -51,7 +49,7 @@ export default async function PhotosPage() {
             </Link>
           </li>
         ))}
-        {!galleries.length && <li className="opacity-60">No galleries yet.</li>}
+        {!photos.length && <li className="opacity-60">No photos yet.</li>}
       </ul>
       <script
         type="application/ld+json"
@@ -59,11 +57,11 @@ export default async function PhotosPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ItemList",
-            name: "Photo Galleries",
-            itemListElement: galleries.map((g, index) => ({
+            name: "Photo photos",
+            itemListElement: photos.map((g, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              url: `/galleries/${g.slug}`,
+              url: `/photos/${g.slug}`,
               name: g.title,
             })),
           }),

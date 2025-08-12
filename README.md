@@ -8,7 +8,7 @@ Features in progress:
 - Project detail basics (timeline, collaborators, tools, tags)
 - Blog (listing + detail w/ reading time) – rich markdown & code highlight TODO
 - Photos (listing + gallery detail with images)
-- Global client-side search (projects/blogs/galleries) via MiniSearch
+- Global client-side search (projects/blogs/photos) via MiniSearch
 - Directus CMS integration (fetching public collections via REST)
 
 Upcoming tasks:

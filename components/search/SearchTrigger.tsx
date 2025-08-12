@@ -34,7 +34,7 @@ export function SearchTrigger() {
             />
             <ul className="text-retro-brown divide-retro-purple/30 max-h-72 divide-y overflow-auto font-mono text-xs">
               {results.map((r) => {
-                const href = `/${r.type === "blog" ? "blog" : r.type === "project" ? "projects" : "galleries"}/${r.slug}`;
+                const href = `/${r.type === "blog" ? "blog" : r.type === "project" ? "projects" : "photos"}/${r.slug}`;
                 return (
                   <li key={r.id}>
                     <Link

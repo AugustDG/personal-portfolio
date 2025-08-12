@@ -2,7 +2,7 @@ import { getBlog } from "@/lib/directus";
 import Image from "next/image";
 import ClientBlogEnhancements from "./client";
 import type { Metadata } from "next";
-import readingTime from "reading-time";
+import { estimateReadingTime } from "@/lib/readingTime";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { TagPill } from "@/components/TagPill";
 import { PageProps } from "@/lib/types";
@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: { params: PageProps }) {
 
   if (!post) return <p className="opacity-60">Not found.</p>;
 
-  const rt = readingTime(post.body || "");
+  const rt = estimateReadingTime(post.body || "");
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
 
   return (

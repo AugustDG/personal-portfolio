@@ -18,10 +18,10 @@ export function SearchIndexer() {
   useEffect(() => {
     if (indexed) return;
     (async () => {
-      const [projects, posts, galleries] = await Promise.all([
+      const [projects, posts, photos] = await Promise.all([
         fetchJson<any[]>("/api/projects"),
         fetchJson<any[]>("/api/blog"),
-        fetchJson<any[]>("/api/galleries"),
+        fetchJson<any[]>("/api/photos"),
       ]);
       const docs = [
         ...(projects || []).map((p) => ({
@@ -40,7 +40,7 @@ export function SearchIndexer() {
           tags: b.tags || [],
           slug: b.slug,
         })),
-        ...(galleries || []).map((g) => ({
+        ...(photos || []).map((g) => ({
           id: `gallery-${g.id}`,
           type: "gallery" as const,
           title: g.title,

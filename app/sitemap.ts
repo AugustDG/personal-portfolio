@@ -3,7 +3,7 @@ import { getBlogs, getProjects, getPhotos } from "@/lib/directus";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
-  const [posts, projects, galleries] = await Promise.all([
+  const [posts, projects, photos] = await Promise.all([
     getBlogs(),
     getProjects(),
     getPhotos(),
@@ -13,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "",
     "/projects",
     "/blog",
-    "/galleries",
+    "/photos",
   ].map((p) => ({ url: `${base}${p || "/"}`, lastModified: new Date() }));
 
   const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
@@ -24,8 +24,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}/projects/${pr.slug}`,
     lastModified: new Date(),
   }));
-  const galleryRoutes: MetadataRoute.Sitemap = galleries.map((g) => ({
-    url: `${base}/galleries/${g.slug}`,
+  const galleryRoutes: MetadataRoute.Sitemap = photos.map((g) => ({
+    url: `${base}/photos/${g.slug}`,
     lastModified: new Date(),
   }));
 

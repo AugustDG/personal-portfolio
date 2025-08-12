@@ -18,7 +18,7 @@ export default async function SidebarSocials() {
             </a>
           </li>
           <li>
-            <a href="/galleries" className="hover:text-retro-magenta">
+            <a href="/photos" className="hover:text-retro-magenta">
               Photos
             </a>
           </li>

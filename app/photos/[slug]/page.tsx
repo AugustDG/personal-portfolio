@@ -15,7 +15,7 @@ export async function generateMetadata({
   const gallery = await getGallery(slug);
   if (!gallery) return { title: "Not found" };
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
-  const canonical = `${base}/galleries/${gallery.slug}`;
+  const canonical = `${base}/photos/${gallery.slug}`;
   const desc = gallery.title;
   const fallbackOg = `${base}/og?title=${encodeURIComponent(gallery.title)}&subtitle=${encodeURIComponent("Gallery")}`;
   return {
@@ -46,7 +46,7 @@ export default async function GalleryPage({ params }: { params: PageProps }) {
 
   return (
     <div className="space-y-6">
-      <BackLink href="/galleries" label="All Galleries" />
+      <BackLink href="/photos" label="All photos" />
       <div className="space-y-3">
         <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">
           {gallery.title}

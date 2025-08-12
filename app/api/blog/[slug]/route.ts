@@ -3,6 +3,7 @@ import { getBlogs } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
 
 export const revalidate = 120;
+export const runtime = "edge";
 
 export async function GET(_req: Request, { params }: { params: PageProps }) {
   const { slug } = await params;
