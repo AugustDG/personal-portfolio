@@ -3,9 +3,9 @@ import { GalleryImagesClient } from "./client";
 import type { Metadata } from "next";
 import { getGallery } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
-export const runtime = "edge";
-export const config = { runtime: "edge", nodejs_compat: true };
 import { BackLink } from "@/components/BackLink";
+
+export const runtime = "edge";
 
 export async function generateMetadata({
   params,
