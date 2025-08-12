@@ -54,7 +54,7 @@ export default async function HomePage() {
             )}
           </div>
           {site?.profile_image_url && (
-            <div className="pixel-border relative mx-auto w-40 shrink-0 overflow-hidden rounded-sm bg-[#12162b] shadow-md md:mx-0 md:w-48">
+            <div className="pixel-border relative mx-auto aspect-square w-40 shrink-0 overflow-hidden rounded-sm bg-[#12162b] shadow-md md:mx-0 md:w-56">
               <Image
                 src={site.profile_image_url}
                 alt={site.profile_image?.description || "Profile photo"}
