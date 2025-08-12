@@ -4,6 +4,7 @@ import { TagPill } from "@/components/TagPill";
 import type { Metadata } from "next";
 import { getProject } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
+import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({
   params,
@@ -49,6 +50,7 @@ export default async function ProjectDetail({ params }: { params: PageProps }) {
   return (
     <article className="space-y-8">
       <header className="space-y-6">
+        <BackLink href="/projects" label="All Projects" />
         {project.header_image_url && (
           <div className="border-retro-purple/40 relative mb-4 h-[220px] w-full overflow-hidden rounded-sm border sm:h-[260px] md:h-[320px] lg:h-[380px]">
             <Image

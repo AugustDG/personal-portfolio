@@ -6,6 +6,7 @@ import readingTime from "reading-time";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { TagPill } from "@/components/TagPill";
 import { PageProps } from "@/lib/types";
+import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({
   params,
@@ -58,6 +59,7 @@ export default async function BlogPostPage({ params }: { params: PageProps }) {
   return (
     <article className="space-y-6">
       <header className="space-y-2">
+        <BackLink href="/blog" label="All Posts" />
         {post.header_image_url && (
           <div className="border-retro-purple/40 relative mb-4 h-[220px] w-full overflow-hidden rounded-sm border sm:h-[260px] md:h-[320px] lg:h-[380px]">
             <Image

@@ -3,6 +3,7 @@ import { GalleryImagesClient } from "./client";
 import type { Metadata } from "next";
 import { getGallery } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
+import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({
   params,
@@ -44,6 +45,7 @@ export default async function GalleryPage({ params }: { params: PageProps }) {
 
   return (
     <div className="space-y-6">
+      <BackLink href="/galleries" label="All Galleries" />
       <div className="space-y-3">
         <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">
           {gallery.title}
