@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const runtime = "edge";
+export const config = { runtime: "edge", nodejs_compat: true };
 
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";

@@ -7,6 +7,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { TagPill } from "@/components/TagPill";
 import { PageProps } from "@/lib/types";
 export const runtime = "edge";
+export const config = { runtime: "edge", nodejs_compat: true };
 import { BackLink } from "@/components/BackLink";
 
 export async function generateMetadata({

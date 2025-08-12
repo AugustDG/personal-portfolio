@@ -4,6 +4,8 @@ import { PageProps } from "@/lib/types";
 
 export const revalidate = 120; // follow list cache
 export const runtime = "edge";
+export const config = { runtime: "edge", nodejs_compat: true };
+export const nodejs_compat = true;
 
 export async function GET(_req: Request, { params }: { params: PageProps }) {
   const { slug } = await params;
