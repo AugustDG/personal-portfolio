@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { getPhotos } from "@/lib/directus";
 import type { Metadata } from "next";
 
@@ -34,20 +35,19 @@ export default async function PhotosPage() {
         <span className="from-retro-yellow via-retro-magenta/60 mt-4 block h-1 w-56 bg-linear-to-r to-transparent" />
       </h1>
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {photos.map((g) => (
-          <li
-            key={g.id}
-            className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-          >
-            <Link href={`/photos/${g.slug}`} className="block space-y-1 p-4">
-              <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 font-semibold tracking-wide transition-colors">
-                {g.title}
-              </h2>
-              <p className="text-retro-cyan/90 text-xs opacity-80">
-                {g.images?.length || 0} images
-              </p>
-            </Link>
-          </li>
+        {photos.map((g, i) => (
+          <StaggerItem index={i} key={g.id} as="li">
+            <li className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+              <Link href={`/photos/${g.slug}`} className="block space-y-1 p-4">
+                <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 font-semibold tracking-wide transition-colors">
+                  {g.title}
+                </h2>
+                <p className="text-retro-cyan/90 text-xs opacity-80">
+                  {g.images?.length || 0} images
+                </p>
+              </Link>
+            </li>
+          </StaggerItem>
         ))}
         {!photos.length && <li className="opacity-60">No photos yet.</li>}
       </ul>

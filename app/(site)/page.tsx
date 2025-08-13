@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { getProjects, getBlogs, getPhotos, getSiteMeta } from "@/lib/directus";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -77,23 +78,22 @@ export default async function HomePage() {
           <span className="from-retro-purple via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredProjects.map((p) => (
-            <article
-              key={p.id}
-              className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-            >
-              <Link href={`/projects/${p.slug}`} className="block">
-                <div className="from-retro-magenta/10 via-retro-purple/0 to-retro-cyan/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="relative z-10 space-y-2 p-4">
-                  <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                    {p.title}
-                  </h3>
-                  <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
-                    {p.description}
-                  </p>
-                </div>
-              </Link>
-            </article>
+          {featuredProjects.map((p, i) => (
+            <StaggerItem index={i} key={p.id}>
+              <article className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link href={`/projects/${p.slug}`} className="block">
+                  <div className="from-retro-magenta/10 via-retro-purple/0 to-retro-cyan/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="relative z-10 space-y-2 p-4">
+                    <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                      {p.title}
+                    </h3>
+                    <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
+                      {p.description}
+                    </p>
+                  </div>
+                </Link>
+              </article>
+            </StaggerItem>
           ))}
           {!featuredProjects.length && (
             <p className="opacity-60">No featured projects yet.</p>
@@ -108,23 +108,22 @@ export default async function HomePage() {
           <span className="from-retro-magenta via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {latestPosts.map((p) => (
-            <article
-              key={p.id}
-              className="group border-retro-purple/40 hover:border-retro-cyan relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-            >
-              <Link href={`/blog/${p.slug}`} className="block">
-                <div className="from-retro-cyan/10 via-retro-purple/0 to-retro-magenta/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
-                <div className="relative z-10 space-y-2 p-4">
-                  <h3 className="text-retro-cyan group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                    {p.title}
-                  </h3>
-                  <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
-                    {p.excerpt}
-                  </p>
-                </div>
-              </Link>
-            </article>
+          {latestPosts.map((p, i) => (
+            <StaggerItem index={i} key={p.id}>
+              <article className="group border-retro-purple/40 hover:border-retro-cyan relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link href={`/blog/${p.slug}`} className="block">
+                  <div className="from-retro-cyan/10 via-retro-purple/0 to-retro-magenta/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="relative z-10 space-y-2 p-4">
+                    <h3 className="text-retro-cyan group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                      {p.title}
+                    </h3>
+                    <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
+                      {p.excerpt}
+                    </p>
+                  </div>
+                </Link>
+              </article>
+            </StaggerItem>
           ))}
           {!latestPosts.length && <p className="opacity-60">No posts yet.</p>}
         </div>
@@ -137,20 +136,22 @@ export default async function HomePage() {
           <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredPhotos.map((g) => (
-            <article
-              key={g.id}
-              className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-            >
-              <Link href={`/photos/${g.slug}`} className="block space-y-2 p-4">
-                <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                  {g.title}
-                </h3>
-                <p className="text-retro-cyan/90 text-xs leading-relaxed md:text-[13px]">
-                  {g.images?.length || 0} images
-                </p>
-              </Link>
-            </article>
+          {featuredPhotos.map((g, i) => (
+            <StaggerItem index={i} key={g.id}>
+              <article className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link
+                  href={`/photos/${g.slug}`}
+                  className="block space-y-2 p-4"
+                >
+                  <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                    {g.title}
+                  </h3>
+                  <p className="text-retro-cyan/90 text-xs leading-relaxed md:text-[13px]">
+                    {g.images?.length || 0} images
+                  </p>
+                </Link>
+              </article>
+            </StaggerItem>
           ))}
           {!featuredPhotos.length && (
             <p className="opacity-60">No photos yet.</p>
@@ -165,17 +166,19 @@ export default async function HomePage() {
           <span className="from-retro-cyan via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-          {site?.socials?.map((s: any) => (
-            <li key={s.url}>
-              <a
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
-              >
-                {s.label}
-              </a>
-            </li>
+          {site?.socials?.map((s: any, i: number) => (
+            <StaggerItem index={i} key={s.url} as="li" hoverShift={false}>
+              <li>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
+                >
+                  {s.label}
+                </a>
+              </li>
+            </StaggerItem>
           ))}
         </ul>
       </section>

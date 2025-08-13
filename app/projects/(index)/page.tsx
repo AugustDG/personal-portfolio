@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { StaggerItem } from "@/components/motion/StaggerItem";
 import { getProjects } from "@/lib/directus";
 import type { Metadata } from "next";
 
@@ -43,23 +44,22 @@ export default async function ProjectsPage() {
           <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((p) => (
-            <div
-              key={p.id}
-              className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-            >
-              <Link
-                href={`/projects/${p.slug}`}
-                className="relative z-10 block space-y-2 p-4"
-              >
-                <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                  {p.title}
-                </h3>
-                <p className="text-retro-cyan/90 line-clamp-3 text-xs leading-relaxed md:text-[13px]">
-                  {p.description}
-                </p>
-              </Link>
-            </div>
+          {featured.map((p, i) => (
+            <StaggerItem index={i} key={p.id}>
+              <div className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="relative z-10 block space-y-2 p-4"
+                >
+                  <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+                    {p.title}
+                  </h3>
+                  <p className="text-retro-cyan/90 line-clamp-3 text-xs leading-relaxed md:text-[13px]">
+                    {p.description}
+                  </p>
+                </Link>
+              </div>
+            </StaggerItem>
           ))}
           {!featured.length && (
             <p className="opacity-60">No featured projects yet.</p>
@@ -74,23 +74,22 @@ export default async function ProjectsPage() {
           <span className="from-retro-teal via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
         </h2>
         <ul className="space-y-3">
-          {others.map((p) => (
-            <li
-              key={p.id}
-              className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
-            >
-              <Link
-                href={`/projects/${p.slug}`}
-                className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center"
-              >
-                <span className="text-retro-magenta group-hover:text-retro-yellow flex-1 font-semibold tracking-wide transition-colors">
-                  {p.title}
-                </span>
-                <span className="text-retro-cyan/90 line-clamp-1 flex-2 text-xs opacity-80">
-                  {p.description}
-                </span>
-              </Link>
-            </li>
+          {others.map((p, i) => (
+            <StaggerItem index={i} key={p.id} as="li">
+              <li className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center"
+                >
+                  <span className="text-retro-magenta group-hover:text-retro-yellow flex-1 font-semibold tracking-wide transition-colors">
+                    {p.title}
+                  </span>
+                  <span className="text-retro-cyan/90 line-clamp-1 flex-2 text-xs opacity-80">
+                    {p.description}
+                  </span>
+                </Link>
+              </li>
+            </StaggerItem>
           ))}
           {!others.length && <li className="opacity-60">No other projects.</li>}
         </ul>
