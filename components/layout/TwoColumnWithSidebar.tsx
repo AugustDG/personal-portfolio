@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import SidebarSocials from "./SidebarSocials";
+import { SidebarWrapper } from "./SidebarWrapper";
 
 export const runtime = "edge";
 
@@ -15,12 +16,10 @@ export default function TwoColumnWithSidebar({
 }: TwoColumnWithSidebarProps) {
   return (
     <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1024px)_1fr]">
-      <div className={className + " animate-[fadeIn_0.5s_ease_0s_both]"}>
-        {children}
-      </div>
-      <div className="animate-[fadeIn_0.5s_ease_0s_both]">
+      <div className={className}>{children}</div>
+      <SidebarWrapper>
         <SidebarSocials />
-      </div>
+      </SidebarWrapper>
     </div>
   );
 }
