@@ -50,7 +50,7 @@ export default async function HomePage() {
               <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
             </h1>
             {site?.intro && (
-              <p className="mt-4 max-w-prose leading-relaxed whitespace-pre-line">
+              <p className="mt-4 leading-relaxed whitespace-pre-line">
                 {site.intro}
               </p>
             )}

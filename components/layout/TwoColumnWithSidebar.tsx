@@ -16,7 +16,9 @@ export default function TwoColumnWithSidebar({
   return (
     <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1024px)_1fr]">
       <div className={className}>{children}</div>
-      <SidebarSocials />
+      <div className="animate-[fadeIn_0.5s_ease_0s_both]">
+        <SidebarSocials />
+      </div>
     </div>
   );
 }
