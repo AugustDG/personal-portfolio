@@ -7,8 +7,14 @@ export default function BlogDetailLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1024px)_1fr]">
-      <div className="animate-[detailBounce_0.3s_cubic-bezier(.4,0,.2,1)_0s_both] space-y-10">
+    <div
+      id="__content_grid"
+      className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1024px)_1fr]"
+    >
+      <div
+        id="__primary"
+        className="animate-[detailBounce_0.3s_cubic-bezier(.4,0,.2,1)_0s_both] space-y-10"
+      >
         {children}
       </div>
       <SidebarSocials />

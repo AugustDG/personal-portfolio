@@ -11,6 +11,14 @@ header:has(nav) {
   opacity: 0;
   transform: translateY(-14px);
 }
+[data-focus-blog="true"] .focus-hide-colorbar {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
 [data-focus-blog="true"] header:hover {
   opacity: 1;
   transform: translateY(0);
@@ -21,22 +29,14 @@ header:has(nav) {
   /* sidebar */
   transition:
     opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: opacity, transform;
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    margin 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform, width, margin, padding;
 }
 
-/* Hide sidebar entirely for detail pages using sentinel */
-@supports (selector(:has(*))) {
-  #__content_grid:has(#__detail_root) {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-  #__content_grid:has(#__detail_root) > aside {
-    display: none !important;
-  }
-  #__content_grid:has(#__detail_root) #__primary {
-    grid-column: 1 / -1;
-  }
-}
+/* (Removed previous sentinel-based auto-hide of sidebar; now controlled solely by focus mode) */
 
 /* Animate article focus appearance */
 #__primary article {
@@ -64,6 +64,7 @@ header:has(nav) {
 }
 [data-focus-blog="true"] #__content_grid {
   grid-template-columns: minmax(0, 1fr) 0 !important;
+  gap: 0 !important;
 }
 [data-focus-blog="true"] #__content_grid > :last-child {
   width: 0 !important;
@@ -72,15 +73,31 @@ header:has(nav) {
   overflow: hidden !important;
 }
 [data-focus-blog="true"] #__primary {
-  grid-column: 1 / span 2;
-  display: flex;
-  justify-content: center;
+  grid-column: 1 / -1;
+  display: block;
 }
 [data-focus-blog="true"] #__primary > * {
-  max-width: 900px;
+  max-width: 1200px; /* respect overall layout width while giving more room than sidebar mode */
   width: 100%;
-  transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Hide blog post header image block in focus mode */
+[data-focus-blog="true"] #__detail_root header > div.relative.mb-4 {
+  /* matches the image wrapper */
+  opacity: 0;
+  transform: translateY(-12px) scale(0.98);
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  height: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Allow the outer grid wrapper to use full viewport width in focus mode */
+/* Keep container's existing max-width (e.g., 1400px from layout) without forcing full viewport */
 
 html {
   font-family: var(--font-body);

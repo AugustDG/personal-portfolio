@@ -1,12 +1,12 @@
 export function ColorBar() {
   return (
-    <div className="w-full h-2 md:h-3 flex">
-      <div className="flex-1 bg-retro-magenta" />
-      <div className="flex-1 bg-retro-cyan" />
-      <div className="flex-1 bg-retro-yellow" />
-      <div className="flex-1 bg-retro-purple" />
-      <div className="flex-1 bg-retro-orange" />
-      <div className="flex-1 bg-retro-teal" />
+    <div className="focus-hide-colorbar flex h-2 w-full md:h-3">
+      <div className="bg-retro-magenta flex-1" />
+      <div className="bg-retro-cyan flex-1" />
+      <div className="bg-retro-yellow flex-1" />
+      <div className="bg-retro-purple flex-1" />
+      <div className="bg-retro-orange flex-1" />
+      <div className="bg-retro-teal flex-1" />
     </div>
   );
 }
