@@ -198,6 +198,21 @@ html {
   }
 
   /* Custom utilities */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .no-scrollbar::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border: none !important;
+  }
 }
 
 @layer utilities {

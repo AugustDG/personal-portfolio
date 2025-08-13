@@ -17,7 +17,11 @@ export function Tooltip({
 }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const timer = useRef<number | undefined>(undefined);
+  const isTouch =
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 640px)").matches;
   const show = () => {
+    if (isTouch) return; // suppress on mobile
     timer.current = window.setTimeout(() => setOpen(true), delayMs);
   };
   const hide = () => {
@@ -34,7 +38,7 @@ export function Tooltip({
     >
       {children}
       <AnimatePresence>
-        {open && (
+        {open && !isTouch && (
           <motion.span
             initial={{ opacity: 0, y: side === "top" ? 4 : -4, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
