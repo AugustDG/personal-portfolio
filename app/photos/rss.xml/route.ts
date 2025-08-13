@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { getPhotos } from "@/lib/directus";
+import { getPhotoGalleries } from "@/lib/directus";
 import { getBaseUrl } from "../../api/utils/base-url";
 
 export const runtime = "edge";
 
 export async function GET() {
   const base = getBaseUrl();
-  const galleries = await getPhotos();
+  const galleries = await getPhotoGalleries();
   const updated = new Date().toISOString();
   const now = new Date();
   const items = galleries

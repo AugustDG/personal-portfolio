@@ -1,12 +1,12 @@
 import { MetadataRoute } from "next";
-import { getBlogs, getProjects, getPhotos } from "@/lib/directus";
+import { getBlogs, getProjects, getPhotoGalleries } from "@/lib/directus";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
   const [posts, projects, photos] = await Promise.all([
     getBlogs(),
     getProjects(),
-    getPhotos(),
+    getPhotoGalleries(),
   ]);
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -24,12 +24,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${base}/projects/${pr.slug}`,
     lastModified: new Date(),
   }));
-  const galleryRoutes: MetadataRoute.Sitemap = photos.map((g) => ({
+  const photosRoutes: MetadataRoute.Sitemap = photos.map((g) => ({
     url: `${base}/photos/${g.slug}`,
     lastModified: new Date(),
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...projectRoutes, ...galleryRoutes];
+  return [...staticRoutes, ...blogRoutes, ...projectRoutes, ...photosRoutes];
 }
 
 function parseDate(str: string) {

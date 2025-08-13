@@ -1,4 +1,9 @@
-import { getSiteMeta, getProjects, getBlogs, getPhotos } from "@/lib/directus";
+import {
+  getSiteMeta,
+  getProjects,
+  getBlogs,
+  getPhotoGalleries,
+} from "@/lib/directus";
 
 export default async function SidebarSocials() {
   // Fetch all sidebar data in parallel for performance
@@ -6,7 +11,7 @@ export default async function SidebarSocials() {
     getSiteMeta(),
     getProjects(),
     getBlogs(),
-    getPhotos(),
+    getPhotoGalleries(),
   ]);
 
   const featuredProjects = (projects || [])
@@ -14,7 +19,7 @@ export default async function SidebarSocials() {
     .slice(0, 4);
   const latestPosts = (blogs || []).slice(0, 4);
 
-  // Flatten photos (gallery images) and keep reference to gallery slug
+  // Flatten photos (photos images) and keep reference to photos slug
   const recentPhotos = (galleries || [])
     .flatMap((g) => (g.images || []).map((img) => ({ img, slug: g.slug })))
     .slice(0, 6);

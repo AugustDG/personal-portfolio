@@ -43,8 +43,8 @@ export function SearchIndexer() {
           slug: b.slug,
         })),
         ...(photos || []).map((g) => ({
-          id: `gallery-${g.id}`,
-          type: "gallery" as const,
+          id: `photos-${g.id}`,
+          type: "photos" as const,
           title: g.title,
           body: (g.images || []).map((im: any) => im.description).join(" "),
           slug: g.slug,

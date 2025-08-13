@@ -4,7 +4,7 @@ import MiniSearch, { SearchResult } from "minisearch";
 
 interface IndexedDoc {
   id: string;
-  type: "project" | "blog" | "gallery";
+  type: "project" | "blog" | "photos";
   title: string;
   body: string;
   tags?: string[];

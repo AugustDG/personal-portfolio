@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { StaggerItem } from "@/components/motion/StaggerItem";
-import { getProjects, getBlogs, getPhotos, getSiteMeta } from "@/lib/directus";
+import {
+  getProjects,
+  getBlogs,
+  getPhotoGalleries,
+  getSiteMeta,
+} from "@/lib/directus";
 import type { Metadata } from "next";
 import Image from "next/image";
 
@@ -33,7 +38,7 @@ export default async function HomePage() {
   const [projects, posts, photos, site] = await Promise.all([
     getProjects(),
     getBlogs(),
-    getPhotos(),
+    getPhotoGalleries(),
     getSiteMeta(),
   ]);
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);

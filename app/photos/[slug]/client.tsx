@@ -8,7 +8,7 @@ interface Img {
   description?: string;
 }
 
-export function GalleryImagesClient({ images }: { images: Img[] }) {
+export function PhotosImagesClient({ images }: { images: Img[] }) {
   const { openLightbox } = useLightbox();
 
   if (!images?.length) return null;

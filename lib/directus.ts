@@ -41,7 +41,7 @@ export interface Image {
   src_url?: string;
 }
 
-export interface Gallery {
+export interface PhotoGallery {
   id: string;
   slug: string;
   title: string;
@@ -267,7 +267,7 @@ export async function getBlog(slug: string): Promise<BlogPost | null> {
   return (await getBlogs()).find((b) => b.slug === slug) || null; // reuse formatting logic
 }
 
-export async function getPhotos(): Promise<Gallery[]> {
+export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
   const data = await safeRequest(() =>
     directus.request(
       readItems("galleries", {
@@ -292,10 +292,12 @@ export async function getPhotos(): Promise<Gallery[]> {
       description: img.images_id.description,
     })),
     tags: g.tags || [],
-  })) as Gallery[];
+  })) as PhotoGallery[];
 }
 
-export async function getGallery(slug: string): Promise<Gallery | null> {
+export async function getPhotoGallery(
+  slug: string,
+): Promise<PhotoGallery | null> {
   const data = await safeRequest(() =>
     directus.request(
       readItems("galleries", {
@@ -320,7 +322,7 @@ export async function getGallery(slug: string): Promise<Gallery | null> {
       description: img.images_id.description,
     })),
     tags: g.tags || [],
-  } as Gallery;
+  } as PhotoGallery;
 }
 
 export async function getSiteMeta(): Promise<SiteMeta | null> {

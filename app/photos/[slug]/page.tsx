@@ -1,7 +1,7 @@
 import { TagPill } from "@/components/TagPill";
-import { GalleryImagesClient } from "./client";
+import { PhotosImagesClient } from "./client";
 import type { Metadata } from "next";
-import { getGallery } from "@/lib/directus";
+import { getPhotoGallery, getPhotoGalleries } from "@/lib/directus";
 import { PageProps } from "@/lib/types";
 import { BackLink } from "@/components/BackLink";
 
@@ -13,57 +13,57 @@ export async function generateMetadata({
   params: PageProps;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const gallery = await getGallery(slug);
+  const photo = await getPhotoGallery(slug);
 
-  if (!gallery) return { title: "Not found" };
+  if (!photo) return { title: "Not found" };
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
-  const canonical = `${base}/photos/${gallery.slug}`;
-  const desc = gallery.title;
-  const fallbackOg = `${base}/og?title=${encodeURIComponent(gallery.title)}&subtitle=${encodeURIComponent("Gallery")}`;
+  const canonical = `${base}/photos/${photo.slug}`;
+  const desc = photo.title;
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(photo.title)}&subtitle=${encodeURIComponent("Photos")}`;
 
   return {
-    title: `${gallery.title} - Augusto Pinheiro`,
+    title: `${photo.title} - Augusto Pinheiro`,
     description: desc,
     alternates: { canonical },
     openGraph: {
       type: "website",
-      title: gallery.title,
+      title: photo.title,
       description: desc,
       url: canonical,
-      images: [{ url: gallery.images?.[0]?.src_url || fallbackOg }],
+      images: [{ url: photo.images?.[0]?.src_url || fallbackOg }],
     },
     twitter: {
       card: "summary_large_image",
-      title: gallery.title,
+      title: photo.title,
       description: desc,
-      images: [gallery.images?.[0]?.src_url || fallbackOg],
+      images: [photo.images?.[0]?.src_url || fallbackOg],
     },
   };
 }
 
-export default async function GalleryPage({ params }: { params: PageProps }) {
+export default async function PhotosPage({ params }: { params: PageProps }) {
   const { slug } = await params;
-  const gallery = await getGallery(slug);
+  const photo = await getPhotoGallery(slug);
 
-  if (!gallery) return <p className="opacity-60">Not found.</p>;
+  if (!photo) return <p className="opacity-60">Not found.</p>;
 
   return (
     <div id="__detail_root" className="space-y-6">
       <BackLink href="/photos" label="All photos" />
       <div className="space-y-3">
         <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">
-          {gallery.title}
+          {photo.title}
         </h1>
-        {Array.isArray(gallery.tags) && gallery.tags.length > 0 && (
+        {Array.isArray(photo.tags) && photo.tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {gallery.tags.map((t: string) => (
+            {photo.tags.map((t: string) => (
               <TagPill key={t} tag={t} />
             ))}
           </div>
         )}
       </div>
-      {gallery.images?.length ? (
-        <GalleryImagesClient images={gallery.images} />
+      {photo.images?.length ? (
+        <PhotosImagesClient images={photo.images} />
       ) : (
         <p className="opacity-60">No images yet.</p>
       )}
@@ -73,14 +73,14 @@ export default async function GalleryPage({ params }: { params: PageProps }) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ItemList",
-            name: gallery.title,
-            itemListElement: gallery.images?.map((img, index) => ({
+            name: photo.title,
+            itemListElement: photo.images?.map((img, index) => ({
               "@type": "ListItem",
               position: index + 1,
               url: img.src_url,
               name: img.description || `Image ${index + 1}`,
             })),
-            keywords: gallery.tags?.join(", "),
+            keywords: photo.tags?.join(", "),
           }),
         }}
       />

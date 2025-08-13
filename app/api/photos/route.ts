@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { getPhotos } from "@/lib/directus";
+import { getPhotoGalleries } from "@/lib/directus";
 
 export const revalidate = 300; // 5 minutes
 
 export async function GET() {
-  const data = await getPhotos();
+  const data = await getPhotoGalleries();
 
   return new NextResponse(JSON.stringify({ data }), {
     headers: {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { StaggerItem } from "@/components/motion/StaggerItem";
-import { getPhotos } from "@/lib/directus";
+import { getPhotoGalleries } from "@/lib/directus";
 import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PhotosPage() {
-  const photos = await getPhotos();
+  const photos = await getPhotoGalleries();
 
   return (
     <div className="space-y-10">
