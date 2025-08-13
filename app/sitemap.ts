@@ -35,8 +35,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 function parseDate(str: string) {
   // incoming format "HH:mm DD/MM/YYYY"; fallback to now
   const match = /(\d{2}):(\d{2}) (\d{2})\/(\d{2})\/(\d{4})/.exec(str);
+
   if (!match) return new Date();
   const [_, hh, mm, dd, mon, yyyy] = match;
+
   return new Date(
     Number(yyyy),
     Number(mon) - 1,

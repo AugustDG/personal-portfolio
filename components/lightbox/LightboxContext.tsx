@@ -21,6 +21,7 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
     setAlt(alt);
     setOpen(true);
   };
+
   const closeLightbox = () => {
     setOpen(false);
     setSrc(null);
@@ -38,6 +39,8 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
 
 export function useLightbox() {
   const ctx = useContext(LightboxContext);
+
   if (!ctx) throw new Error("useLightbox must be used within LightboxProvider");
+
   return ctx;
 }

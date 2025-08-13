@@ -9,14 +9,17 @@ export function Lightbox() {
 
   useEffect(() => {
     if (!open) return;
+
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") closeLightbox();
     }
     window.addEventListener("keydown", onKey);
+
     return () => window.removeEventListener("keydown", onKey);
   }, [open, closeLightbox]);
 
   if (!open || !src) return null;
+
   return (
     <div
       ref={overlayRef}
@@ -36,6 +39,7 @@ export function Lightbox() {
       >
         {(utils: { resetTransform: () => void }) => (
           <TransformComponent wrapperClass="!overflow-visible">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={src}
               alt={alt || "Image"}

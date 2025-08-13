@@ -7,6 +7,7 @@ interface Img {
   src_url?: string;
   description?: string;
 }
+
 export function GalleryImagesClient({ images }: { images: Img[] }) {
   const { openLightbox } = useLightbox();
 

@@ -15,6 +15,7 @@ interface Props {
 
 export function MarkdownRenderer({ content, className }: Props) {
   const { openLightbox } = useLightbox();
+
   return (
     <div
       className={clsx("prose prose-invert prose-readable w-full", className)}
@@ -30,6 +31,7 @@ export function MarkdownRenderer({ content, className }: Props) {
           ),
           code: ({ className, children }) => {
             const isInline = !/language-/.test(className || "");
+
             return isInline ? (
               <code className="text-retro-yellow/90 rounded bg-white/10 px-1 py-0.5 font-mono text-[0.85em]">
                 {children}
@@ -64,6 +66,7 @@ export function MarkdownRenderer({ content, className }: Props) {
           ),
           img: (props) => {
             const src = (props.src as string) || "";
+
             return (
               <span
                 className="pixel-border mx-auto my-6 block max-w-full cursor-zoom-in overflow-hidden"

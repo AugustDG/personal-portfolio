@@ -26,8 +26,10 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem("a11y-prefs") || "{}");
+
       if (typeof saved.reducedChromatic === "boolean")
         setReducedChromatic(saved.reducedChromatic);
+
       if (typeof saved.highContrast === "boolean")
         setHighContrast(saved.highContrast);
     } catch {}
@@ -45,8 +47,10 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   // apply document class for global style overrides
   useEffect(() => {
     const root = document.documentElement;
+
     if (reducedChromatic) root.classList.add("a11y-reduced-chroma");
     else root.classList.remove("a11y-reduced-chroma");
+
     if (highContrast) root.classList.add("a11y-high-contrast");
     else root.classList.remove("a11y-high-contrast");
   }, [reducedChromatic, highContrast]);
@@ -57,6 +61,7 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
     toggleReducedChromatic: () => setReducedChromatic((v) => !v),
     toggleHighContrast: () => setHighContrast((v) => !v),
   };
+
   return (
     <AccessibilityContext.Provider value={value}>
       {children}
@@ -66,9 +71,11 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
 
 export function useAccessibility() {
   const ctx = useContext(AccessibilityContext);
+
   if (!ctx)
     throw new Error(
       "useAccessibility must be used inside AccessibilityProvider",
     );
+
   return ctx;
 }

@@ -42,10 +42,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     });
   }
 
-  const results = useMemo(
-    () => (query ? mini!.search(query) : []),
-    [query, version],
-  );
+  const results = useMemo(() => (query ? mini!.search(query) : []), [query]);
 
   function addDocuments(docs: IndexedDoc[]) {
     mini!.addAll(docs);
@@ -72,6 +69,8 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
 export function useSearch() {
   const ctx = useContext(SearchContext);
+
   if (!ctx) throw new Error("useSearch must be used within SearchProvider");
+
   return ctx;
 }

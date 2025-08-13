@@ -5,6 +5,7 @@ export const revalidate = 300; // 5 minutes
 
 export async function GET() {
   const data = await getPhotos();
+
   return new NextResponse(JSON.stringify({ data }), {
     headers: {
       "Content-Type": "application/json",

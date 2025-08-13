@@ -23,5 +23,6 @@ export function estimateReadingTime(
   const minutesFloat = words / wpm;
   const minutes = Math.max(1, Math.ceil(minutesFloat));
   const time = Math.round(minutesFloat * 60 * 1000);
+
   return { words, minutes, time, text: `${minutes} min read` };
 }

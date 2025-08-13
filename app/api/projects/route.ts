@@ -5,6 +5,7 @@ export const revalidate = 120; // 2 minutes
 
 export async function GET() {
   const data = await getProjects();
+
   return new NextResponse(JSON.stringify({ data }), {
     headers: {
       "Content-Type": "application/json",

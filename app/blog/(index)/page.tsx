@@ -6,6 +6,7 @@ import type { BlogPost } from "@/lib/directus";
 
 export default function BlogIndex() {
   const { data: posts, isLoading, error } = useApi<BlogPost[]>("/api/blog");
+
   return (
     <div className="space-y-10">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

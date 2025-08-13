@@ -23,6 +23,7 @@ export async function generateMetadata({
   const desc = project.description?.slice(0, 155) || project.title;
 
   const fallbackOg = `${base}/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent("Project")}`;
+
   return {
     title: `${project.title} – Augusto Pinheiro`,
     description: desc,

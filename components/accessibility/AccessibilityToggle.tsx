@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 export function AccessibilityToggle() {
   const { reducedChromatic, toggleReducedChromatic } = useAccessibility();
+
   return (
     <motion.button
       whileTap={{ scale: 0.9 }}

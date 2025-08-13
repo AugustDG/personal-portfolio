@@ -6,6 +6,7 @@ export const revalidate = 600; // ISR-like caching for this Route Handler
 
 export async function GET() {
   const data = await getSiteMeta();
+
   return new NextResponse(JSON.stringify({ data }), {
     headers: {
       "Content-Type": "application/json",

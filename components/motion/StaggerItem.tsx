@@ -18,6 +18,7 @@ export function StaggerItem({
   delayStep = 0.04,
 }: StaggerItemProps) {
   const MotionTag: any = motion(as as any);
+
   return (
     <MotionTag
       initial={{ opacity: 0, y: 18 }}

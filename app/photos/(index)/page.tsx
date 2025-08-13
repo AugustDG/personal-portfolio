@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/photos`;
+
   return {
     title: "Photos – Augusto Pinheiro",
     description: "Photo photos and visual explorations.",
@@ -29,6 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PhotosPage() {
   const photos = await getPhotos();
+
   return (
     <div className="space-y-10">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

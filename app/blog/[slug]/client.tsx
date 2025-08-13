@@ -24,12 +24,14 @@ export default function ClientBlogEnhancements({
   React.useEffect(() => {
     if (focus) document.documentElement.setAttribute("data-focus-blog", "true");
     else document.documentElement.removeAttribute("data-focus-blog");
+
     return () => document.documentElement.removeAttribute("data-focus-blog");
   }, [focus]);
 
   const handleShare = React.useCallback(async () => {
     try {
       const url = window.location.href;
+
       if (navigator.share) {
         await navigator.share({ title: post.title, url });
         setShareState("shared");
@@ -95,5 +97,6 @@ export default function ClientBlogEnhancements({
   );
 
   if (variant === "inline") return buttons;
+
   return <div className="space-y-3">{buttons}</div>;
 }

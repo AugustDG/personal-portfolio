@@ -40,6 +40,7 @@ export interface Image {
   description?: string;
   src_url?: string;
 }
+
 export interface Gallery {
   id: string;
   slug: string;
@@ -63,12 +64,14 @@ export const directus = createDirectus(url).with(rest());
 
 async function safeRequest<T>(fn: () => Promise<T>): Promise<T | null> {
   if (!url) return null;
+
   try {
     return await fn();
   } catch (e) {
     if (process.env.NODE_ENV === "development") {
       console.warn("Directus request failed", e);
     }
+
     return null;
   }
 }
@@ -78,7 +81,9 @@ function expandAsset(
   params?: Record<string, string | number>,
 ): string | undefined {
   if (!id) return undefined;
+
   if (id.startsWith("http://") || id.startsWith("https://")) return id; // already full
+
   if (!publicDirectusUrl) return undefined;
   const base = publicDirectusUrl.replace(/\/$/, "");
   const qs = params
@@ -87,6 +92,7 @@ function expandAsset(
         Object.entries(params).map(([k, v]) => [k, String(v)]),
       ).toString()
     : "";
+
   return `${base}/assets/${id}${qs}`;
 }
 
@@ -113,15 +119,19 @@ export async function getProjects(): Promise<Project[]> {
       }),
     ),
   );
+
   return ((data as any[]) || []).map((p) => {
     const formatMonthYear = (value?: string | null) => {
       if (!value) return undefined;
       const d = new Date(value);
+
       if (isNaN(d.getTime())) return undefined;
       const mm = String(d.getMonth() + 1).padStart(2, "0");
       const yyyy = d.getFullYear();
+
       return `${mm}/${yyyy}`;
     };
+
     return {
       ...p,
       started_at: formatMonthYear(p.started_at),
@@ -157,16 +167,21 @@ export async function getProject(slug: string): Promise<Project | null> {
       }),
     ),
   );
+
   if (!data || !(data as any[]).length) return null;
   const p = (data as any[])[0];
+
   const formatMonthYear = (value?: string | null) => {
     if (!value) return undefined;
     const d = new Date(value);
+
     if (isNaN(d.getTime())) return undefined;
     const mm = String(d.getMonth() + 1).padStart(2, "0");
     const yyyy = d.getFullYear();
+
     return `${mm}/${yyyy}`;
   };
+
   return {
     ...p,
     started_at: formatMonthYear(p.started_at),
@@ -198,18 +213,22 @@ export async function getBlogs(): Promise<BlogPost[]> {
       }),
     ),
   );
+
   return ((data as any[]) || []).map((b) => {
     const formatDateTime = (value?: string | null) => {
       if (!value) return undefined;
       const d = new Date(value);
+
       if (isNaN(d.getTime())) return undefined;
       const hh = String(d.getHours()).padStart(2, "0");
       const mm = String(d.getMinutes()).padStart(2, "0");
       const day = String(d.getDate()).padStart(2, "0");
       const mon = String(d.getMonth() + 1).padStart(2, "0");
       const yyyy = d.getFullYear();
+
       return `${hh}:${mm} ${day}/${mon}/${yyyy}`;
     };
+
     return {
       ...b,
       published_at: formatDateTime(b.published_at),
@@ -242,7 +261,9 @@ export async function getBlog(slug: string): Promise<BlogPost | null> {
       }),
     ),
   );
+
   if (!data || !(data as any[]).length) return null;
+
   return (await getBlogs()).find((b) => b.slug === slug) || null; // reuse formatting logic
 }
 
@@ -256,8 +277,10 @@ export async function getPhotos(): Promise<Gallery[]> {
       }),
     ),
   );
+
   // Directus returns relational arrays flat inside object; ensure shape
   if (!data) return [];
+
   return (data as any[]).map((g) => ({
     id: g.id,
     slug: g.slug,
@@ -282,8 +305,10 @@ export async function getGallery(slug: string): Promise<Gallery | null> {
       }),
     ),
   );
+
   if (!data || !(data as any[]).length) return null;
   const g = (data as any[])[0];
+
   return {
     id: g.id,
     slug: g.slug,
@@ -307,9 +332,12 @@ export async function getSiteMeta(): Promise<SiteMeta | null> {
       }),
     ),
   );
+
   if (!data) return null;
   const record = Array.isArray(data) ? data[0] : (data as any);
+
   if (!record) return null;
+
   return {
     id: record.id,
     intro: record.intro || "",

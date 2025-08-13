@@ -17,10 +17,12 @@ export async function GET() {
       const enclosure = p.header_image_url
         ? `<enclosure url="${escapeAttr(p.header_image_url)}" type="image/jpeg" />`
         : "";
+
       return `<item><title>${escapeXml(p.title)}</title><link>${link}</link><guid isPermaLink="true">${link}</guid><pubDate>${new Date(pubIso).toUTCString()}</pubDate>${renderTags(p.tags)}${enclosure}<description><![CDATA[${desc}]]></description></item>`;
     })
     .join("");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog – Augusto Pinheiro</title><link>${base}/blog</link><atom:link href="${base}/blog/rss.xml" rel="self" type="application/rss+xml" /><description>Latest blog posts</description><lastBuildDate>${new Date(updated).toUTCString()}</lastBuildDate>${items}</channel></rss>`;
+
   return new NextResponse(xml, {
     status: 200,
     headers: {
@@ -39,23 +41,29 @@ function escapeXml(str: string) {
       ] as string,
   );
 }
+
 function parseDate(val?: string) {
   if (!val) return undefined; // HH:mm DD/MM/YYYY
+
   if (/\d{2}:\d{2} \d{2}\/\d{2}\/\d{4}/.test(val)) {
     const [time, date] = val.split(" ");
     const [hh, mm] = time.split(":").map(Number);
     const [day, mon, year] = date.split("/").map(Number);
     const d = new Date(year, mon - 1, day, hh, mm);
+
     return d.toISOString();
   }
   const d = new Date(val);
+
   return isNaN(d.getTime()) ? undefined : d.toISOString();
 }
+
 function renderTags(tags?: string[]) {
   return (tags || [])
     .map((t) => `<category>${escapeXml(t)}</category>`)
     .join("");
 }
+
 function escapeAttr(str: string) {
   return str.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 }

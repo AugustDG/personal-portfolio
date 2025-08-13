@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/projects`;
+
   return {
     title: "Projects – Augusto Pinheiro",
     description: "Selected software projects, side quests and experiments.",
@@ -31,6 +32,7 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
   const featured = projects.filter((p) => p.featured);
   const others = projects.filter((p) => !p.featured);
+
   return (
     <div className="space-y-14">
       <section>

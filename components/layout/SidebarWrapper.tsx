@@ -17,10 +17,12 @@ export function SidebarWrapper({ children }: SidebarWrapperProps) {
     const isHome = pathname === "/";
     const cameFromHome = prev === "/" && !isHome;
     const goingHome = isHome && prev && prev !== "/";
+
     if (cameFromHome || goingHome) {
       setAnimate(true);
       const t = setTimeout(() => setAnimate(false), 600);
       prevPathRef.current = pathname; // update after scheduling
+
       return () => clearTimeout(t);
     }
     prevPathRef.current = pathname;

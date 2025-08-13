@@ -25,6 +25,7 @@ export async function generateMetadata({
   const canonical = `${base}/blog/${post.slug}`;
 
   const fallbackOg = `${base}/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent("Blog+Post")}`;
+
   return {
     title: `${post.title} – Augusto Pinheiro`,
     description: desc,

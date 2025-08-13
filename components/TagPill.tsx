@@ -12,6 +12,7 @@ interface TagPillProps {
 // Unified neon tag pill styling
 export function TagPill({ tag, className }: TagPillProps) {
   const { setQuery, setOpen } = useSearch();
+
   return (
     <motion.button
       type="button"

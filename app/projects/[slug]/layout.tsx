@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import SidebarSocials from "@/components/layout/SidebarSocials";
+
 export const runtime = "edge";
+
 export default function ProjectDetailLayout({
   children,
 }: {

@@ -18,10 +18,12 @@ export async function GET() {
       const enclosure = firstImage
         ? `<enclosure url="${escapeAttr(firstImage)}" type="image/jpeg" />`
         : "";
+
       return `<item><title>${escapeXml(g.title)}</title><link>${link}</link><guid isPermaLink="true">${link}</guid><pubDate>${dt.toUTCString()}</pubDate>${renderTags(g.tags)}${enclosure}<description><![CDATA[${desc}]]></description></item>`;
     })
     .join("");
   const xml = `<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\"><channel><title>Photos – Augusto Pinheiro</title><link>${base}/photos</link><atom:link href=\"${base}/photos/rss.xml\" rel=\"self\" type=\"application/rss+xml\" /><description>Latest photo galleries</description><lastBuildDate>${new Date(updated).toUTCString()}</lastBuildDate>${items}</channel></rss>`;
+
   return new NextResponse(xml, {
     status: 200,
     headers: {
@@ -40,11 +42,13 @@ function escapeXml(str: string) {
       ] as string,
   );
 }
+
 function renderTags(tags?: string[]) {
   return (tags || [])
     .map((t) => `<category>${escapeXml(t)}</category>`)
     .join("");
 }
+
 function escapeAttr(str: string) {
   return str.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 }

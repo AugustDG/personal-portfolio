@@ -14,11 +14,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const gallery = await getGallery(slug);
+
   if (!gallery) return { title: "Not found" };
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/photos/${gallery.slug}`;
   const desc = gallery.title;
   const fallbackOg = `${base}/og?title=${encodeURIComponent(gallery.title)}&subtitle=${encodeURIComponent("Gallery")}`;
+
   return {
     title: `${gallery.title} - Augusto Pinheiro`,
     description: desc,

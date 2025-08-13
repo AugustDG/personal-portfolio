@@ -20,14 +20,17 @@ export function Tooltip({
   const isTouch =
     typeof window !== "undefined" &&
     window.matchMedia("(max-width: 640px)").matches;
+
   const show = () => {
     if (isTouch) return; // suppress on mobile
     timer.current = window.setTimeout(() => setOpen(true), delayMs);
   };
+
   const hide = () => {
     if (timer.current) window.clearTimeout(timer.current);
     setOpen(false);
   };
+
   return (
     <span
       className="relative inline-flex"

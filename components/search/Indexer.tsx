@@ -5,8 +5,10 @@ import { useSearch } from "./SearchContext";
 async function fetchJson<T>(url: string): Promise<T | null> {
   try {
     const res = await fetch(url);
+
     if (!res.ok) return null;
     const data = await res.json();
+
     return (data.data as T) || null;
   } catch {
     return null;
@@ -53,5 +55,6 @@ export function SearchIndexer() {
       setIndexed(true);
     })();
   }, [addDocuments, indexed, setIndexed]);
+
   return null;
 }
