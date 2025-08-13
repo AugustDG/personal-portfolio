@@ -12,7 +12,7 @@ export function RetroNav({ rightSlot }: { rightSlot?: ReactNode }) {
       <nav className="font-pixel relative mx-auto flex max-w-[1400px] items-center gap-3 p-3 text-[10px] sm:text-xs md:text-sm">
         {/* Scrollable link track */}
         <div
-          className="no-scrollbar relative -mx-1 flex min-w-0 flex-1 items-stretch gap-3 overflow-x-auto overscroll-x-contain px-1 pr-6"
+          className="no-scrollbar relative -mx-1 flex min-w-0 flex-1 items-stretch gap-3 overflow-x-auto px-1 pr-6"
           aria-label="Primary navigation"
         >
           <div className="from-retro-beige/95 pointer-events-none absolute inset-y-0 left-0 w-5 bg-gradient-to-r to-transparent md:hidden" />

@@ -76,7 +76,7 @@ export default async function ProjectsPage() {
         <ul className="space-y-3">
           {others.map((p, i) => (
             <StaggerItem index={i} key={p.id} as="li">
-              <li className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+              <div className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link
                   href={`/projects/${p.slug}`}
                   className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center"
@@ -88,7 +88,7 @@ export default async function ProjectsPage() {
                     {p.description}
                   </span>
                 </Link>
-              </li>
+              </div>
             </StaggerItem>
           ))}
           {!others.length && <li className="opacity-60">No other projects.</li>}

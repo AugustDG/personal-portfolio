@@ -168,16 +168,14 @@ export default async function HomePage() {
         <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
           {site?.socials?.map((s: any, i: number) => (
             <StaggerItem index={i} key={s.url} as="li" hoverShift={false}>
-              <li>
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
-                >
-                  {s.label}
-                </a>
-              </li>
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pixel-border hover:bg-retro-purple/30 text-retro-cyan block rounded-sm bg-[#12162b] px-4 py-3 font-mono text-sm transition-colors"
+              >
+                {s.label}
+              </a>
             </StaggerItem>
           ))}
         </ul>

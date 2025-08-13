@@ -37,7 +37,7 @@ export default async function PhotosPage() {
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((g, i) => (
           <StaggerItem index={i} key={g.id} as="li">
-            <li className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+            <div className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
               <Link href={`/photos/${g.slug}`} className="block space-y-1 p-4">
                 <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 font-semibold tracking-wide transition-colors">
                   {g.title}
@@ -46,7 +46,7 @@ export default async function PhotosPage() {
                   {g.images?.length || 0} images
                 </p>
               </Link>
-            </li>
+            </div>
           </StaggerItem>
         ))}
         {!photos.length && <li className="opacity-60">No photos yet.</li>}
