@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { RetroNav } from "@/components/layout/RetroNav";
 import { ColorBar } from "@/components/layout/ColorBar";
 import { SearchProvider } from "@/components/search/SearchContext";
@@ -19,9 +20,14 @@ const heading = Chakra_Petch({
 const body = Inter({ subsets: ["latin"], variable: "--font-body" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Augusto Pinheiro – Portfolio",
   description: "Neon cyberpunk portfolio of Augusto Pinheiro",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 // (Sidebar is now loaded via ContentGrid when appropriate)

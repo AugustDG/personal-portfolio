@@ -89,7 +89,7 @@ export async function GET(req: Request) {
             >
               <span
                 style={{
-                  display: "inline-block",
+                  display: "block",
                   padding: "6px 14px",
                   border: "2px solid rgba(255,255,255,0.6)",
                   background: "rgba(0,0,0,0.35)",
@@ -135,5 +135,6 @@ export async function GET(req: Request) {
     "Cache-Control",
     "public, immutable, no-transform, s-maxage=86400, max-age=86400",
   );
+
   return imageResponse;
 }
