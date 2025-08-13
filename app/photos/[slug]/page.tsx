@@ -46,7 +46,7 @@ export default async function GalleryPage({ params }: { params: PageProps }) {
   if (!gallery) return <p className="opacity-60">Not found.</p>;
 
   return (
-    <div className="space-y-6">
+    <div id="__detail_root" className="space-y-6">
       <BackLink href="/photos" label="All photos" />
       <div className="space-y-3">
         <h1 className="font-pixel pixel-border glow-yellow from-retro-yellow via-retro-orange to-retro-magenta inline-block bg-linear-to-br px-4 py-3 text-3xl text-black">

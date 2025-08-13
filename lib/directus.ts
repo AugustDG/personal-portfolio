@@ -58,6 +58,9 @@ export interface SiteMeta {
 
 const publicDirectusUrl = process.env.PUBLIC_DIRECTUS_URL || "";
 const url = process.env.DIRECTUS_URL || "";
+
+console.log(publicDirectusUrl, url);
+
 export const directus = createDirectus(url).with(rest());
 
 async function safeRequest<T>(fn: () => Promise<T>): Promise<T | null> {

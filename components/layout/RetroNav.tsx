@@ -9,7 +9,7 @@ import { Tooltip } from "@/components/ui/Tooltip";
 export function RetroNav({ rightSlot }: { rightSlot?: ReactNode }) {
   return (
     <header className="bg-retro-beige/80 border-retro-purple/40 sticky top-0 z-20 border-b backdrop-blur">
-      <nav className="font-pixel mx-auto flex max-w-6xl items-center gap-3 p-3 text-[10px] sm:text-xs md:text-sm">
+      <nav className="font-pixel mx-auto flex max-w-[1400px] items-center gap-3 p-3 text-[10px] sm:text-xs md:text-sm">
         <Tooltip label="Go to homepage">
           <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.94 }}>
             <Link

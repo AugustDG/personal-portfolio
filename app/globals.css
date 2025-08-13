@@ -25,6 +25,19 @@ header:has(nav) {
   will-change: opacity, transform;
 }
 
+/* Hide sidebar entirely for detail pages using sentinel */
+@supports (selector(:has(*))) {
+  #__content_grid:has(#__detail_root) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  #__content_grid:has(#__detail_root) > aside {
+    display: none !important;
+  }
+  #__content_grid:has(#__detail_root) #__primary {
+    grid-column: 1 / -1;
+  }
+}
+
 /* Animate article focus appearance */
 #__primary article {
   transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1);

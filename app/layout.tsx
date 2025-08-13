@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { ReactNode } from "react";
-import dynamic from "next/dynamic";
 import { RetroNav } from "@/components/layout/RetroNav";
 import { ColorBar } from "@/components/layout/ColorBar";
 import { SearchProvider } from "@/components/search/SearchContext";
@@ -25,10 +24,7 @@ export const metadata = {
   description: "Neon cyberpunk portfolio of Augusto Pinheiro",
 };
 
-// @ts-ignore - dynamic import path resolution
-const SidebarSocials = dynamic(
-  () => import("@/components/layout/SidebarSocials"),
-);
+// (Sidebar is now loaded via ContentGrid when appropriate)
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -55,18 +51,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 }
               />
               <main
-                className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto"
+                className="relative z-10 min-h-0 w-full flex-1 overflow-y-auto px-4 py-6 md:px-8 md:py-10"
                 id="__main"
               >
-                <div
-                  className="mx-auto grid min-h-full max-w-[1200px] grid-cols-1 gap-10 px-4 py-6 md:px-8 md:py-10 lg:grid-cols-[minmax(0,900px)_1fr]"
-                  id="__content_grid"
-                >
-                  <div className="space-y-12" id="__primary">
-                    {children}
-                  </div>
-                  <SidebarSocials />
-                </div>
+                {children}
               </main>
             </SearchProvider>
           </AccessibilityProvider>
