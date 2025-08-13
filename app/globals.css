@@ -152,6 +152,21 @@ html {
       transform: scale(1);
     }
   }
+  /* Subtle content bounce for detail pages */
+  @keyframes detailBounce {
+    0% {
+      opacity: 0;
+      transform: translateY(6px) scale(0.998);
+    }
+    55% {
+      opacity: 0.96;
+      transform: translateY(1px) scale(1.0005);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
   @keyframes grid {
     0% {
       background-position:
