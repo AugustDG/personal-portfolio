@@ -9,7 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Photos – Augusto Pinheiro",
     description: "Photo photos and visual explorations.",
-    alternates: { canonical },
+    alternates: {
+      canonical,
+      types: { "application/rss+xml": "/photos/rss.xml" },
+    },
     openGraph: {
       type: "website",
       title: "Photos – Augusto Pinheiro",
@@ -28,12 +31,27 @@ export default async function PhotosPage() {
   const photos = await getPhotos();
   return (
     <div className="space-y-10">
-      <h1 className="font-pixel text-3xl font-semibold tracking-tight">
-        <span className="from-retro-yellow via-retro-orange to-retro-magenta bg-linear-to-r bg-clip-text text-transparent">
-          Photos
-        </span>
-        <span className="from-retro-yellow via-retro-magenta/60 mt-4 block h-1 w-56 bg-linear-to-r to-transparent" />
-      </h1>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <h1 className="font-pixel text-3xl font-semibold tracking-tight">
+          <span className="from-retro-yellow via-retro-orange to-retro-magenta bg-linear-to-r bg-clip-text text-transparent">
+            Photos
+          </span>
+          <span className="from-retro-yellow via-retro-magenta/60 mt-4 block h-1 w-56 bg-linear-to-r to-transparent" />
+        </h1>
+        <div>
+          <a
+            href="/photos/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-retro-magenta/60 text-retro-magenta hover:border-retro-yellow hover:text-retro-yellow focus:ring-retro-yellow/70 inline-flex items-center gap-1 rounded-sm border bg-[#1b2140] px-3 py-1 font-mono text-[11px] tracking-wide uppercase shadow-[0_0_0_2px_#ff00ff,3px_3px_0_0_#00fff6] transition hover:shadow-[0_0_0_2px_#ffe600,3px_3px_0_0_#ff00ff] focus:ring-2 focus:outline-none"
+            aria-label="Subscribe to Photos RSS feed"
+          >
+            <span className="hidden sm:inline">Subscribe</span>
+            <span className="sm:hidden">RSS</span>
+            <span aria-hidden>📡</span>
+          </a>
+        </div>
+      </div>
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((g, i) => (
           <StaggerItem index={i} key={g.id} as="li">
