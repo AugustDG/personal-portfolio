@@ -24,7 +24,7 @@ export async function generateMetadata({
   const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
   const canonical = `${base}/blog/${post.slug}`;
 
-  const fallbackOg = `${base}/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent("Blog+Post")}`;
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent("Blog Post")}&accent=magenta`;
 
   return {
     title: `${post.title} – Augusto Pinheiro`,

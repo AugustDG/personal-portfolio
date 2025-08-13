@@ -22,7 +22,7 @@ export async function generateMetadata({
   const canonical = `${base}/projects/${project.slug}`;
   const desc = project.description?.slice(0, 155) || project.title;
 
-  const fallbackOg = `${base}/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent("Project")}`;
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent("Project")}&accent=cyan`;
 
   return {
     title: `${project.title} – Augusto Pinheiro`,
