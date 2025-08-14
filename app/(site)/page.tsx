@@ -52,7 +52,7 @@ export default async function HomePage() {
           <div className="min-w-0 flex-1">
             <h1 className="font-pixel relative mb-6 inline-block text-3xl font-semibold tracking-tight md:text-4xl">
               <span className="from-retro-magenta via-retro-yellow to-retro-cyan relative z-10 bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
-                Hi, I&apos;m Augusto
+                Hi, I&apos;m Augusto :)
               </span>
               <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
             </h1>
@@ -86,14 +86,33 @@ export default async function HomePage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((p, i) => (
             <StaggerItem index={i} key={p.id}>
-              <article className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
-                <Link href={`/projects/${p.slug}`} className="block">
-                  <div className="from-retro-magenta/10 via-retro-purple/0 to-retro-cyan/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
-                  <div className="relative z-10 space-y-2 p-4">
-                    <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+              <article className="group border-retro-purple/40 hover:border-retro-magenta relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="flex h-full flex-col"
+                >
+                  <div className="relative h-40 w-full overflow-hidden">
+                    {p.header_image_url ? (
+                      <>
+                        <Image
+                          src={p.header_image_url}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                          priority={i === 0}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      </>
+                    ) : (
+                      <div className="from-retro-magenta via-retro-purple to-retro-cyan h-full w-full bg-linear-to-br opacity-30" />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="text-retro-magenta group-hover:text-retro-yellow line-clamp-2 text-sm font-semibold tracking-wide transition-colors md:text-base">
                       {p.title}
                     </h3>
-                    <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
+                    <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed md:text-[13px]">
                       {p.description}
                     </p>
                   </div>
@@ -116,14 +135,30 @@ export default async function HomePage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {latestPosts.map((p, i) => (
             <StaggerItem index={i} key={p.id}>
-              <article className="group border-retro-purple/40 hover:border-retro-cyan relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
-                <Link href={`/blog/${p.slug}`} className="block">
-                  <div className="from-retro-cyan/10 via-retro-purple/0 to-retro-magenta/10 pointer-events-none absolute inset-0 bg-linear-to-br opacity-0 transition-opacity group-hover:opacity-100" />
-                  <div className="relative z-10 space-y-2 p-4">
-                    <h3 className="text-retro-cyan group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
+              <article className="group border-retro-purple/40 hover:border-retro-cyan relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+                <Link href={`/blog/${p.slug}`} className="flex h-full flex-col">
+                  <div className="relative h-40 w-full overflow-hidden">
+                    {p.header_image_url ? (
+                      <>
+                        <Image
+                          src={p.header_image_url}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                          priority={i === 0}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      </>
+                    ) : (
+                      <div className="from-retro-cyan via-retro-purple to-retro-magenta h-full w-full bg-linear-to-br opacity-30" />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="text-retro-cyan group-hover:text-retro-yellow line-clamp-2 text-sm font-semibold tracking-wide transition-colors md:text-base">
                       {p.title}
                     </h3>
-                    <p className="text-retro-cyan/90 line-clamp-4 text-xs leading-relaxed md:text-[13px]">
+                    <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed md:text-[13px]">
                       {p.excerpt}
                     </p>
                   </div>
@@ -144,17 +179,36 @@ export default async function HomePage() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featuredPhotos.map((g, i) => (
             <StaggerItem index={i} key={g.id}>
-              <article className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+              <article className="group border-retro-purple/40 hover:border-retro-yellow relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link
                   href={`/photos/${g.slug}`}
-                  className="block space-y-2 p-4"
+                  className="flex h-full flex-col"
                 >
-                  <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                    {g.title}
-                  </h3>
-                  <p className="text-retro-cyan/90 text-xs leading-relaxed md:text-[13px]">
-                    {g.images?.length || 0} images
-                  </p>
+                  <div className="relative h-40 w-full overflow-hidden">
+                    {g.images?.[0]?.src_url ? (
+                      <>
+                        <Image
+                          src={g.images[0].src_url!}
+                          alt={g.images[0].description || g.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                          priority={i === 0}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      </>
+                    ) : (
+                      <div className="from-retro-yellow via-retro-orange to-retro-magenta h-full w-full bg-linear-to-br opacity-30" />
+                    )}
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="text-retro-magenta group-hover:text-retro-yellow line-clamp-2 text-sm font-semibold tracking-wide transition-colors md:text-base">
+                      {g.title}
+                    </h3>
+                    <p className="text-retro-cyan/90 text-xs leading-relaxed md:text-[13px]">
+                      {g.images?.length || 0} images
+                    </p>
+                  </div>
                 </Link>
               </article>
             </StaggerItem>

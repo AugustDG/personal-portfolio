@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { getProjects } from "@/lib/directus";
 import type { Metadata } from "next";
@@ -69,14 +70,33 @@ export default async function ProjectsPage() {
               <div className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link
                   href={`/projects/${p.slug}`}
-                  className="relative z-10 block space-y-2 p-4"
+                  className="flex h-full flex-col"
                 >
-                  <h3 className="text-retro-magenta group-hover:text-retro-yellow text-sm font-semibold tracking-wide transition-colors md:text-base">
-                    {p.title}
-                  </h3>
-                  <p className="text-retro-cyan/90 line-clamp-3 text-xs leading-relaxed md:text-[13px]">
-                    {p.description}
-                  </p>
+                  <div className="relative h-40 w-full overflow-hidden">
+                    {p.header_image_url ? (
+                      <>
+                        <Image
+                          src={p.header_image_url}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                          priority={i < 3}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      </>
+                    ) : (
+                      <div className="from-retro-magenta via-retro-purple to-retro-cyan h-full w-full bg-linear-to-br opacity-30" />
+                    )}
+                  </div>
+                  <div className="flex min-h-[96px] flex-1 flex-col p-4">
+                    <h3 className="text-retro-magenta group-hover:text-retro-yellow line-clamp-2 text-sm font-semibold tracking-wide transition-colors md:text-base">
+                      {p.title}
+                    </h3>
+                    <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed md:text-[13px]">
+                      {p.description}
+                    </p>
+                  </div>
                 </Link>
               </div>
             </StaggerItem>
@@ -99,14 +119,33 @@ export default async function ProjectsPage() {
               <div className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link
                   href={`/projects/${p.slug}`}
-                  className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center"
+                  className="flex h-full flex-col sm:flex-row sm:items-stretch"
                 >
-                  <span className="text-retro-magenta group-hover:text-retro-yellow flex-1 font-semibold tracking-wide transition-colors">
-                    {p.title}
-                  </span>
-                  <span className="text-retro-cyan/90 line-clamp-1 flex-2 text-xs opacity-80">
-                    {p.description}
-                  </span>
+                  <div className="relative h-40 w-full overflow-hidden sm:h-auto sm:w-40">
+                    {p.header_image_url ? (
+                      <>
+                        <Image
+                          src={p.header_image_url}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 25vw, 12vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                          priority={false}
+                        />
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+                      </>
+                    ) : (
+                      <div className="from-retro-magenta via-retro-yellow to-retro-cyan h-full w-full bg-linear-to-br opacity-30" />
+                    )}
+                  </div>
+                  <div className="flex min-h-[80px] flex-1 flex-col gap-1 p-4">
+                    <span className="text-retro-magenta group-hover:text-retro-yellow line-clamp-2 font-semibold tracking-wide transition-colors">
+                      {p.title}
+                    </span>
+                    <span className="text-retro-cyan/90 line-clamp-2 text-xs opacity-80">
+                      {p.description}
+                    </span>
+                  </div>
                 </Link>
               </div>
             </StaggerItem>

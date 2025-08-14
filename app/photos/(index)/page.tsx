@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { StaggerItem } from "@/components/motion/StaggerItem";
 import { getPhotoGalleries } from "@/lib/directus";
 import type { Metadata } from "next";
@@ -58,13 +59,28 @@ export default async function PhotosPage() {
         {photos.map((g, i) => (
           <StaggerItem index={i} key={g.id} as="li">
             <div className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
-              <Link href={`/photos/${g.slug}`} className="block space-y-1 p-4">
-                <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 font-semibold tracking-wide transition-colors">
-                  {g.title}
-                </h2>
-                <p className="text-retro-cyan/90 text-xs opacity-80">
-                  {g.images?.length || 0} images
-                </p>
+              <Link href={`/photos/${g.slug}`} className="flex h-full flex-col">
+                {g.images?.[0]?.src_url && (
+                  <div className="relative h-40 w-full overflow-hidden">
+                    <Image
+                      src={g.images[0].src_url!}
+                      alt={g.images[0].description || g.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                      priority={i < 3}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  </div>
+                )}
+                <div className="flex flex-1 flex-col p-4">
+                  <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 line-clamp-2 font-semibold tracking-wide transition-colors">
+                    {g.title}
+                  </h2>
+                  <p className="text-retro-cyan/90 text-xs opacity-80">
+                    {g.images?.length || 0} images
+                  </p>
+                </div>
               </Link>
             </div>
           </StaggerItem>

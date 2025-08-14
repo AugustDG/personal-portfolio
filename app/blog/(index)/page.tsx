@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useApi } from "@/lib/hooks/useApi";
 import type { BlogPost } from "@/lib/directus";
@@ -46,16 +47,37 @@ export default function BlogIndex() {
             whileHover={{ x: 4 }}
             className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors"
           >
-            <Link href={`/blog/${p.slug}`} className="block space-y-2 p-4">
-              <h2 className="text-retro-magenta group-hover:text-retro-yellow font-semibold tracking-wide transition-colors">
-                {p.title}
-              </h2>
-              <p className="text-retro-cyan/70 font-mono text-[10px] md:text-[11px]">
-                {p.published_at || p.updated_at}
-              </p>
-              <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed opacity-80 md:text-[13px]">
-                {p.excerpt}
-              </p>
+            <Link href={`/blog/${p.slug}`} className="flex h-full flex-col">
+              <div className="relative h-40 w-full overflow-hidden">
+                {p.header_image_url ? (
+                  <>
+                    <Image
+                      src={p.header_image_url}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      priority={i < 2}
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  </>
+                ) : (
+                  <div className="from-retro-magenta via-retro-purple to-retro-cyan h-full w-full bg-linear-to-br opacity-30" />
+                )}
+              </div>
+              <div className="flex flex-1 flex-col p-4">
+                <div className="flex-1 space-y-2">
+                  <h2 className="text-retro-magenta group-hover:text-retro-yellow line-clamp-2 font-semibold tracking-wide transition-colors">
+                    {p.title}
+                  </h2>
+                  <p className="text-retro-cyan/70 font-mono text-[10px] md:text-[11px]">
+                    {p.published_at || p.updated_at}
+                  </p>
+                  <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed opacity-80 md:text-[13px]">
+                    {p.excerpt}
+                  </p>
+                </div>
+              </div>
             </Link>
           </motion.li>
         ))}
