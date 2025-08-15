@@ -114,6 +114,7 @@ export function MarkdownRenderer({ content, className }: Props) {
           },
           a: ({ href, children, ...rest }) => {
             const external = href?.startsWith('http');
+
             return (
               <a
                 href={href}
