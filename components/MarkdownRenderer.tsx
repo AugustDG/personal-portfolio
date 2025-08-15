@@ -158,6 +158,7 @@ export function MarkdownRenderer({ content, className }: Props) {
               style: _s,
               ...rest
             } = props as React.IframeHTMLAttributes<HTMLIFrameElement>;
+
             return (
               <div className="mx-auto my-6 w-full max-w-3xl">
                 <div className="pixel-border relative aspect-video w-full overflow-hidden rounded-sm bg-[#0d1122]">
