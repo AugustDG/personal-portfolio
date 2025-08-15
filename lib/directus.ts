@@ -291,7 +291,7 @@ export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
       readItems('galleries', {
         fields: ['id', 'slug', 'title', 'description', 'images.images_id.*', 'tags'],
         limit: -1,
-        sort: ['title'],
+        sort: ['-updated_at'],
       }),
     ),
   );
