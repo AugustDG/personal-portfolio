@@ -1,35 +1,29 @@
-import Link from "next/link";
-import { StaggerItem } from "@/components/motion/StaggerItem";
-import {
-  getProjects,
-  getBlogs,
-  getPhotoGalleries,
-  getSiteMeta,
-} from "@/lib/directus";
-import type { Metadata } from "next";
-import Image from "next/image";
+import Link from 'next/link';
+import { StaggerItem } from '@/components/motion/StaggerItem';
+import { getProjects, getBlogs, getPhotoGalleries, getSiteMeta } from '@/lib/directus';
+import type { Metadata } from 'next';
+import Image from 'next/image';
 
-export const runtime = "edge";
+export const runtime = 'edge';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, '') || '';
   const canonical = base || undefined;
 
   return {
-    title: "Augusto Pinheiro - Portfolio",
-    description:
-      "Personal portfolio: projects, writing and photos by Augusto Pinheiro.",
+    title: 'Augusto Pinheiro - Portfolio',
+    description: 'Personal portfolio: projects, writing and photos by Augusto Pinheiro.',
     alternates: { canonical },
     openGraph: {
-      type: "website",
-      title: "Augusto Pinheiro - Portfolio",
-      description: "Projects, writing and photos by Augusto Pinheiro.",
+      type: 'website',
+      title: 'Augusto Pinheiro - Portfolio',
+      description: 'Projects, writing and photos by Augusto Pinheiro.',
       url: canonical,
     },
     twitter: {
-      card: "summary",
-      title: "Augusto Pinheiro - Portfolio",
-      description: "Projects, writing and photos by Augusto Pinheiro.",
+      card: 'summary',
+      title: 'Augusto Pinheiro - Portfolio',
+      description: 'Projects, writing and photos by Augusto Pinheiro.',
     },
   };
 }
@@ -52,21 +46,19 @@ export default async function HomePage() {
           <div className="min-w-0 flex-1">
             <h1 className="font-pixel relative mb-6 inline-block text-3xl font-semibold tracking-tight md:text-4xl">
               <span className="from-retro-magenta via-retro-yellow to-retro-cyan relative z-10 bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
-                Hi, I&apos;m Augusto :)
+                Hi, I&apos;m Augusto!
               </span>
               <span className="from-retro-magenta via-retro-purple mt-3 block h-1 w-56 bg-linear-to-r to-transparent"></span>
             </h1>
             {site?.intro && (
-              <p className="mt-4 leading-relaxed whitespace-pre-line">
-                {site.intro}
-              </p>
+              <p className="mt-4 leading-relaxed whitespace-pre-line">{site.intro}</p>
             )}
           </div>
           {site?.profile_image_url && (
             <div className="pixel-border relative mx-auto aspect-square w-40 shrink-0 overflow-hidden rounded-sm bg-[#12162b] shadow-md md:mx-0 md:w-56">
               <Image
                 src={site.profile_image_url}
-                alt={site.profile_image?.description || "Profile photo"}
+                alt={site.profile_image?.description || 'Profile photo'}
                 fill
                 sizes="(max-width: 768px) 160px, 192px"
                 className="object-cover"
@@ -87,10 +79,7 @@ export default async function HomePage() {
           {featuredProjects.map((p, i) => (
             <StaggerItem index={i} key={p.id}>
               <article className="group border-retro-purple/40 hover:border-retro-magenta relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
-                <Link
-                  href={`/projects/${p.slug}`}
-                  className="flex h-full flex-col"
-                >
+                <Link href={`/projects/${p.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
                     {p.header_image_url ? (
                       <>
@@ -180,10 +169,7 @@ export default async function HomePage() {
           {featuredPhotos.map((g, i) => (
             <StaggerItem index={i} key={g.id}>
               <article className="group border-retro-purple/40 hover:border-retro-yellow relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
-                <Link
-                  href={`/photos/${g.slug}`}
-                  className="flex h-full flex-col"
-                >
+                <Link href={`/photos/${g.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
                     {g.images?.[0]?.src_url ? (
                       <>
@@ -213,9 +199,7 @@ export default async function HomePage() {
               </article>
             </StaggerItem>
           ))}
-          {!featuredPhotos.length && (
-            <p className="opacity-60">No photos yet.</p>
-          )}
+          {!featuredPhotos.length && <p className="opacity-60">No photos yet.</p>}
         </div>
       </section>
       <section>
@@ -244,15 +228,15 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "Augusto Pinheiro Portfolio",
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Augusto Pinheiro Portfolio',
             url: process.env.PUBLIC_URL || undefined,
-            description: "Projects, writing and photos by Augusto Pinheiro.",
+            description: 'Projects, writing and photos by Augusto Pinheiro.',
             potentialAction: {
-              "@type": "SearchAction",
-              target: `${process.env.PUBLIC_URL || ""}/?q={search_term_string}`,
-              "query-input": "required name=search_term_string",
+              '@type': 'SearchAction',
+              target: `${process.env.PUBLIC_URL || ''}/?q={search_term_string}`,
+              'query-input': 'required name=search_term_string',
             },
           }),
         }}
