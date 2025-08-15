@@ -58,7 +58,7 @@ export default async function PhotosPage() {
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((g, i) => (
           <StaggerItem index={i} key={g.id} as="li">
-            <div className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+            <div className="group border-retro-purple/40 hover:border-retro-yellow relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
               <Link href={`/photos/${g.slug}`} className="flex h-full flex-col">
                 {g.images?.[0]?.thumbnail_url && (
                   <div className="relative h-40 w-full overflow-hidden">
@@ -73,7 +73,7 @@ export default async function PhotosPage() {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                   </div>
                 )}
-                <div className="flex flex-1 flex-col p-4">
+                <div className="flex min-h-[96px] flex-1 flex-col p-4">
                   <h2 className="text-retro-magenta group-hover:text-retro-yellow mb-1 line-clamp-2 font-semibold tracking-wide transition-colors">
                     {g.title}
                   </h2>

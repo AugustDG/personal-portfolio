@@ -187,7 +187,7 @@ export default async function HomePage() {
                       <div className="from-retro-yellow via-retro-orange to-retro-magenta h-full w-full bg-linear-to-br opacity-30" />
                     )}
                   </div>
-                  <div className="flex flex-1 flex-col p-4">
+                  <div className="flex min-h-[96px] flex-1 flex-col p-4">
                     <h3 className="text-retro-magenta group-hover:text-retro-yellow line-clamp-2 text-sm font-semibold tracking-wide transition-colors md:text-base">
                       {g.title}
                     </h3>
