@@ -80,6 +80,13 @@ export default async function PhotosPage() {
                   <p className="text-retro-cyan/90 text-xs opacity-80">
                     {g.images?.length || 0} images
                   </p>
+                  {(g.description ||
+                    g.images?.find((img) => img.description)?.description) && (
+                    <p className="mt-2 line-clamp-2 text-[11px] leading-snug text-white/70">
+                      {g.description ||
+                        g.images?.find((img) => img.description)?.description}
+                    </p>
+                  )}
                 </div>
               </Link>
             </div>

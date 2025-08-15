@@ -45,6 +45,7 @@ export interface PhotoGallery {
   id: string;
   slug: string;
   title: string;
+  description?: string;
   images: Image[];
   tags?: string[]; // optional if later added
 }
@@ -271,7 +272,7 @@ export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
   const data = await safeRequest(() =>
     directus.request(
       readItems('galleries', {
-        fields: ['id', 'slug', 'title', 'images.images_id.*', 'tags'],
+        fields: ['id', 'slug', 'title', 'description', 'images.images_id.*', 'tags'],
         limit: -1,
         sort: ['title'],
       }),
@@ -285,6 +286,7 @@ export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
     id: g.id,
     slug: g.slug,
     title: g.title,
+    description: g.description,
     images: (g.images || []).map((img: any) => ({
       id: img.images_id.id,
       src: img.images_id.src,
@@ -299,7 +301,7 @@ export async function getPhotoGallery(slug: string): Promise<PhotoGallery | null
   const data = await safeRequest(() =>
     directus.request(
       readItems('galleries', {
-        fields: ['id', 'slug', 'title', 'images.images_id.*', 'tags'],
+        fields: ['id', 'slug', 'title', 'description', 'images.images_id.*', 'tags'],
         filter: { slug: { _eq: slug } },
         limit: 1,
       }),
@@ -313,6 +315,7 @@ export async function getPhotoGallery(slug: string): Promise<PhotoGallery | null
     id: g.id,
     slug: g.slug,
     title: g.title,
+    description: g.description,
     images: (g.images || []).map((img: any) => ({
       id: img.images_id.id,
       src: img.images_id.src,

@@ -1,11 +1,11 @@
-import { TagPill } from "@/components/TagPill";
-import { PhotosImagesClient } from "./client";
-import type { Metadata } from "next";
-import { getPhotoGallery, getPhotoGalleries } from "@/lib/directus";
-import { PageProps } from "@/lib/types";
-import { BackLink } from "@/components/BackLink";
+import { TagPill } from '@/components/TagPill';
+import { PhotosImagesClient } from './client';
+import type { Metadata } from 'next';
+import { getPhotoGallery, getPhotoGalleries } from '@/lib/directus';
+import { PageProps } from '@/lib/types';
+import { BackLink } from '@/components/BackLink';
 
-export const runtime = "edge";
+export const runtime = 'edge';
 
 export async function generateMetadata({
   params,
@@ -15,25 +15,25 @@ export async function generateMetadata({
   const { slug } = await params;
   const photo = await getPhotoGallery(slug);
 
-  if (!photo) return { title: "Not found" };
-  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  if (!photo) return { title: 'Not found' };
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, '') || '';
   const canonical = `${base}/photos/${photo.slug}`;
-  const desc = photo.title;
-  const fallbackOg = `${base}/og?title=${encodeURIComponent(photo.title)}&subtitle=${encodeURIComponent("Photos")}&accent=yellow`;
+  const desc = photo.description || photo.title;
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(photo.title)}&subtitle=${encodeURIComponent('Photos')}&accent=yellow`;
 
   return {
     title: `${photo.title} - Augusto Pinheiro`,
     description: desc,
     alternates: { canonical },
     openGraph: {
-      type: "website",
+      type: 'website',
       title: photo.title,
       description: desc,
       url: canonical,
       images: [{ url: photo.images?.[0]?.src_url || fallbackOg }],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: photo.title,
       description: desc,
       images: [photo.images?.[0]?.src_url || fallbackOg],
@@ -61,6 +61,11 @@ export default async function PhotosPage({ params }: { params: PageProps }) {
             ))}
           </div>
         )}
+        {photo.description && (
+          <p className="text-sm leading-relaxed whitespace-pre-line text-white/70">
+            {photo.description}
+          </p>
+        )}
       </div>
       {photo.images?.length ? (
         <PhotosImagesClient images={photo.images} />
@@ -71,16 +76,16 @@ export default async function PhotosPage({ params }: { params: PageProps }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
             name: photo.title,
             itemListElement: photo.images?.map((img, index) => ({
-              "@type": "ListItem",
+              '@type': 'ListItem',
               position: index + 1,
               url: img.src_url,
               name: img.description || `Image ${index + 1}`,
             })),
-            keywords: photo.tags?.join(", "),
+            keywords: photo.tags?.join(', '),
           }),
         }}
       />
