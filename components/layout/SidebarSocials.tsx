@@ -1,9 +1,4 @@
-import {
-  getSiteMeta,
-  getProjects,
-  getBlogs,
-  getPhotoGalleries,
-} from "@/lib/directus";
+import { getSiteMeta, getProjects, getBlogs, getPhotoGalleries } from '@/lib/directus';
 
 export default async function SidebarSocials() {
   // Fetch all sidebar data in parallel for performance
@@ -14,23 +9,24 @@ export default async function SidebarSocials() {
     getPhotoGalleries(),
   ]);
 
-  const featuredProjects = (projects || [])
-    .filter((p) => p.featured)
-    .slice(0, 4);
+  const featuredProjects = (projects || []).filter((p) => p.featured).slice(0, 4);
   const latestPosts = (blogs || []).slice(0, 4);
 
-  // Flatten photos (photos images) and keep reference to photos slug
-  const recentPhotos = (galleries || [])
-    .flatMap((g) => (g.images || []).map((img) => ({ img, slug: g.slug })))
-    .slice(0, 6);
+  // Pick 6 random galleries and one random image from each
+  const galleriesWithImages = (galleries || []).filter(
+    (g) => Array.isArray(g.images) && g.images.length > 0,
+  );
+  const shuffled = [...galleriesWithImages].sort(() => Math.random() - 0.5);
+  const recentPhotos = shuffled.slice(0, 6).map((g) => {
+    const img = g.images[Math.floor(Math.random() * g.images.length)];
+    return { img, slug: g.slug };
+  });
 
   return (
     <aside className="hidden flex-col gap-8 pt-2 text-xs tracking-wide lg:flex">
       {/* Featured Projects */}
       <div>
-        <p className="font-pixel text-retro-yellow mb-2 text-[10px]">
-          FEATURED PROJECTS
-        </p>
+        <p className="font-pixel text-retro-yellow mb-2 text-[10px]">FEATURED PROJECTS</p>
         {featuredProjects.length ? (
           <ul className="space-y-1 font-mono">
             {featuredProjects.map((p) => (
@@ -54,9 +50,7 @@ export default async function SidebarSocials() {
 
       {/* Latest Blog Posts */}
       <div>
-        <p className="font-pixel text-retro-yellow mb-2 text-[10px]">
-          LATEST POSTS
-        </p>
+        <p className="font-pixel text-retro-yellow mb-2 text-[10px]">LATEST POSTS</p>
         {latestPosts.length ? (
           <ul className="space-y-1 font-mono">
             {latestPosts.map((b) => (
@@ -89,11 +83,11 @@ export default async function SidebarSocials() {
                 href={`/photos/${slug}`}
                 className="group border-retro-purple/40 relative block aspect-square overflow-hidden rounded-sm border bg-[#111729]"
               >
-                {img.src_url ? (
+                {img.thumbnail_url || img.src_url ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={img.src_url}
-                    alt={img.description || "Photo"}
+                    src={img.thumbnail_url || img.src_url}
+                    alt={img.description || 'Photo'}
                     className="h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                     loading="lazy"
                     decoding="async"
