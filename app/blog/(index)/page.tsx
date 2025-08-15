@@ -1,17 +1,17 @@
-"use client";
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { useApi } from "@/lib/hooks/useApi";
-import type { BlogPost } from "@/lib/directus";
+'use client';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { useApi } from '@/lib/hooks/useApi';
+import type { BlogPost } from '@/lib/directus';
 
 export default function BlogIndex() {
-  const { data: posts, isLoading, error } = useApi<BlogPost[]>("/api/blog");
+  const { data: posts, isLoading, error } = useApi<BlogPost[]>('/api/blog');
 
   return (
     <div className="space-y-10">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <h1 className="font-pixel text-3xl font-semibold tracking-tight">
+        <h1 className="font-pixel text-5xl font-semibold tracking-tight">
           <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
             Blog
           </span>
@@ -32,12 +32,8 @@ export default function BlogIndex() {
         </div>
       </div>
       <ul className="space-y-3">
-        {isLoading && (
-          <li className="text-retro-cyan text-sm opacity-70">Loading…</li>
-        )}
-        {error && (
-          <li className="text-retro-magenta text-sm">Failed to load.</li>
-        )}
+        {isLoading && <li className="text-retro-cyan text-sm opacity-70">Loading…</li>}
+        {error && <li className="text-retro-magenta text-sm">Failed to load.</li>}
         {(posts || []).map((p, i) => (
           <motion.li
             key={p.id}

@@ -1,30 +1,30 @@
-import Link from "next/link";
-import Image from "next/image";
-import { StaggerItem } from "@/components/motion/StaggerItem";
-import { getProjects } from "@/lib/directus";
-import type { Metadata } from "next";
+import Link from 'next/link';
+import Image from 'next/image';
+import { StaggerItem } from '@/components/motion/StaggerItem';
+import { getProjects } from '@/lib/directus';
+import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, '') || '';
   const canonical = `${base}/projects`;
 
   return {
-    title: "Projects – Augusto Pinheiro",
-    description: "Selected software projects, side quests and experiments.",
+    title: 'Projects – Augusto Pinheiro',
+    description: 'Selected software projects, side quests and experiments.',
     alternates: {
       canonical,
-      types: { "application/rss+xml": "/projects/rss.xml" },
+      types: { 'application/rss+xml': '/projects/rss.xml' },
     },
     openGraph: {
-      type: "website",
-      title: "Projects – Augusto Pinheiro",
-      description: "Selected software projects, side quests and experiments.",
+      type: 'website',
+      title: 'Projects – Augusto Pinheiro',
+      description: 'Selected software projects, side quests and experiments.',
       url: canonical,
     },
     twitter: {
-      card: "summary",
-      title: "Projects – Augusto Pinheiro",
-      description: "Selected software projects, side quests and experiments.",
+      card: 'summary',
+      title: 'Projects – Augusto Pinheiro',
+      description: 'Selected software projects, side quests and experiments.',
     },
   };
 }
@@ -38,7 +38,7 @@ export default async function ProjectsPage() {
     <div className="space-y-14">
       <section>
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <h1 className="font-pixel text-3xl font-semibold tracking-tight">
+          <h1 className="font-pixel text-5xl font-semibold tracking-tight">
             <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
               Projects
             </span>
@@ -68,10 +68,7 @@ export default async function ProjectsPage() {
           {featured.map((p, i) => (
             <StaggerItem index={i} key={p.id}>
               <div className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
-                <Link
-                  href={`/projects/${p.slug}`}
-                  className="flex h-full flex-col"
-                >
+                <Link href={`/projects/${p.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
                     {p.header_image_url ? (
                       <>
@@ -101,9 +98,7 @@ export default async function ProjectsPage() {
               </div>
             </StaggerItem>
           ))}
-          {!featured.length && (
-            <p className="opacity-60">No featured projects yet.</p>
-          )}
+          {!featured.length && <p className="opacity-60">No featured projects yet.</p>}
         </div>
       </section>
       <section className="space-y-6">
@@ -157,11 +152,11 @@ export default async function ProjectsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            name: "Projects",
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Projects',
             itemListElement: projects.map((p, index) => ({
-              "@type": "ListItem",
+              '@type': 'ListItem',
               position: index + 1,
               url: `/projects/${p.slug}`,
               name: p.title,

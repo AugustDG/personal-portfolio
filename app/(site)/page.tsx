@@ -44,7 +44,7 @@ export default async function HomePage() {
       <section>
         <div className="flex flex-col gap-6 md:flex-row md:items-start">
           <div className="min-w-0 flex-1">
-            <h1 className="font-pixel relative mb-6 inline-block text-3xl font-semibold tracking-tight md:text-4xl">
+            <h1 className="font-pixel relative mb-6 inline-block text-6xl font-semibold tracking-tight md:text-4xl">
               <span className="from-retro-magenta via-retro-yellow to-retro-cyan relative z-10 bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.6)]">
                 Hi, I&apos;m Augusto :)
               </span>

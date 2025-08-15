@@ -1,30 +1,30 @@
-import Link from "next/link";
-import Image from "next/image";
-import { StaggerItem } from "@/components/motion/StaggerItem";
-import { getPhotoGalleries } from "@/lib/directus";
-import type { Metadata } from "next";
+import Link from 'next/link';
+import Image from 'next/image';
+import { StaggerItem } from '@/components/motion/StaggerItem';
+import { getPhotoGalleries } from '@/lib/directus';
+import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, '') || '';
   const canonical = `${base}/photos`;
 
   return {
-    title: "Photos – Augusto Pinheiro",
-    description: "Photo photos and visual explorations.",
+    title: 'Photos – Augusto Pinheiro',
+    description: 'Photo photos and visual explorations.',
     alternates: {
       canonical,
-      types: { "application/rss+xml": "/photos/rss.xml" },
+      types: { 'application/rss+xml': '/photos/rss.xml' },
     },
     openGraph: {
-      type: "website",
-      title: "Photos – Augusto Pinheiro",
-      description: "Photo photos and visual explorations.",
+      type: 'website',
+      title: 'Photos – Augusto Pinheiro',
+      description: 'Photo photos and visual explorations.',
       url: canonical,
     },
     twitter: {
-      card: "summary",
-      title: "Photos – Augusto Pinheiro",
-      description: "Photo photos and visual explorations.",
+      card: 'summary',
+      title: 'Photos – Augusto Pinheiro',
+      description: 'Photo photos and visual explorations.',
     },
   };
 }
@@ -35,7 +35,7 @@ export default async function PhotosPage() {
   return (
     <div className="space-y-10">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <h1 className="font-pixel text-3xl font-semibold tracking-tight">
+        <h1 className="font-pixel text-5xl font-semibold tracking-tight">
           <span className="from-retro-yellow via-retro-orange to-retro-magenta bg-linear-to-r bg-clip-text text-transparent">
             Photos
           </span>
@@ -91,11 +91,11 @@ export default async function PhotosPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            name: "Photo photos",
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Photo photos',
             itemListElement: photos.map((g, index) => ({
-              "@type": "ListItem",
+              '@type': 'ListItem',
               position: index + 1,
               url: `/photos/${g.slug}`,
               name: g.title,

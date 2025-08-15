@@ -1,12 +1,12 @@
-import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import Image from "next/image";
-import { TagPill } from "@/components/TagPill";
-import type { Metadata } from "next";
-import { getProject } from "@/lib/directus";
-import { PageProps } from "@/lib/types";
-import { BackLink } from "@/components/BackLink";
+import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import Image from 'next/image';
+import { TagPill } from '@/components/TagPill';
+import type { Metadata } from 'next';
+import { getProject } from '@/lib/directus';
+import { PageProps } from '@/lib/types';
+import { BackLink } from '@/components/BackLink';
 
-export const runtime = "edge";
+export const runtime = 'edge';
 
 export async function generateMetadata({
   params,
@@ -16,27 +16,27 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = await getProject(slug);
 
-  if (!project) return { title: "Not found" };
+  if (!project) return { title: 'Not found' };
 
-  const base = process.env.PUBLIC_URL?.replace(/\/$/, "") || "";
+  const base = process.env.PUBLIC_URL?.replace(/\/$/, '') || '';
   const canonical = `${base}/projects/${project.slug}`;
   const desc = project.description?.slice(0, 155) || project.title;
 
-  const fallbackOg = `${base}/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent("Project")}&accent=cyan`;
+  const fallbackOg = `${base}/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent('Project')}&accent=cyan`;
 
   return {
     title: `${project.title} – Augusto Pinheiro`,
     description: desc,
     alternates: { canonical },
     openGraph: {
-      type: "website",
+      type: 'website',
       title: project.title,
       description: desc,
       url: canonical,
       images: [{ url: project.header_image_url || fallbackOg }],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: project.title,
       description: desc,
       images: [project.header_image_url || fallbackOg],
@@ -68,7 +68,7 @@ export default async function ProjectDetail({ params }: { params: PageProps }) {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
             </div>
           )}
-          <h1 className="font-pixel text-4xl font-semibold tracking-tight">
+          <h1 className="font-pixel text-6xl font-semibold tracking-tight">
             <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.4)]">
               {project.title}
             </span>
@@ -87,37 +87,35 @@ export default async function ProjectDetail({ params }: { params: PageProps }) {
           <div className="border-retro-purple/40 space-y-2 rounded-sm border bg-[#12162b] p-4">
             <h2 className="font-bold">Timeline</h2>
             <p className="text-retro-cyan text-xs">
-              {project.started_at} — {project.ended_at || "Present"}
+              {project.started_at} — {project.ended_at || 'Present'}
             </p>
           </div>
           <div className="border-retro-purple/40 space-y-2 rounded-sm border bg-[#12162b] p-4">
             <h2 className="font-bold">Collaborators</h2>
             <p className="text-retro-cyan text-xs">
-              {project.collaborators?.join(", ") || "Solo"}
+              {project.collaborators?.join(', ') || 'Solo'}
             </p>
           </div>
           <div className="border-retro-purple/40 space-y-2 rounded-sm border bg-[#12162b] p-4">
             <h2 className="font-bold">Tools</h2>
-            <p className="text-retro-cyan text-xs">
-              {project.tools?.join(", ")}
-            </p>
+            <p className="text-retro-cyan text-xs">{project.tools?.join(', ')}</p>
           </div>
         </section>
         <section>
-          <MarkdownRenderer content={project.body || ""} />
+          <MarkdownRenderer content={project.body || ''} />
         </section>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "CreativeWork",
+              '@context': 'https://schema.org',
+              '@type': 'CreativeWork',
               headline: project.title,
               description: project.description,
               dateCreated: project.started_at,
               dateModified: project.ended_at || project.started_at,
-              author: { "@type": "Person", name: "Augusto Pinheiro" },
-              keywords: project.tags?.join(", "),
+              author: { '@type': 'Person', name: 'Augusto Pinheiro' },
+              keywords: project.tags?.join(', '),
             }),
           }}
         />
