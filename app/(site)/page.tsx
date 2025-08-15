@@ -37,7 +37,7 @@ export default async function HomePage() {
   ]);
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
   const latestPosts = posts.slice(0, 3); // already sorted desc by published_at
-  const featuredPhotos = photos.slice(0, 3);
+  const featuredPhotos = photos.sort(() => 0.5 - Math.random()).slice(0, 3);
 
   return (
     <div className="space-y-12">
