@@ -12,6 +12,7 @@ export async function GET(_req: Request, { params }: { params: PageProps }) {
   const photos = allPhotos.find((g) => g.slug === slug);
 
   const dev = process.env.NODE_ENV === 'development';
+
   if (!photos)
     return new NextResponse(JSON.stringify({ error: 'Not found' }), {
       status: 404,

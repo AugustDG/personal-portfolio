@@ -11,6 +11,7 @@ export async function GET(_req: Request, { params }: { params: PageProps }) {
   const project = getProject(slug);
 
   const dev = process.env.NODE_ENV === 'development';
+
   if (!project)
     return new NextResponse(JSON.stringify({ error: 'Not found' }), {
       status: 404,

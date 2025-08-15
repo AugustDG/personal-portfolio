@@ -8,6 +8,7 @@ export async function GET() {
   const data = await getSiteMeta();
 
   const dev = process.env.NODE_ENV === 'development';
+
   return new NextResponse(JSON.stringify({ data }), {
     headers: {
       'Content-Type': 'application/json',
