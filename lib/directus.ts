@@ -1,4 +1,4 @@
-import { createDirectus, rest, readItems } from "@directus/sdk";
+import { createDirectus, rest, readItems } from '@directus/sdk';
 
 export interface Project {
   id: string;
@@ -57,8 +57,8 @@ export interface SiteMeta {
   profile_image_url?: string;
 }
 
-const publicDirectusUrl = process.env.PUBLIC_DIRECTUS_URL || "";
-const url = process.env.DIRECTUS_URL || "";
+const publicDirectusUrl = process.env.PUBLIC_DIRECTUS_URL || '';
+const url = process.env.DIRECTUS_URL || '';
 
 export const directus = createDirectus(url).with(rest());
 
@@ -68,8 +68,8 @@ async function safeRequest<T>(fn: () => Promise<T>): Promise<T | null> {
   try {
     return await fn();
   } catch (e) {
-    if (process.env.NODE_ENV === "development") {
-      console.warn("Directus request failed", e);
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Directus request failed', e);
     }
 
     return null;
@@ -82,16 +82,16 @@ function expandAsset(
 ): string | undefined {
   if (!id) return undefined;
 
-  if (id.startsWith("http://") || id.startsWith("https://")) return id; // already full
+  if (id.startsWith('http://') || id.startsWith('https://')) return id; // already full
 
   if (!publicDirectusUrl) return undefined;
-  const base = publicDirectusUrl.replace(/\/$/, "");
+  const base = publicDirectusUrl.replace(/\/$/, '');
   const qs = params
-    ? "?" +
+    ? '?' +
       new URLSearchParams(
         Object.entries(params).map(([k, v]) => [k, String(v)]),
       ).toString()
-    : "";
+    : '';
 
   return `${base}/assets/${id}${qs}`;
 }
@@ -99,23 +99,23 @@ function expandAsset(
 export async function getProjects(): Promise<Project[]> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("projects", {
+      readItems('projects', {
         fields: [
-          "id",
-          "slug",
-          "title",
-          "description",
-          "body",
-          "featured",
-          "collaborators",
-          "started_at",
-          "ended_at",
-          "tools",
-          "tags",
-          "header_image.*",
+          'id',
+          'slug',
+          'title',
+          'description',
+          'body',
+          'featured',
+          'collaborators',
+          'started_at',
+          'ended_at',
+          'tools',
+          'tags',
+          'header_image.*',
         ],
         limit: -1,
-        sort: ["-started_at"],
+        sort: ['-started_at'],
       }),
     ),
   );
@@ -126,7 +126,7 @@ export async function getProjects(): Promise<Project[]> {
       const d = new Date(value);
 
       if (isNaN(d.getTime())) return undefined;
-      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const mm = String(d.getMonth() + 1).padStart(2, '0');
       const yyyy = d.getFullYear();
 
       return `${mm}/${yyyy}`;
@@ -147,20 +147,20 @@ export async function getProjects(): Promise<Project[]> {
 export async function getProject(slug: string): Promise<Project | null> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("projects", {
+      readItems('projects', {
         fields: [
-          "id",
-          "slug",
-          "title",
-          "description",
-          "body",
-          "featured",
-          "collaborators",
-          "started_at",
-          "ended_at",
-          "tools",
-          "tags",
-          "header_image.*",
+          'id',
+          'slug',
+          'title',
+          'description',
+          'body',
+          'featured',
+          'collaborators',
+          'started_at',
+          'ended_at',
+          'tools',
+          'tags',
+          'header_image.*',
         ],
         filter: { slug: { _eq: slug } },
         limit: 1,
@@ -176,7 +176,7 @@ export async function getProject(slug: string): Promise<Project | null> {
     const d = new Date(value);
 
     if (isNaN(d.getTime())) return undefined;
-    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
     const yyyy = d.getFullYear();
 
     return `${mm}/${yyyy}`;
@@ -196,20 +196,20 @@ export async function getProject(slug: string): Promise<Project | null> {
 export async function getBlogs(): Promise<BlogPost[]> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("blog", {
+      readItems('blog', {
         fields: [
-          "id",
-          "slug",
-          "title",
-          "body",
-          "excerpt",
-          "tags",
-          "header_image.*",
-          "published_at",
-          "updated_at",
+          'id',
+          'slug',
+          'title',
+          'body',
+          'excerpt',
+          'tags',
+          'header_image.*',
+          'published_at',
+          'updated_at',
         ],
         limit: -1,
-        sort: ["-published_at"],
+        sort: ['-published_at'],
       }),
     ),
   );
@@ -220,10 +220,10 @@ export async function getBlogs(): Promise<BlogPost[]> {
       const d = new Date(value);
 
       if (isNaN(d.getTime())) return undefined;
-      const hh = String(d.getHours()).padStart(2, "0");
-      const mm = String(d.getMinutes()).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      const mon = String(d.getMonth() + 1).padStart(2, "0");
+      const hh = String(d.getHours()).padStart(2, '0');
+      const mm = String(d.getMinutes()).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      const mon = String(d.getMonth() + 1).padStart(2, '0');
       const yyyy = d.getFullYear();
 
       return `${hh}:${mm} ${day}/${mon}/${yyyy}`;
@@ -244,17 +244,17 @@ export async function getBlogs(): Promise<BlogPost[]> {
 export async function getBlog(slug: string): Promise<BlogPost | null> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("blog", {
+      readItems('blog', {
         fields: [
-          "id",
-          "slug",
-          "title",
-          "body",
-          "excerpt",
-          "tags",
-          "header_image.*",
-          "published_at",
-          "updated_at",
+          'id',
+          'slug',
+          'title',
+          'body',
+          'excerpt',
+          'tags',
+          'header_image.*',
+          'published_at',
+          'updated_at',
         ],
         filter: { slug: { _eq: slug } },
         limit: 1,
@@ -270,10 +270,10 @@ export async function getBlog(slug: string): Promise<BlogPost | null> {
 export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("galleries", {
-        fields: ["id", "slug", "title", "images.images_id.*", "tags"],
+      readItems('galleries', {
+        fields: ['id', 'slug', 'title', 'images.images_id.*', 'tags'],
         limit: -1,
-        sort: ["title"],
+        sort: ['title'],
       }),
     ),
   );
@@ -288,20 +288,18 @@ export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
     images: (g.images || []).map((img: any) => ({
       id: img.images_id.id,
       src: img.images_id.src,
-      src_url: expandAsset(img.images_id.src, { width: 1400, quality: 80 }),
+      src_url: expandAsset(img.images_id.src, { width: 3000, quality: 90 }),
       description: img.images_id.description,
     })),
     tags: g.tags || [],
   })) as PhotoGallery[];
 }
 
-export async function getPhotoGallery(
-  slug: string,
-): Promise<PhotoGallery | null> {
+export async function getPhotoGallery(slug: string): Promise<PhotoGallery | null> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("galleries", {
-        fields: ["id", "slug", "title", "images.images_id.*", "tags"],
+      readItems('galleries', {
+        fields: ['id', 'slug', 'title', 'images.images_id.*', 'tags'],
         filter: { slug: { _eq: slug } },
         limit: 1,
       }),
@@ -318,7 +316,7 @@ export async function getPhotoGallery(
     images: (g.images || []).map((img: any) => ({
       id: img.images_id.id,
       src: img.images_id.src,
-      src_url: expandAsset(img.images_id.src, { width: 1400, quality: 80 }),
+      src_url: expandAsset(img.images_id.src, { width: 3000, quality: 90 }),
       description: img.images_id.description,
     })),
     tags: g.tags || [],
@@ -328,8 +326,8 @@ export async function getPhotoGallery(
 export async function getSiteMeta(): Promise<SiteMeta | null> {
   const data = await safeRequest(() =>
     directus.request(
-      readItems("site_meta", {
-        fields: ["id", "intro", "socials", "profile_image.*"],
+      readItems('site_meta', {
+        fields: ['id', 'intro', 'socials', 'profile_image.*'],
         limit: 1,
       }),
     ),
@@ -342,7 +340,7 @@ export async function getSiteMeta(): Promise<SiteMeta | null> {
 
   return {
     id: record.id,
-    intro: record.intro || "",
+    intro: record.intro || '',
     socials: (record.socials || []).map((s: any) => ({
       label: s.label,
       url: s.url,
