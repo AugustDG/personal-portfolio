@@ -19,6 +19,7 @@ export default async function SidebarSocials() {
   const shuffled = [...galleriesWithImages].sort(() => Math.random() - 0.5);
   const recentPhotos = shuffled.slice(0, 6).map((g) => {
     const img = g.images[Math.floor(Math.random() * g.images.length)];
+
     return { img, slug: g.slug };
   });
 
