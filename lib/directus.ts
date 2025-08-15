@@ -17,6 +17,7 @@ export interface Project {
   palette?: string[];
   header_image?: Image;
   header_image_url?: string;
+  header_image_thumbnail_url?: string; // smaller variant for listings
 }
 
 export interface BlogPost {
@@ -32,6 +33,7 @@ export interface BlogPost {
   // Formatted as HH:mm DD/MM/YYYY
   updated_at?: string;
   header_image_url?: string;
+  header_image_thumbnail_url?: string; // smaller variant for listings
 }
 
 export interface Image {
@@ -39,6 +41,8 @@ export interface Image {
   src: string; // assuming a custom field or external URL; adapt if file relation
   description?: string;
   src_url?: string;
+  // A lower-resolution variant derived from src for thumbnails / previews
+  thumbnail_url?: string;
 }
 
 export interface PhotoGallery {
@@ -56,6 +60,7 @@ export interface SiteMeta {
   socials: { label: string; url: string }[];
   profile_image?: Image;
   profile_image_url?: string;
+  profile_image_thumbnail_url?: string; // small avatar variant
 }
 
 const publicDirectusUrl = process.env.PUBLIC_DIRECTUS_URL || '';
@@ -141,6 +146,10 @@ export async function getProjects(): Promise<Project[]> {
         width: 1600,
         quality: 85,
       }),
+      header_image_thumbnail_url: expandAsset(p.header_image?.src, {
+        width: 640,
+        quality: 70,
+      }),
     } as Project;
   });
 }
@@ -191,6 +200,10 @@ export async function getProject(slug: string): Promise<Project | null> {
       width: 1600,
       quality: 85,
     }),
+    header_image_thumbnail_url: expandAsset(p.header_image?.src, {
+      width: 640,
+      quality: 70,
+    }),
   } as Project;
 }
 
@@ -237,6 +250,10 @@ export async function getBlogs(): Promise<BlogPost[]> {
       header_image_url: expandAsset(b.header_image?.src, {
         width: 1600,
         quality: 85,
+      }),
+      header_image_thumbnail_url: expandAsset(b.header_image?.src, {
+        width: 640,
+        quality: 70,
       }),
     } as BlogPost;
   });
@@ -291,6 +308,7 @@ export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
       id: img.images_id.id,
       src: img.images_id.src,
       src_url: expandAsset(img.images_id.src, { width: 3000, quality: 90 }),
+      thumbnail_url: expandAsset(img.images_id.src, { width: 750, quality: 80 }),
       description: img.images_id.description,
     })),
     tags: g.tags || [],
@@ -320,6 +338,7 @@ export async function getPhotoGallery(slug: string): Promise<PhotoGallery | null
       id: img.images_id.id,
       src: img.images_id.src,
       src_url: expandAsset(img.images_id.src, { width: 3000, quality: 90 }),
+      thumbnail_url: expandAsset(img.images_id.src, { width: 750, quality: 70 }),
       description: img.images_id.description,
     })),
     tags: g.tags || [],
@@ -350,6 +369,10 @@ export async function getSiteMeta(): Promise<SiteMeta | null> {
     })),
     profile_image: record.profile_image,
     profile_image_url: expandAsset(record.profile_image?.src, {
+      width: 320,
+      quality: 85,
+    }),
+    profile_image_thumbnail_url: expandAsset(record.profile_image?.src, {
       width: 320,
       quality: 85,
     }),

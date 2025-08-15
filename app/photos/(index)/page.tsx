@@ -60,10 +60,10 @@ export default async function PhotosPage() {
           <StaggerItem index={i} key={g.id} as="li">
             <div className="group border-retro-purple/40 hover:border-retro-yellow relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
               <Link href={`/photos/${g.slug}`} className="flex h-full flex-col">
-                {g.images?.[0]?.src_url && (
+                {g.images?.[0]?.thumbnail_url && (
                   <div className="relative h-40 w-full overflow-hidden">
                     <Image
-                      src={g.images[0].src_url!}
+                      src={g.images[0].thumbnail_url!}
                       alt={g.images[0].description || g.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

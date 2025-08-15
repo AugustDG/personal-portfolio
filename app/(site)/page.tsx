@@ -54,10 +54,10 @@ export default async function HomePage() {
               <p className="mt-4 leading-relaxed whitespace-pre-line">{site.intro}</p>
             )}
           </div>
-          {site?.profile_image_url && (
+          {site?.profile_image_thumbnail_url && (
             <div className="pixel-border relative mx-auto aspect-square w-40 shrink-0 overflow-hidden rounded-sm bg-[#12162b] shadow-md md:mx-0 md:w-56">
               <Image
-                src={site.profile_image_url}
+                src={site.profile_image_thumbnail_url}
                 alt={site.profile_image?.description || 'Profile photo'}
                 fill
                 sizes="(max-width: 768px) 160px, 192px"
@@ -81,10 +81,10 @@ export default async function HomePage() {
               <article className="group border-retro-purple/40 hover:border-retro-magenta relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link href={`/projects/${p.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
-                    {p.header_image_url ? (
+                    {p.header_image_thumbnail_url ? (
                       <>
                         <Image
-                          src={p.header_image_url}
+                          src={p.header_image_thumbnail_url}
                           alt={p.title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -127,10 +127,10 @@ export default async function HomePage() {
               <article className="group border-retro-purple/40 hover:border-retro-cyan relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link href={`/blog/${p.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
-                    {p.header_image_url ? (
+                    {p.header_image_thumbnail_url ? (
                       <>
                         <Image
-                          src={p.header_image_url}
+                          src={p.header_image_thumbnail_url}
                           alt={p.title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -171,10 +171,10 @@ export default async function HomePage() {
               <article className="group border-retro-purple/40 hover:border-retro-yellow relative flex h-full flex-col overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link href={`/photos/${g.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
-                    {g.images?.[0]?.src_url ? (
+                    {g.images?.[0]?.thumbnail_url ? (
                       <>
                         <Image
-                          src={g.images[0].src_url!}
+                          src={g.images[0].thumbnail_url!}
                           alt={g.images[0].description || g.title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

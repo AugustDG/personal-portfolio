@@ -70,10 +70,10 @@ export default async function ProjectsPage() {
               <div className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link href={`/projects/${p.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
-                    {p.header_image_url ? (
+                    {p.header_image_thumbnail_url ? (
                       <>
                         <Image
-                          src={p.header_image_url}
+                          src={p.header_image_thumbnail_url}
                           alt={p.title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -117,10 +117,10 @@ export default async function ProjectsPage() {
                   className="flex h-full flex-col sm:flex-row sm:items-stretch"
                 >
                   <div className="relative h-40 w-full overflow-hidden sm:h-auto sm:w-40">
-                    {p.header_image_url ? (
+                    {p.header_image_thumbnail_url ? (
                       <>
                         <Image
-                          src={p.header_image_url}
+                          src={p.header_image_thumbnail_url}
                           alt={p.title}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 25vw, 12vw"

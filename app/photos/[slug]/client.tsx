@@ -1,10 +1,11 @@
-"use client";
-import { useLightbox } from "@/components/lightbox/LightboxContext";
-import Image from "next/image";
+'use client';
+import { useLightbox } from '@/components/lightbox/LightboxContext';
+import Image from 'next/image';
 
 interface Img {
   id: string;
   src_url?: string;
+  thumbnail_url?: string;
   description?: string;
 }
 
@@ -22,11 +23,11 @@ export function PhotosImagesClient({ images }: { images: Img[] }) {
         >
           <div
             className="relative h-48 w-full cursor-zoom-in"
-            onClick={() => openLightbox(img.src_url || "", img.description)}
+            onClick={() => openLightbox(img.src_url || '', img.description)}
           >
             <Image
-              src={img.src_url || ""}
-              alt={img.description || ""}
+              src={img.thumbnail_url || img.src_url || ''}
+              alt={img.description || ''}
               fill
               sizes="(max-width: 1024px) 50vw, 33vw"
               className="object-cover"

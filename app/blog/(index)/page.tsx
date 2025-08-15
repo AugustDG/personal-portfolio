@@ -45,10 +45,10 @@ export default function BlogIndex() {
           >
             <Link href={`/blog/${p.slug}`} className="flex h-full flex-col">
               <div className="relative h-40 w-full overflow-hidden">
-                {p.header_image_url ? (
+                {p.header_image_thumbnail_url ? (
                   <>
                     <Image
-                      src={p.header_image_url}
+                      src={p.header_image_thumbnail_url}
                       alt={p.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
