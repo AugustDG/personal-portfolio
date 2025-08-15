@@ -112,12 +112,20 @@ export function MarkdownRenderer({ content, className }: Props) {
               <code className={clsx(className, 'font-mono')}>{children}</code>
             );
           },
-          a: (props) => (
-            <a
-              {...props}
-              className="decoration-retro-magenta/60 hover:decoration-retro-cyan text-retro-cyan hover:text-retro-magenta underline transition-colors"
-            />
-          ),
+          a: ({ href, children, ...rest }) => {
+            const external = href?.startsWith('http');
+            return (
+              <a
+                href={href}
+                {...rest}
+                target="_blank"
+                rel={external ? 'noopener noreferrer' : 'noopener noreferrer'}
+                className="decoration-retro-magenta/60 hover:decoration-retro-cyan text-retro-cyan hover:text-retro-magenta underline transition-colors"
+              >
+                {children}
+              </a>
+            );
+          },
           h1: (props) => (
             <h1 {...props} className="font-pixel text-retro-magenta tracking-tight" />
           ),
