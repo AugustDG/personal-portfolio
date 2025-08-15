@@ -1,17 +1,17 @@
 /* Blog focus mode (animated) */
-header[role="banner"],
+header[role='banner'],
 header:has(nav) {
   transition:
     opacity 0.35s ease,
     transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity, transform;
 }
-[data-focus-blog="true"] header[role="banner"],
-[data-focus-blog="true"] header:has(nav) {
+[data-focus-blog='true'] header[role='banner'],
+[data-focus-blog='true'] header:has(nav) {
   opacity: 0;
   transform: translateY(-14px);
 }
-[data-focus-blog="true"] .focus-hide-colorbar {
+[data-focus-blog='true'] .focus-hide-colorbar {
   opacity: 0;
   transform: translateY(-8px);
   transition:
@@ -19,7 +19,7 @@ header:has(nav) {
     transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
-[data-focus-blog="true"] header:hover {
+[data-focus-blog='true'] header:hover {
   opacity: 1;
   transform: translateY(0);
 }
@@ -56,34 +56,34 @@ header:has(nav) {
   }
 }
 
-[data-focus-blog="true"] #__content_grid > :last-child {
+[data-focus-blog='true'] #__content_grid > :last-child {
   /* sidebar hidden but space kept */
   opacity: 0;
   transform: translateX(40px);
   pointer-events: none;
 }
-[data-focus-blog="true"] #__content_grid {
+[data-focus-blog='true'] #__content_grid {
   grid-template-columns: minmax(0, 1fr) 0 !important;
   gap: 0 !important;
 }
-[data-focus-blog="true"] #__content_grid > :last-child {
+[data-focus-blog='true'] #__content_grid > :last-child {
   width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
 }
-[data-focus-blog="true"] #__primary {
+[data-focus-blog='true'] #__primary {
   grid-column: 1 / -1;
   display: block;
 }
-[data-focus-blog="true"] #__primary > * {
+[data-focus-blog='true'] #__primary > * {
   max-width: 1200px; /* respect overall layout width while giving more room than sidebar mode */
   width: 100%;
   transition: max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hide blog post header image block in focus mode */
-[data-focus-blog="true"] #__detail_root header > div.relative.mb-4 {
+[data-focus-blog='true'] #__detail_root header > div.relative.mb-4 {
   /* matches the image wrapper */
   opacity: 0;
   transform: translateY(-12px) scale(0.98);
@@ -102,7 +102,7 @@ header:has(nav) {
 html {
   font-family: var(--font-body);
 }
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Fonts */
@@ -237,14 +237,14 @@ html {
     font-size: 15px;
     line-height: 1.5;
     cursor:
-      url("/cursor-retro.png") 4 4,
+      url('/cursor-retro.png') 4 4,
       auto;
   }
 
   a,
   button {
     cursor:
-      url("/cursor-retro.png") 4 4,
+      url('/cursor-retro.png') 4 4,
       pointer;
   }
 
@@ -373,6 +373,112 @@ html {
     margin-top: 0.4em;
     margin-bottom: 0.4em;
   }
+  /* Enhanced list styling */
+  .prose-readable ul,
+  .prose-readable ol {
+    position: relative;
+  }
+
+  /* Unordered lists */
+  .prose-readable ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .prose-readable ul > li {
+    position: relative;
+    padding-left: 2.2em;
+  }
+  .prose-readable ul > li::before {
+    content: '';
+    position: absolute;
+    left: 1.1em;
+    top: 0.75em;
+    transform: translateY(-50%);
+    width: 0.42em;
+    height: 0.42em;
+    border-radius: 9999px;
+    background: radial-gradient(
+      circle at 30% 30%,
+      var(--color-retro-magenta),
+      var(--color-retro-cyan)
+    );
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.9),
+      0 0 4px rgba(255, 0, 255, 0.5),
+      0 0 6px rgba(0, 179, 255, 0.45);
+  }
+  .prose-readable ul ul > li::before,
+  .prose-readable ul ol > li::before {
+    transform: translateY(-50%) scale(0.55);
+    top: 0.92em;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.55),
+      0 0 3px rgba(255, 0, 255, 0.35);
+  }
+
+  /* Ordered lists */
+  .prose-readable ol {
+    list-style: none;
+    counter-reset: retroCounter;
+    padding-left: 0;
+  }
+  .prose-readable ol > li {
+    position: relative;
+    padding-left: 2.2em;
+    counter-increment: retroCounter;
+  }
+  .prose-readable ol > li::before {
+    content: counter(retroCounter, decimal-leading-zero) '.';
+    position: absolute;
+    left: 0.3em;
+    top: 0.4em;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    background: linear-gradient(
+      90deg,
+      var(--color-retro-magenta),
+      var(--color-retro-cyan)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow:
+      0 0 4px rgba(255, 0, 255, 0.5),
+      0 0 6px rgba(0, 179, 255, 0.45);
+    line-height: 1;
+  }
+  .prose-readable ol ol > li::before,
+  .prose-readable ol ul > li::before {
+    background: linear-gradient(
+      90deg,
+      var(--color-retro-purple),
+      var(--color-retro-yellow)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 0.7rem;
+    text-shadow: 0 0 3px rgba(255, 0, 255, 0.35);
+  }
+  /* Tighten nested list spacing */
+  .prose-readable li > ul,
+  .prose-readable li > ol {
+    margin-top: 0.5em;
+    margin-bottom: 0.6em;
+  }
+  /* Accessibility reduced-chroma adjustments */
+  html.a11y-reduced-chroma .prose-readable ul > li::before {
+    background: #9ca3af !important;
+    box-shadow: none !important;
+  }
+  html.a11y-reduced-chroma .prose-readable ol > li::before {
+    background: #1f2937 !important;
+    color: #e5e7eb !important;
+    box-shadow: none !important;
+    border-color: #6b7280 !important;
+  }
   .prose-readable blockquote {
     margin-left: 0;
     border-left-width: 3px;
@@ -405,7 +511,7 @@ html.a11y-reduced-chroma .text-transparent {
   -webkit-text-fill-color: currentColor !important;
   color: #e5e7eb !important;
 }
-html.a11y-reduced-chroma [class*="bg-linear-to-"],
+html.a11y-reduced-chroma [class*='bg-linear-to-'],
 html.a11y-reduced-chroma .bg-linear-to-r {
   background-image: none !important;
   background-color: #12162b !important;
@@ -441,7 +547,7 @@ html.a11y-reduced-chroma h6 {
   text-shadow: none !important;
   filter: none !important;
 }
-html.a11y-reduced-chroma [class*="drop-shadow"] {
+html.a11y-reduced-chroma [class*='drop-shadow'] {
   filter: none !important;
   text-shadow: none !important;
 }
