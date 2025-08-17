@@ -1,32 +1,33 @@
-import "./globals.css";
-import type { ReactNode } from "react";
-import type { Metadata } from "next";
-import { RetroNav } from "@/components/layout/RetroNav";
-import { ColorBar } from "@/components/layout/ColorBar";
-import { SearchProvider } from "@/components/search/SearchContext";
-import { SearchIndexer } from "@/components/search/Indexer";
-import { LightboxProvider } from "@/components/lightbox/LightboxContext";
-import { AccessibilityProvider } from "@/components/accessibility/AccessibilityContext";
-import { AccessibilityToggle } from "@/components/accessibility/AccessibilityToggle";
-import { Tooltip } from "@/components/ui/Tooltip";
-import { Lightbox } from "@/components/lightbox/Lightbox";
-import { Chakra_Petch, Inter, JetBrains_Mono } from "next/font/google";
+import './globals.css';
+import type { ReactNode } from 'react';
+import type { Metadata } from 'next';
+import { RetroNav } from '@/components/layout/RetroNav';
+import { ColorBar } from '@/components/layout/ColorBar';
+import { SearchProvider } from '@/components/search/SearchContext';
+import { SearchIndexer } from '@/components/search/Indexer';
+import { LightboxProvider } from '@/components/lightbox/LightboxContext';
+import { AccessibilityProvider } from '@/components/accessibility/AccessibilityContext';
+import { AccessibilityToggle } from '@/components/accessibility/AccessibilityToggle';
+import { Tooltip } from '@/components/ui/Tooltip';
+import { Lightbox } from '@/components/lightbox/Lightbox';
+import { Chakra_Petch, Inter, JetBrains_Mono } from 'next/font/google';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 
 const heading = Chakra_Petch({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-heading",
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
 });
-const body = Inter({ subsets: ["latin"], variable: "--font-body" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const body = Inter({ subsets: ['latin'], variable: '--font-body' });
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  title: "Augusto Pinheiro – Portfolio",
-  description: "Neon cyberpunk portfolio of Augusto Pinheiro",
+  title: 'Augusto Pinheiro – Portfolio',
+  description: 'Neon cyberpunk portfolio of Augusto Pinheiro',
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 };
 
@@ -48,10 +49,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <AccessibilityProvider>
             <SearchProvider>
               <SearchIndexer />
+              <GoogleAnalytics />
               <ColorBar />
               <RetroNav
                 rightSlot={
-                  <Tooltip label={"Toggle simplified colors"}>
+                  <Tooltip label={'Toggle simplified colors'}>
                     <AccessibilityToggle />
                   </Tooltip>
                 }
