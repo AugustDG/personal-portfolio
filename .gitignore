@@ -81,12 +81,18 @@ typings/
 .cache
 .parcel-cache
 
+# Vercel build output
+.vercel
+
 # Next.js build output
 .next
 
 # Nuxt.js build / generate output
 .nuxt
 dist
+
+# Cloudflare build output
+.wrangler
 
 # Gatsby files
 .cache/
