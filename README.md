@@ -25,3 +25,17 @@ Although, it's built with modern web tools, my aim is not to showcase my web dev
 - Animations (Framer Motion)
 - Search indexing server action + incremental updates
 - Accessibility (color palette & focus mode)
+- Google Analytics integration with environment variable configuration
+
+## Environment Setup
+
+Copy `.env.example` to `.env.local` and configure the following variables:
+
+### Google Analytics (Optional)
+```bash
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+Replace with your Google Analytics 4 Measurement ID. If not provided, no tracking scripts will be loaded.
+
+### Other Variables
+See `.env.example` for additional configuration options.
