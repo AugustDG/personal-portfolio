@@ -10,6 +10,7 @@ import { AccessibilityProvider } from "@/components/accessibility/AccessibilityC
 import { AccessibilityToggle } from "@/components/accessibility/AccessibilityToggle";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { Lightbox } from "@/components/lightbox/Lightbox";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Chakra_Petch, Inter, JetBrains_Mono } from "next/font/google";
 
 const heading = Chakra_Petch({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning={true}
       className={`${heading.variable} ${body.variable} ${mono.variable} bg-retro-beige text-retro-brown h-full`}
     >
+      <GoogleAnalytics />
       <body
         className="font-body selection:bg-retro-magenta flex h-screen min-h-0 w-full flex-col overflow-hidden antialiased selection:text-black"
         id="__app_root"
