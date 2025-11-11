@@ -155,56 +155,7 @@ export async function getProjects(): Promise<Project[]> {
 }
 
 export async function getProject(slug: string): Promise<Project | null> {
-  const data = await safeRequest(() =>
-    directus.request(
-      readItems('projects', {
-        fields: [
-          'id',
-          'slug',
-          'title',
-          'description',
-          'body',
-          'featured',
-          'collaborators',
-          'started_at',
-          'ended_at',
-          'tools',
-          'tags',
-          'header_image.*',
-        ],
-        filter: { slug: { _eq: slug } },
-        limit: 1,
-      }),
-    ),
-  );
-
-  if (!data || !(data as any[]).length) return null;
-  const p = (data as any[])[0];
-
-  const formatMonthYear = (value?: string | null) => {
-    if (!value) return undefined;
-    const d = new Date(value);
-
-    if (isNaN(d.getTime())) return undefined;
-    const mm = String(d.getMonth() + 1).padStart(2, '0');
-    const yyyy = d.getFullYear();
-
-    return `${mm}/${yyyy}`;
-  };
-
-  return {
-    ...p,
-    started_at: formatMonthYear(p.started_at),
-    ended_at: p.ended_at ? formatMonthYear(p.ended_at) : null,
-    header_image_url: expandAsset(p.header_image?.src, {
-      width: 1600,
-      quality: 85,
-    }),
-    header_image_thumbnail_url: expandAsset(p.header_image?.src, {
-      width: 640,
-      quality: 70,
-    }),
-  } as Project;
+  return (await getProjects()).find((p) => p.slug === slug) || null; // reuse formatting logic
 }
 
 export async function getBlogs(): Promise<BlogPost[]> {
@@ -260,28 +211,6 @@ export async function getBlogs(): Promise<BlogPost[]> {
 }
 
 export async function getBlog(slug: string): Promise<BlogPost | null> {
-  const data = await safeRequest(() =>
-    directus.request(
-      readItems('blog', {
-        fields: [
-          'id',
-          'slug',
-          'title',
-          'body',
-          'excerpt',
-          'tags',
-          'header_image.*',
-          'published_at',
-          'updated_at',
-        ],
-        filter: { slug: { _eq: slug } },
-        limit: 1,
-      }),
-    ),
-  );
-
-  if (!data || !(data as any[]).length) return null;
-
   return (await getBlogs()).find((b) => b.slug === slug) || null; // reuse formatting logic
 }
 
@@ -316,33 +245,7 @@ export async function getPhotoGalleries(): Promise<PhotoGallery[]> {
 }
 
 export async function getPhotoGallery(slug: string): Promise<PhotoGallery | null> {
-  const data = await safeRequest(() =>
-    directus.request(
-      readItems('galleries', {
-        fields: ['id', 'slug', 'title', 'description', 'images.images_id.*', 'tags'],
-        filter: { slug: { _eq: slug } },
-        limit: 1,
-      }),
-    ),
-  );
-
-  if (!data || !(data as any[]).length) return null;
-  const g = (data as any[])[0];
-
-  return {
-    id: g.id,
-    slug: g.slug,
-    title: g.title,
-    description: g.description,
-    images: (g.images || []).map((img: any) => ({
-      id: img.images_id.id,
-      src: img.images_id.src,
-      src_url: expandAsset(img.images_id.src, { width: 3000, quality: 90 }),
-      thumbnail_url: expandAsset(img.images_id.src, { width: 750, quality: 70 }),
-      description: img.images_id.description,
-    })),
-    tags: g.tags || [],
-  } as PhotoGallery;
+  return (await getPhotoGalleries()).find((g) => g.slug === slug) || null; // reuse formatting logic
 }
 
 export async function getSiteMeta(): Promise<SiteMeta | null> {
