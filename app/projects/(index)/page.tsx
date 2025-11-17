@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const canonical = `${base}/projects`;
 
   return {
-    title: 'Projects – Augusto Pinheiro',
+    title: 'Projects - Augusto Pinheiro',
     description: 'Selected software projects, side quests and experiments.',
     alternates: {
       canonical,
@@ -17,13 +17,13 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: 'website',
-      title: 'Projects – Augusto Pinheiro',
+      title: 'Projects - Augusto Pinheiro',
       description: 'Selected software projects, side quests and experiments.',
       url: canonical,
     },
     twitter: {
       card: 'summary',
-      title: 'Projects – Augusto Pinheiro',
+      title: 'Projects - Augusto Pinheiro',
       description: 'Selected software projects, side quests and experiments.',
     },
   };
@@ -42,14 +42,14 @@ export default async function ProjectsPage() {
             <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent">
               Projects
             </span>
-            <span className="from-retro-magenta via-retro-purple/60 mt-4 block h-1 w-64 bg-linear-to-r to-transparent" />
+            <span className="from-retro-magenta via-retro-purple/60 bg-linear-to-r mt-4 block h-1 w-64 to-transparent" />
           </h1>
           <div>
             <a
               href="/projects/rss.xml"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-retro-magenta/60 text-retro-magenta hover:border-retro-yellow hover:text-retro-yellow focus:ring-retro-yellow/70 inline-flex items-center gap-1 rounded-sm border bg-[#1b2140] px-3 py-1 font-mono text-[11px] tracking-wide uppercase shadow-[0_0_0_2px_#ff00ff,3px_3px_0_0_#00fff6] transition hover:shadow-[0_0_0_2px_#ffe600,3px_3px_0_0_#ff00ff] focus:ring-2 focus:outline-none"
+              className="border-retro-magenta/60 text-retro-magenta hover:border-retro-yellow hover:text-retro-yellow focus:ring-retro-yellow/70 inline-flex items-center gap-1 rounded-sm border bg-[#1b2140] px-3 py-1 font-mono text-[11px] uppercase tracking-wide shadow-[0_0_0_2px_#ff00ff,3px_3px_0_0_#00fff6] transition hover:shadow-[0_0_0_2px_#ffe600,3px_3px_0_0_#ff00ff] focus:outline-none focus:ring-2"
               aria-label="Subscribe to Projects RSS feed"
             >
               <span className="hidden sm:inline">Subscribe</span>
@@ -62,12 +62,12 @@ export default async function ProjectsPage() {
           <span className="bg-retro-yellow px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#ffe600,4px_4px_0_0_#ff00ff]">
             Featured Projects
           </span>
-          <span className="from-retro-yellow via-retro-magenta h-[2px] flex-1 bg-linear-to-r to-transparent" />
+          <span className="from-retro-yellow via-retro-magenta bg-linear-to-r h-[2px] flex-1 to-transparent" />
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((p, i) => (
             <StaggerItem index={i} key={p.id}>
-              <div className="group border-retro-purple/40 hover:border-retro-magenta relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+              <div className="border-retro-purple/40 hover:border-retro-magenta group relative block overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link href={`/projects/${p.slug}`} className="flex h-full flex-col">
                   <div className="relative h-40 w-full overflow-hidden">
                     {p.header_image_thumbnail_url ? (
@@ -83,7 +83,7 @@ export default async function ProjectsPage() {
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                       </>
                     ) : (
-                      <div className="from-retro-magenta via-retro-purple to-retro-cyan h-full w-full bg-linear-to-br opacity-30" />
+                      <div className="from-retro-magenta via-retro-purple to-retro-cyan bg-linear-to-br h-full w-full opacity-30" />
                     )}
                   </div>
                   <div className="flex min-h-[96px] flex-1 flex-col p-4">
@@ -106,12 +106,12 @@ export default async function ProjectsPage() {
           <span className="bg-retro-teal px-3 py-1 font-semibold text-black shadow-[0_0_0_2px_#00fff6,4px_4px_0_0_#ff00ff]">
             All
           </span>
-          <span className="from-retro-teal via-retro-cyan h-[2px] flex-1 bg-linear-to-r to-transparent" />
+          <span className="from-retro-teal via-retro-cyan bg-linear-to-r h-[2px] flex-1 to-transparent" />
         </h2>
         <ul className="space-y-3">
           {others.map((p, i) => (
             <StaggerItem index={i} key={p.id} as="li">
-              <div className="group border-retro-purple/40 hover:border-retro-magenta relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
+              <div className="border-retro-purple/40 hover:border-retro-magenta group relative overflow-hidden rounded-sm border bg-[#12162b] transition-colors">
                 <Link
                   href={`/projects/${p.slug}`}
                   className="flex h-full flex-col sm:flex-row sm:items-stretch"
@@ -130,7 +130,7 @@ export default async function ProjectsPage() {
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
                       </>
                     ) : (
-                      <div className="from-retro-magenta via-retro-yellow to-retro-cyan h-full w-full bg-linear-to-br opacity-30" />
+                      <div className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-br h-full w-full opacity-30" />
                     )}
                   </div>
                   <div className="flex min-h-[80px] flex-1 flex-col gap-1 p-4">
