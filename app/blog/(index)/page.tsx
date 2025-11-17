@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { StaggerItem } from '@/components/motion/StaggerItem';
+import { ClientDateTime } from '@/components/ClientDateTime';
 import { getBlogs } from '@/lib/directus';
 import type { Metadata } from 'next';
 
@@ -83,7 +84,12 @@ export default async function BlogIndex() {
                       {p.title}
                     </h2>
                     <p className="text-retro-cyan/70 font-mono text-[10px] md:text-[11px]">
-                      {p.published_at || p.updated_at}
+                      {(p.published_at_iso || p.updated_at_iso) && (
+                        <ClientDateTime
+                          isoDate={p.published_at_iso || p.updated_at_iso || ''}
+                          className="text-retro-cyan/70 font-mono text-[10px] md:text-[11px]"
+                        />
+                      )}
                     </p>
                     <p className="text-retro-cyan/90 line-clamp-2 text-xs leading-relaxed opacity-80 md:text-[13px]">
                       {p.excerpt}

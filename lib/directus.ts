@@ -32,6 +32,9 @@ export interface BlogPost {
   published_at?: string;
   // Formatted as HH:mm DD/MM/YYYY
   updated_at?: string;
+  // Raw ISO date strings for client-side timezone conversion
+  published_at_iso?: string;
+  updated_at_iso?: string;
   header_image_url?: string;
   header_image_thumbnail_url?: string; // smaller variant for listings
 }
@@ -198,6 +201,8 @@ export async function getBlogs(): Promise<BlogPost[]> {
       ...b,
       published_at: formatDateTime(b.published_at),
       updated_at: formatDateTime(b.updated_at),
+      published_at_iso: b.published_at,
+      updated_at_iso: b.updated_at,
       header_image_url: expandAsset(b.header_image?.src, {
         width: 1600,
         quality: 85,
