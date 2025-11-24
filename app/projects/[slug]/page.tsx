@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { getProject } from '@/lib/directus';
 import { PageProps } from '@/lib/types';
 import { BackLink } from '@/components/BackLink';
+import { ExternalLink } from 'lucide-react';
 
 export const runtime = 'edge';
 
@@ -82,6 +83,16 @@ export default async function ProjectDetail({ params }: { params: PageProps }) {
               <TagPill key={t} tag={t} />
             ))}
           </div>
+          {project.live_url && (
+            <a
+              href={project.live_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-retro-purple/40 text-retro-cyan hover:border-retro-magenta hover:bg-retro-magenta/20 hover:text-retro-yellow inline-flex items-center gap-2 rounded-sm border bg-[#12162b] px-3 py-1.5 font-mono text-xs transition-colors"
+            >
+              <ExternalLink className="h-4 w-4" /> View Live
+            </a>
+          )}
         </header>
         <section className="grid gap-5 md:grid-cols-3">
           <div className="border-retro-purple/40 space-y-2 rounded-sm border bg-[#12162b] p-4">
@@ -116,6 +127,7 @@ export default async function ProjectDetail({ params }: { params: PageProps }) {
               dateModified: project.ended_at || project.started_at,
               author: { '@type': 'Person', name: 'Augusto Pinheiro' },
               keywords: project.tags?.join(', '),
+              url: project.live_url,
             }),
           }}
         />

@@ -18,6 +18,7 @@ export interface Project {
   header_image?: Image;
   header_image_url?: string;
   header_image_thumbnail_url?: string; // smaller variant for listings
+  live_url?: string;
 }
 
 export interface BlogPost {
@@ -122,6 +123,7 @@ export async function getProjects(): Promise<Project[]> {
           'tools',
           'tags',
           'header_image.*',
+          'live_url',
         ],
         limit: -1,
         sort: ['-started_at'],
