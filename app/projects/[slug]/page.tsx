@@ -25,7 +25,7 @@ export async function generateMetadata({
   const fallbackOg = `${base}/og?title=${encodeURIComponent(project.title)}&subtitle=${encodeURIComponent('Project')}&accent=cyan`;
 
   return {
-    title: `${project.title} – Augusto Pinheiro`,
+    title: `${project.title} - Augusto Pinheiro`,
     description: desc,
     alternates: { canonical },
     openGraph: {
@@ -72,7 +72,7 @@ export default async function ProjectDetail({ params }: { params: PageProps }) {
             <span className="from-retro-magenta via-retro-yellow to-retro-cyan bg-linear-to-r bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(255,0,255,0.4)]">
               {project.title}
             </span>
-            <span className="from-retro-magenta via-retro-purple/50 mt-5 block h-1 w-72 bg-linear-to-r to-transparent" />
+            <span className="from-retro-magenta via-retro-purple/50 bg-linear-to-r mt-5 block h-1 w-72 to-transparent" />
           </h1>
           <p className="text-retro-cyan font-body max-w-prose leading-relaxed">
             {project.description}
