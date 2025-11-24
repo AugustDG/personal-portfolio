@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getBlogs } from '@/lib/directus';
 
-export const revalidate = 120; // 2 minutes
+export const revalidate = 60; // 1 minute
 
 export async function GET() {
   const data = await getBlogs();
@@ -9,7 +9,7 @@ export async function GET() {
   return new NextResponse(JSON.stringify({ data }), {
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=60',
+      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
     },
   });
 }

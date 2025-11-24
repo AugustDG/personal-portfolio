@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getBlogs } from '@/lib/directus';
 import { PageProps } from '@/lib/types';
 
-export const revalidate = 120;
+export const revalidate = 60;
 
 export const runtime = 'edge';
 
@@ -22,7 +22,7 @@ export async function GET(_req: Request, { params }: { params: PageProps }) {
   return new NextResponse(JSON.stringify({ data: post }), {
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=60',
+      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
     },
   });
 }

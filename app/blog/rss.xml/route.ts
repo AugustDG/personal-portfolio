@@ -27,7 +27,7 @@ export async function GET() {
     status: 200,
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
-      "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+      "Cache-Control": "s-maxage=60, stale-while-revalidate=30",
     },
   });
 }

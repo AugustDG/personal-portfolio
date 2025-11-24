@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { getProject, getProjects } from '@/lib/directus';
+import { getProject } from '@/lib/directus';
 import { PageProps } from '@/lib/types';
 
-export const revalidate = 120; // follow list cache
+export const revalidate = 60; // follow list cache
 
 export const runtime = 'edge';
 
@@ -21,7 +21,7 @@ export async function GET(_req: Request, { params }: { params: PageProps }) {
   return new NextResponse(JSON.stringify({ data: project }), {
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': 'public, s-maxage=120, stale-while-revalidate=60',
+      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
     },
   });
 }
